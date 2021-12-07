@@ -1,12 +1,24 @@
+const path = require('path');
+
+
 const mainController = {
 
 
-        test: (req, res) => {
+        main: (req, res) => {
 
-            console.log('Hello World');
-            res.status(200).send("Hello world !! ");
+            res.status(200).render("index");
+        },
 
+        anssi: (req, res) => {
 
+            res.status(200).sendFile(path.resolve(__dirname + `./../public/attestation_secnumacademie.pdf`));
+            res.setHeader('Content-type', 'application/pdf');
+        },
+
+        cv: (req, res) => {
+
+            res.status(200).sendFile(path.resolve(__dirname + `./../public/romain_CV.pdf`));
+            res.setHeader('Content-type', 'application/pdf');
         }
 
 
