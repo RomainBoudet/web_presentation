@@ -9,6 +9,9 @@ router.get('/secnumacademie', mainController.anssi);
 
 router.get('/cv', mainController.cv);
 
+//router.get('/csp/report', mainController.csp);
+
+
 
 
 module.exports = router;

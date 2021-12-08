@@ -12,12 +12,14 @@
     content="romain boudet, développeur web, développeur, développeur montpellier, développeur javascript, montpellier ">
   <meta name="description"
     content="Portfolio Romain Boudet, Développeur Web, Développeur à Montpellier, a la recherche d'un emploi">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/flexslider.min.css" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    nonce="<%=locals.nonce%>" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" nonce="<%=locals.nonce%>" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/flexslider.min.css"
+    nonce="<%=locals.nonce%>" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" nonce="<%=locals.nonce%>" crossorigin="anonymous">
+  <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="<%=locals.nonce%>" crossorigin="anonymous"> -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" integrity="<%=locals.nonce%>" crossorigin="anonymous"> -->
   <link rel="shortcut icon" type="images/ico" href="/images/RB.png" />
 
   <title>Romain BOUDET - Développeur Backend </title>
@@ -85,7 +87,8 @@
             developpement d'API.
             Curieux des nouvelles technologies depuis longtemps, j'ai obtenu en juillet 2021 mon diplôme de
             <strong><em>Développeur Web et Web Mobile</em></strong> au sein de l'<a href="https://oclock.io/"
-              target="_blank" rel="nofollow noreferrer noopener">école O'Clock</a> labellisé Grande Ecole du Numérique via une
+              target="_blank" rel="nofollow noreferrer noopener">école O'Clock</a> labellisé Grande Ecole du Numérique
+            via une
             formation fullstack JS.
             Je suis à la recherche d'<strong>opportunités professionnelles dans les environs de
               Montpellier</strong> dès Janvier 2021.<br />
@@ -118,10 +121,10 @@
         <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
           <div id="projetsBox"
             class="projet1 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
-            <h3>API Club de jeu</h3>
-            <img class="imgProjet" src="images/ScreenAPIClubJeu.png" alt="image API club de jeu">
+            <h3>API Club de jeux</h3>
+            <img class="imgProjet" src="images/clubjeux.png" alt="image API club de jeux">
             <div class="boutton-details">
-              <span class="btn btn-slider1">Détails</span>
+              <span class="btn btn-slider2">Détails</span>
             </div>
           </div>
         </div>
@@ -130,9 +133,9 @@
           <div id="projetsBox"
             class="projet3 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
             <h3>Kanban</h3>
-            <img class="imgProjet" src="images/screenKanban.png" alt="image kanban">
+            <img class="imgProjet" src="images/kanban.png" alt="image kanban">
             <div class="boutton-details">
-              <span class="btn btn-slider3">Détails</span>
+              <span class="btn btn-slider2">Détails</span>
             </div>
           </div>
         </div>
@@ -141,7 +144,7 @@
           <div id="projetsBox"
             class="projet2 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
             <h3>API Cadex</h3>
-            <img class="imgProjet" src="images/screenCadex.png" alt="image Cadex">
+            <img class="imgProjet" src="images/cadex.png" alt="image Cadex">
             <div class="boutton-details">
               <span class="btn btn-slider2">Détails</span>
             </div>
@@ -151,8 +154,8 @@
         <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
           <div id="projetsBox"
             class="projet4 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
-            <h3>API site de vente en ligne</h3>
-            <img class="imgProjet" src="images/Madagascar.png" alt="image online shopping Madagascar">
+            <h3>API E-commerce</h3>
+            <img class="imgProjet" src="images/ecommerce.png" alt="image online shopping Madagascar">
             <div class="boutton-details">
               <span class="btn btn-slider2">Détails</span>
             </div>
@@ -162,20 +165,20 @@
     </div>
   </section>
 
-  <!-- POP UP 1 Club de jeu-->
+  <!-- POP UP 1 Club de jeux-->
   <div id="popup" class="sliderPop1" style="display:none;">
     <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="images/image_blanche.png" alt="image blanche">
+      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
     </a>
 
     <div class="ct-sliderPop-container">
       <div class="ct-sliderPop ct-sliderPop-slide1 open">
         <div id="popup" class="inner">
-          <h2>Club de jeu</h2>
-
-          <img id="popupProjet" src="images/screenAPIClubJeu.png" alt="image APIClubJeu">
+          <h2 class="h2popup">Club de jeux</h2>
+          <a class="github" href="https://github.com/RomainBoudet/MJC" target="_blank"><img class="logo-contact"
+              alt="logo github" src="images/githubV2.png" /></a>
           <div class="map-white-border"></div>
-          <h2>Développement d'une API <br /> sous node.js pour un club de jeu d'une MJC. </h2>
+          <h2>Développement d'une API <br /> sous node.js pour un club de jeux d'une MJC. </h2>
           <div class="popupProjets col-xs-offset-1 col-xs-20 col-xs-offset-1">
             <ul>
               <li>Base de données : PostgreSQL</li>
@@ -185,23 +188,32 @@
               <li>Hébergement : Heroku</li>
             </ul>
           </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-            <img alt="close" src="https://www.solodev.com/assets/popup-slider/popup-close.png"></a>
+          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- POP UP 2 Cadex-->
+  <!-- POP UP 3 Cadex-->
   <div id="popup" class="sliderPop2" style="display:none;">
     <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="images/image_blanche.png" alt="image blanche">
+      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
     </a>
     <div class="ct-sliderPop-container">
       <div class="ct-sliderPop ct-sliderPop-slide1 open">
         <div id="popup" class="inner">
-          <h2>Cadex</h2>
-          <img id="popupProjet" src="images/screenTrocEncheres.png" alt="image troc encheres">
+          <h2 class="h2popup">Cadex</h2>
+          <div class="popup_git">
+            <a class="github" href="https://github.com/RomainBoudet/cadex_front" target="_blank"><img
+                class="logo-contact" alt="logo github" src="images/githubV2.png" /></a>
+            <a class="github" href="https://github.com/RomainBoudet/cadex" target="_blank"><img class="logo-contact"
+                alt="logo github" src="images/githubV2.png" /></a>
+          </div>
+          <div class="container">
+            <p>Front</p>
+            <p>API</p>
+          </div>
           <div class="map-white-border"></div>
           <h2>Développement d'une API web pour la construction d'un cadavre Exqui aléatoire</h2>
           <div class="popupProjets col-xs-offset-1 col-xs-10 col-xs-offset-1">
@@ -214,8 +226,8 @@
               <li>Framework utilisé : Express</li>
             </ul>
           </div>
-          <a class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-            <img alt="close" src="https://www.solodev.com/assets/popup-slider/popup-close.png"></a>
+          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
+          </a>
         </div>
       </div>
     </div>
@@ -224,13 +236,14 @@
   <!-- POP UP 3 Kanban-->
   <div id="popup" class="sliderPop3" style="display:none;">
     <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="images/image_blanche.png" alt="image blanche">
+      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
     </a>
     <div class="ct-sliderPop-container">
       <div class="ct-sliderPop ct-sliderPop-slide1 open">
         <div id="popup" class="inner">
-          <h2>Portfolio</h2>
-          <img id="popupProjet" src="images/screenPortofolio.png" alt="image Portofolio">
+          <h2 class="h2popup">Portfolio</h2>
+          <a class="github" href="https://github.com/RomainBoudet/Kanban" target="_blank"><img class="logo-contact"
+              alt="logo github" src="images/githubV2.png" /></a>
           <div class="map-white-border"></div>
           <h2>Réalisation d'un front en JS vanilla pour la réalisation d'un Kanabn pour la rédaction de ToDo list</h2>
           <div class="popupProjets col-xs-offset-2 col-xs-8 col-xs-offset-2">
@@ -243,8 +256,8 @@
               <li>Framework utilisé : Express</li>
             </ul>
           </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-            <img alt="close" src="https://www.solodev.com/assets/popup-slider/popup-close.png"></a>
+          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
+          </a>
         </div>
       </div>
     </div>
@@ -253,13 +266,14 @@
   <!-- POP UP 4 MADAGASCAR-->
   <div id="popup" class="sliderPop4" style="display:none;">
     <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="images/image_blanche.png" alt="image blanche">
+      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
     </a>
     <div class="ct-sliderPop-container">
       <div class="ct-sliderPop ct-sliderPop-slide1 open">
         <div id="popup" class="inner">
-          <h2>API site de vente en ligne</h2>
-          <img id="popupProjet" src="images/imageMadagascar.png" alt="image API Madagascar">
+          <h2 class="h2popup">E-commerce</h2>
+          <a class="github" href="https://github.com/RomainBoudet/Madagascar/tree/main" target="_blank"><img class="logo-contact"
+              alt="logo github" src="images/githubV2.png" /></a>
           <div class="map-white-border"></div>
           <h2>Développement d'une API pour une site de e-commerce</h2>
           <div class="popupProjets col-xs-offset-2 col-xs-8 col-xs-offset-2">
@@ -270,8 +284,8 @@
               <li>Framework utilisé : Express</li>
             </ul>
           </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-            <img alt="close" src="https://www.solodev.com/assets/popup-slider/popup-close.png"></a>
+          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
+          </a>
         </div>
       </div>
     </div>
@@ -285,7 +299,7 @@
         <div class="diplomeFormationCompetence">
           <div class="col-sm-7">
             <h3>Diplômes et Formations</h3>
-            <hr class="hr_type2">
+            <hr class="hr_type3">
             <ul>
               <li>
                 <div class="row cadre">
@@ -294,9 +308,11 @@
                     <p class="annee sm-text-xs-center">11/2020 - 06/2021</p>
                   </div>
                   <div class="col-sm-8 col-xs-12">
-                    <a class="logo navbar-brand" href="https://oclock.io/"><img src="/images/oclock.jpeg" alt="logo Ecole O'Clock" target="_blank"/></a>
+                    <a class="logo navbar-brand" href="https://oclock.io/"><img src="/images/oclock.jpeg"
+                        alt="logo Ecole O'Clock" target="_blank" /></a>
                     <p class="titreStyle">Formation Fullstack JavaScript</p>
-                    <p><a href="https://oclock.io/formations/developpeur-web-fullstack-javascript" target="_blank" rel="nofollow noreferrer noopener">Ecole
+                    <p><a href="https://oclock.io/formations/developpeur-web-fullstack-javascript" target="_blank"
+                        rel="nofollow noreferrer noopener">Ecole
                         O'Clock</a> / Spécialisation Data - API
                     </p>
                   </div>
@@ -311,10 +327,13 @@
                     <p class="annee sm-text-center">04/2021</p>
                   </div>
                   <div class="col-sm-8 col-xs-12">
-                    <a target="_blank" class="logo navbar-brand" href="https://www.opquast.com/rendre-le-web-meilleur/"><img src="/images/opquast.jpeg" alt="logo Opquast" /></a>
+                    <a target="_blank" class="logo navbar-brand"
+                      href="https://www.opquast.com/rendre-le-web-meilleur/"><img src="/images/opquast.jpeg"
+                        alt="logo Opquast" /></a>
                     <p class="titreStyle">Certification OPQUAST Maitrise de la qualité en projet Web</p>
                     <p>Bonnes pratiques et prise en compte de la diversité et des éxigences des utilisateurs <small><em>
-                          <a href="https://directory.opquast.com/fr/certificat/LOC08G/" target="_blank" rel="nofollow noreferrer noopener">(certificat)
+                          <a href="https://directory.opquast.com/fr/certificat/LOC08G/" target="_blank"
+                            rel="nofollow noreferrer noopener">(certificat)
                           </a></em></small>.
                     </p>
                   </div>
@@ -329,13 +348,15 @@
                     <p class="annee sm-text-center">01/2020</p>
                   </div>
                   <div class="col-sm-8 col-xs-12">
-                    <a class="logo navbar-brand" href="https://www.ssi.gouv.fr/"><img src="/images/anssi.jpeg" alt="logo Opquast" target="_blank"/></a>
+                    <a class="logo navbar-brand" href="https://www.ssi.gouv.fr/"><img src="/images/anssi.jpeg"
+                        alt="logo Opquast" target="_blank" /></a>
                     <p class="titreStyle2">MOOC <a
                         href="https://www.ssi.gouv.fr/actualite/secnumacademie-le-nouvelle-formation-en-ligne-met-la-cybersecurite-a-la-portee-de-tous/"
                         target="_blank" rel="nofollow noreferrer noopener">SecNumAcademie</a> (ANSSI)</p>
                     <p>Panorama de la SSI, sécurité de l'authentification, sécurité sur internet, sécurité du poste de
                       travail et
-                      nomadisme <small><em> <a href="http://localhost:5000/secnumacademie" target="_blank" rel="nofollow noreferrer noopener">(certificat)
+                      nomadisme <small><em> <a href="http://localhost:5000/secnumacademie" target="_blank"
+                            rel="nofollow noreferrer noopener">(certificat)
                           </a></em></small>.</p>
                   </div>
                 </div>
@@ -371,7 +392,7 @@
               </li>
             </ul>
             <h3>Expériences Professionnelles</h3>
-            <hr class="hr_type2">
+            <hr class="hr_type3">
             <ul>
               <li>
                 <div class="row cadre">
@@ -422,7 +443,7 @@
                   </div>
                   <div class="col-sm-8 col-xs-12">
                     <p class="titreStyle">long Voyage</p>
-                    <p> USA (Californie),  Polynesie Francaise, Nouvelle Zélande,  Australie
+                    <p> USA (Californie), Polynesie Francaise, Nouvelle Zélande, Australie
                       <div class="col-md-12 col-sm-12 col-xs-12">
                         <ul>
                           <li> - Perfectionnement de la langue anglaise</li>
@@ -492,7 +513,7 @@
                 <li>Sport (escalade, natation)</li>
                 <li>Voyages :
                   <ul>
-                    <li> - Pacifique (Autralie, Nouvelle-Zélande, Fidji</li>
+                    <li> - Pacifique (Autralie, Nouvelle-Zélande, <br> &ensp; Fidji)</li>
                     <li> - Russie, Mongolie</li>
                     <li> - Afrique de l'Ouest</li>
                   </ul>
@@ -505,10 +526,12 @@
     </div>
     <div class="sm-text-center">
       <div class="button_cont" align="center" class="cv">
-          <button class="boutton_cv" target="_blank" rel="nofollow noreferrer noopener"><a style="text-decoration:none" href="http://localhost:5000/cv" rel="nofollow noreferrer noopener" target="_blank">
+        <button class="boutton_cv" target="_blank" rel="nofollow noreferrer noopener"><a
+            href="http://localhost:5000/cv" rel="nofollow noreferrer noopener" target="_blank" nonce="<%=locals.nonce%>"
+            crossorigin="anonymous">
             Visualiser mon CV en
             PDF </a></button>
-       
+
       </div>
     </div>
   </section>
@@ -568,10 +591,13 @@
 
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/jquery.flexslider-min.js"></script>
-  <script src="script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" nonce="<%=locals.nonce%>"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" nonce="<%=locals.nonce%>"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/jquery.flexslider-min.js"
+    nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
+  <script src="script.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
 </body>
 
 </html>
