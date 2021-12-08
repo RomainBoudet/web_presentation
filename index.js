@@ -21,6 +21,8 @@ app.use((_, res, next) => {
     next();
 });
 
+/*  */
+
 app.use(helmet());
 // https://ponyfoo.com/articles/content-security-policy-in-express-apps
 //configuration de nos header !
