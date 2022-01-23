@@ -14,9 +14,7 @@
     content="Portfolio Romain Boudet, Développeur Web, Développeur à Montpellier, a la recherche d'un emploi">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     nonce="<%=locals.nonce%>" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" nonce="<%=locals.nonce%>" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/flexslider.min.css"
-    nonce="<%=locals.nonce%>" crossorigin="anonymous">
+
   <link rel="stylesheet" href="style.css" nonce="<%=locals.nonce%>" crossorigin="anonymous">
   <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="<%=locals.nonce%>" crossorigin="anonymous"> -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" integrity="<%=locals.nonce%>" crossorigin="anonymous"> -->
@@ -74,9 +72,6 @@
     <div id="projet">
       <div class="titreProjets col-md-offset-2 col-md-8 col-md-offset-2  ">
         <h2 class="text-capitalize">QUI SUIS-JE ?</h2>
-        <!-- <div class="col-xs-offset-4 col-xs-4">
-                      <img class="photoCV" src="images/photoProfil.png" alt="photo RB" />
-                    </div> -->
       </div>
 
       <!-- Presentation -->
@@ -109,190 +104,194 @@
   </section>
 
   <!-- SECTION 2 Projets -->
-  <section id="projets" class="culture-section2 container">
+  <section id="projets" class="culture-section container">
     <div id="projet" class=" ">
       <div class="">
         <div class="titreProjets col-md-offset-2 col-md-8 col-md-offset-2  ">
           <h2 class="text-capitalize">PORTFOLIO</h2>
         </div>
       </div>
-      <div class="col-sm-12 col-sm-offset-0 col-xs-offset-1 col-xs-10">
-        <!-- projet 1 -->
-        <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <div id="projetsBox"
-            class="projet1 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
+      <div class="col-sm-12 col-xs-10">
+
+        <!-- projet MJC -->
+        <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div id="projetsBox" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h3>API Club de jeux</h3>
-            <img class="imgProjet" src="images/clubjeux.png" alt="image API club de jeux">
+            <h4 id="desciption">Développement d'une API pour un club de jeux d'une MJC. </h4>
+            <div id="list">
+              <ul>
+                <li>Base de données : PostgreSQL</li>
+                <li>Langages utilisés : SQL, JS</li>
+                <li>Framework utilisé : Express</li>
+                <li>Architecture : Active Record</li>
+              </ul>
+            </div>
             <div class="boutton-details">
-              <span class="btn btn-slider2">Détails</span>
+              <a href="https://github.com/RomainBoudet/MJC" style="text-decoration: none;" target="_blank">
+                <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le code sur GitHub
+                </span>
+              </a>
             </div>
           </div>
         </div>
-        <!-- projet 3 -->
-        <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <div id="projetsBox"
-            class="projet3 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
+
+
+        <!-- projet Cadex -->
+        <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div id="projetsBox" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <h3>Cadex</h3>
+            <h4>Développement d'une API web <br /> pour la construction d'un cadavre <br /> Exquis aléatoire</h4>
+            <div id="list">
+              <ul>
+                <li>Base de données : PostgreSQL</li>
+                <li>Environnement de travail : Node.js</li>
+                <li>Langages utilisés : SQL, JavaScript, Html, CSS</li>
+                <li>Framework utilisé : Express</li>
+                <li>Architecture : Active Record</li>
+                <li>Serveur web : Nginx</li>
+                <li>Hébergement : AWS</li>
+              </ul>
+            </div>
+            <div id="containerButtons">
+              <div class="boutton-details">
+                <a href="https://github.com/RomainBoudet/cadex" style="text-decoration: none; font-size: 0.3rem;" target="_blank">
+                  <span class="btn btn-slider2" style="margin-bottom: 0rem; font-size: 1rem;">Consulter le code de <br> l'API sur GitHub
+                  </span>
+                </a>
+              </div>
+              <div class="boutton-details">
+                <a href="https://github.com/RomainBoudet/cadex_front" style="text-decoration: none;" target="_blank">
+                  <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le code du <br> Front sur GitHub
+                  </span>
+                </a>
+              </div>
+
+              <div class="boutton-details">
+                <a href="https://github.com/RomainBoudet/cadex_front" style="text-decoration: none;" target="_blank">
+                  <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le projet <br> en ligne
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- projet Kanban -->
+        <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div id="projetsBox" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h3>Kanban</h3>
-            <img class="imgProjet" src="images/kanban.png" alt="image kanban">
+            <h4 id="desciption">Réalisation d'un front en JS <br />vanilla pour la réalisation d'un <br /> Kanban
+              (rédaction de ToDo list)</h4>
+            <div id="list">
+              <ul>
+                <li>Base de données : PostgreSQL</li>
+                <li>Environnement de travail : Node.js</li>
+                <li>Langages utilisés : Html, CSS, JavaScript</li>
+                <li>Framework utilisé : Express</li>
+                <li>Serveur web : Nginx</li>
+                <li>Hébergement : OVH</li>
+              </ul>
+            </div>
             <div class="boutton-details">
-              <span class="btn btn-slider2">Détails</span>
+              <a href="https://github.com/RomainBoudet/Kanban" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le code sur GitHub
+                  </span>
+
+                </div>
+              </a>
+            </div>
+
+            <div class="boutton-details">
+              <a href="https://apikanban.romainboudet.fr/" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le projet en ligne
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-        <!-- projet 2 -->
-        <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <div id="projetsBox"
-            class="projet2 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
-            <h3>API Cadex</h3>
-            <img class="imgProjet" src="images/cadex.png" alt="image Cadex">
-            <div class="boutton-details">
-              <span class="btn btn-slider2">Détails</span>
-            </div>
-          </div>
-        </div>
-        <!-- projet 4 -->
-        <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <div id="projetsBox"
-            class="projet4 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
+
+
+
+
+        <!-- projet E-Commerce -->
+        <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div id="projetsBox" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h3>API E-commerce</h3>
-            <img class="imgProjet" src="images/ecommerce.png" alt="image online shopping Madagascar">
+            <h4 id="desciption">Développement d'une API pour un site de e-commerce</h4>
+            <div id="list">
+              <ul>
+                <li>Base de données : PostgreSQL, REDIS</li>
+                <li>Environnement de travail : Node.js</li>
+                <li>Langages utilisés : JavaScript</li>
+                <li>Framework utilisé : Express</li>
+                <li>Architecture : Active Record</li>
+                <li>Serveur web : Nginx</li>
+              </ul>
+            </div>
             <div class="boutton-details">
-              <span class="btn btn-slider2">Détails</span>
+              <a href="https://github.com/RomainBoudet/Madagascar/" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le code sur GitHub
+                  </span>
+
+                </div>
+              </a>
+            </div>
+
+            <div class="boutton-details">
+              <a href="https://artisanat-madagascar.art/api-docs" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le projet en ligne
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-
-  <!-- POP UP 1 Club de jeux-->
-  <div id="popup" class="sliderPop1" style="display:none;">
-    <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
-    </a>
-
-    <div class="ct-sliderPop-container">
-      <div class="ct-sliderPop ct-sliderPop-slide1 open">
-        <div id="popup" class="inner">
-          <h2 class="h2popup">Club de jeux</h2>
-          <a class="github" href="https://github.com/RomainBoudet/MJC" target="_blank"><img class="logo-contact"
-              alt="logo github" src="images/githubV2.png" /></a>
-          <div class="map-white-border"></div>
-          <h2>Développement d'une API <br /> pour un club de jeux <br /> d'une MJC. </h2>
-          <div class="popupProjets col-xs-offset-1 col-xs-10 col-xs-offset-1">
+      <!-- The Quizz -->
+      <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="projetsBox"
+          class="col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12"
+          data-bs-target="">
+          <h3>The Quizz</h3>
+          <h4>Développement d'un site de quiz</h4>
+          <div id="list">
             <ul>
-              <li>Base de données : PostgreSQL</li>
-              <li>Langages utilisés : SQL, JS, Html, CSS</li>
-              <li>Framework utilisé : Express</li>
-              <li>Serveur web : Nginx</li>
-              <li>Hébergement : OVH</li>
-            </ul>
-          </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- POP UP 3 Cadex-->
-  <div id="popup" class="sliderPop2" style="display:none;">
-    <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
-    </a>
-    <div class="ct-sliderPop-container">
-      <div class="ct-sliderPop ct-sliderPop-slide1 open">
-        <div id="popup" class="inner">
-          <h2 class="h2popup">Cadex</h2>
-          <div class="popup_git">
-            <a class="github" href="https://github.com/RomainBoudet/cadex_front" target="_blank"><img
-                class="logo-contact" alt="logo github" src="images/githubV2.png" /></a>
-            <a class="github" href="https://github.com/RomainBoudet/cadex" target="_blank"><img class="logo-contact"
-                alt="logo github" src="images/githubV2.png" /></a>
-          </div>
-          <div class="container">
-            <p>Front</p>
-            <p>API</p>
-          </div>
-          <div class="map-white-border"></div>
-          <h2>Développement d'une API web <br /> pour la construction d'un cadavre <br /> Exquis aléatoire</h2>
-          <div class="popupProjets col-xs-offset-1 col-xs-10 col-xs-offset-1">
-            <ul>
-              <li>Base de données : PostgreSQL</li>
-              <li>Serveur web : Nginx</li>
-              <li>Hébergement : AWS</li>
-              <li>Environnement de travail : Node.js</li>
-              <li>Langages utilisés : SQL, JavaScript, Html, CSS</li>
-              <li>Framework utilisé : Express</li>
-            </ul>
-          </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- POP UP 3 Kanban-->
-  <div id="popup" class="sliderPop3" style="display:none;">
-    <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
-    </a>
-    <div class="ct-sliderPop-container">
-      <div class="ct-sliderPop ct-sliderPop-slide1 open">
-        <div id="popup" class="inner">
-          <h2 class="h2popup">Portfolio</h2>
-          <a class="github" href="https://github.com/RomainBoudet/Kanban" target="_blank"><img class="logo-contact"
-              alt="logo github" src="images/githubV2.png" /></a>
-          <div class="map-white-border"></div>
-          <h2>Réalisation d'un front en JS <br />vanilla pour la réalisation d'un <br /> Kanban (rédaction de ToDo list)
-          </h2>
-          <div class="popupProjets col-xs-offset-2 col-xs-10 col-xs-offset-2">
-            <ul>
-              <li>Base de données : PostgreSQL</li>
-              <li>Environnement de travail : Node.js</li>
-              <li>Langages utilisés : Html, CSS, JavaScript</li>
-              <li>Framework utilisé : Express</li>
-              <li>Serveur web : Nginx</li>
-              <li>Hébergement : OVH</li>
-            </ul>
-          </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- POP UP 4 MADAGASCAR-->
-  <div id="popup" class="sliderPop4" style="display:none;">
-    <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
-    </a>
-    <div class="ct-sliderPop-container">
-      <div class="ct-sliderPop ct-sliderPop-slide1 open">
-        <div id="popup" class="inner">
-          <h2 class="h2popup">E-commerce</h2>
-          <a class="github" href="https://github.com/RomainBoudet/Madagascar/" target="_blank"><img
-              class="logo-contact" alt="logo github" src="images/githubV2.png" /></a>
-          <div class="map-white-border"></div>
-          <h2>Développement d'une API <br /> pour un site de e-commerce</h2>
-          <div class="popupProjets col-xs-offset-2 col-xs-10 col-xs-offset-2">
-            <ul>
-              <li>Base de données : PostgreSQL, REDIS</li>
+              <li>Base de données : PostgreSQL, via sequelize (ORM)</li>
               <li>Environnement de travail : Node.js</li>
               <li>Langages utilisés : JavaScript</li>
               <li>Framework utilisé : Express</li>
+              <li>Architecture : Active Record</li>
               <li>Serveur web : Nginx</li>
             </ul>
           </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
-          </a>
+          <div class="boutton-details">
+            <a href="https://github.com/RomainBoudet/Kanban" style="text-decoration: none;" target="_blank">
+              <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le code sur GitHub
+                </span>
+
+              </div>
+            </a>
+          </div>
+
+          <div class="boutton-details">
+            <a href="https://quiz.romainboudet.fr/" style="text-decoration: none;" target="_blank">
+              <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                <span class="btn btn-slider2" style="margin-bottom: 0rem;">Consulter le projet en ligne
+                </span>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+  </section>
+
 
   <!--SECTION 5 CV en HTML CSS -->
   <section id="resume" class="culture-section2 container">
@@ -547,41 +546,41 @@
       <div class="col-md-8 col-md-offset-2">
         <h2>CONTACTEZ MOI</h2>
       </div>
-        <div class="col-xs-12">
-          <div id="contactBox" class="col-md-8 col-md-offset-2 ">
+      <div class="col-xs-12">
+        <div id="contactBox" class="col-md-8 col-md-offset-2 ">
 
-            <div id="adress" class="col-xs-6">
-              <dl class="contact">
-                <dt>
-                  <h4>Contact</h4>
-                </dt>
-                <hr class="hr">
-                <dd>Nom : Romain Boudet</dd>
-                <dd>
-                  Email :
-                  <a href="mailto:romain&#64;boudet.me">romain@boudet.me</a>
-                </dd>
-                <dd>Téléphone : 06-03-72-06-12</dd>
-                <a href="https://www.linkedin.com/in/romain-boudet/" target="_blank"><img class="logo-contact"
-                    alt="logo linkedin" src="images/icons-linkedin.png" /></a>
-                <a class="github" href="https://github.com/RomainBoudet" target="_blank"><img class="logo-contact"
-                    alt="logo github" src="images/github.png" /></a>
-              </dl>
-            </div>
-
-            <div id="adress" class="col-xs-6">
-              <dl class="contact">
-                <dt>
-                  <h4>Adresse</h4>
-                </dt>
-                <hr class="hr">
-                <dd>34000 MONTPELLIER</dd><br>
-                <dd>FRANCE</dd>
-              </dl>
-            </div>
-
+          <div id="adress" class="col-xs-6">
+            <dl class="contact">
+              <dt>
+                <h4>Contact</h4>
+              </dt>
+              <hr class="hr">
+              <dd>Nom : Romain Boudet</dd>
+              <dd>
+                Email :
+                <a href="mailto:romain&#64;boudet.me">romain@boudet.me</a>
+              </dd>
+              <dd>Téléphone : 06-03-72-06-12</dd>
+              <a href="https://www.linkedin.com/in/romain-boudet/" target="_blank"><img class="logo-contact"
+                  alt="logo linkedin" src="images/icons-linkedin.png" /></a>
+              <a class="github" href="https://github.com/RomainBoudet" target="_blank"><img class="logo-contact"
+                  alt="logo github" src="images/github.png" /></a>
+            </dl>
           </div>
+
+          <div id="adress" class="col-xs-6">
+            <dl class="contact">
+              <dt>
+                <h4>Adresse</h4>
+              </dt>
+              <hr class="hr">
+              <dd>34000 MONTPELLIER</dd><br>
+              <dd>FRANCE</dd>
+            </dl>
+          </div>
+
         </div>
+      </div>
     </div>
   </section>
 
