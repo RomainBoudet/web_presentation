@@ -52,9 +52,21 @@ const mainController = {
 
             // on utilise cette valeur puisqu'on est derriere un proxy...
             const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress ;
-
-            const geo = geoip.lookup(clientIp);
+            // avec l'ip je récupére quelques détail sur la localisation possible...
+            const geo = geoip.lookup("86.227.129.119");
             console.log("geo ======>> ",geo);
+
+            /* {
+  range: [ 1457750016, 1457752063 ],
+  country: 'FR',
+  region: 'OCC',
+  eu: '1',
+  timezone: 'Europe/Paris',
+  city: 'Montpellier',
+  ll: [ 43.6107, 3.8809 ],
+  metro: 0,
+  area: 5
+} */
 
             // Je vérifie que mon body contient bien un email, que celui ci est bien un email,  
 
@@ -106,7 +118,13 @@ const mainController = {
                     textArea,
                     dateEnvoi: formatLong(new Date()),
                     ip: clientIp,
+                    ville:geo.city,
+                    pays: geo.country,
+                    coord:geo.ll,
+                    precision:geo.area,
+
                 };
+
 
 
                 // Le message que reçois l'expéditeur du message, sur la boite mail qu'il a rentrée.
@@ -151,7 +169,10 @@ const mainController = {
                     textArea,
                     dateEnvoi: formatLong(new Date()),
                     ip: clientIp,
-                    geo,
+                    ville:geo.city,
+                    pays: geo.country,
+                    coord:geo.ll,
+                    precision:geo.area,
                 };
 
                 const emailSend = process.env.MYEMAIL;

@@ -36,13 +36,19 @@
         <p>Contenu du message : </p> <br>
         <p> <strong>{{textArea}}</strong> </p>
         <br>
-        <p>Cet email a été envoyé le {{dateEnvoi}} via l'adresse ip : {{ip}}</p>
         <p>{{geo}}</p>
-        <p>L'administrateur.</p> <br>  
+        <p>L'administrateur.</p> <br>
         <p>Bonne journée.</p> <br>
         <br>
-        <small>Cet email a été envoyé le {{dateEnvoi}} via l'adresse ip : {{ip}}</small>
 
+        <small>Cet email a été envoyé le {{dateEnvoi}} via l'adresse ip : {{ip}}</small>
+        {{#if ville}}
+        <br>
+        <small> 🧐 Ville : {{ville}}, pays : {{pays}}, coordonées lat -long : {{coord}}, precision: {{precision}}kms <br>
+        </small>
+        {{else}}
+
+        {{/if}}
 
 
     </main>
