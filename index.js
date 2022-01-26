@@ -24,6 +24,9 @@ app.use((_, res, next) => {
     next();
 });
 
+// On lancera notre app derriere un proxie => Si la valeur est true, l’adresse IP du client est interprétée comme étant l’entrée la plus à gauche dans l’en-tête X-Forwarded-*.
+app.set('trust proxy', true)
+
 /*  */
 
 app.use(helmet());
