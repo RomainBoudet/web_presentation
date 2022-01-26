@@ -6,7 +6,6 @@ const validator = require('validator');
 const {
     formatLong
 } = require('../service/date');
-const requestIp = require('request-ip');
 
 
 
@@ -49,11 +48,10 @@ const mainController = {
     mail: async (req, res) => {
         try {
 
-            const clientIp = requestIp.getClientIp(req); 
+            const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress ;
 
             //const geo = geoip.lookup(req.ip);
             //console.log(geo);
-
 
             // Je vérifie que mon body contient bien un email, que celui ci est bien un email,  
 
