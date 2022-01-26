@@ -6,6 +6,8 @@ const validator = require('validator');
 const {
     formatLong
 } = require('../service/date');
+const geoip = require('geoip-lite');
+
 
 
 
@@ -48,10 +50,11 @@ const mainController = {
     mail: async (req, res) => {
         try {
 
+            // on utilise cette valeur puisqu'on est derriere un proxy...
             const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress ;
 
-            //const geo = geoip.lookup(req.ip);
-            //console.log(geo);
+            const geo = geoip.lookup(clientIp);
+            console.log("geo ======>> ",geo);
 
             // Je vérifie que mon body contient bien un email, que celui ci est bien un email,  
 
@@ -148,7 +151,7 @@ const mainController = {
                     textArea,
                     dateEnvoi: formatLong(new Date()),
                     ip: clientIp,
-
+                    geo,
                 };
 
                 const emailSend = process.env.MYEMAIL;
