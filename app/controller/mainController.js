@@ -45,7 +45,6 @@ const mainController = {
 
     //renvoyer un info jolie si plus de 5 mail ! ==>> https://www.npmjs.com/package/limiter 
     // essayer d'envoyer des info flash temporaire, au début de la template : ==>> https://stackoverflow.com/questions/23160743/how-to-send-flash-messages-in-express-4-0
-    // adresse ip lisible ! 
 
     mail: async (req, res) => {
         try {
@@ -53,20 +52,7 @@ const mainController = {
             // on utilise cette valeur puisqu'on est derriere un proxy...
             const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress ;
             // avec l'ip je récupére quelques détail sur la localisation possible...
-            const geo = geoip.lookup("86.227.129.119");
-            console.log("geo ======>> ",geo);
-
-            /* {
-  range: [ 1457750016, 1457752063 ],
-  country: 'FR',
-  region: 'OCC',
-  eu: '1',
-  timezone: 'Europe/Paris',
-  city: 'Montpellier',
-  ll: [ 43.6107, 3.8809 ],
-  metro: 0,
-  area: 5
-} */
+            const geo = geoip.lookup(clientIp);
 
             // Je vérifie que mon body contient bien un email, que celui ci est bien un email,  
 
