@@ -6,7 +6,6 @@ const validator = require('validator');
 const {
     formatLong
 } = require('../service/date');
-const geoip = require('geoip-lite');
 const requestIp = require('request-ip');
 
 
@@ -17,25 +16,6 @@ const mainController = {
 
     main: (req, res) => {
 
-        const clientIp = requestIp.getClientIp(req); 
-        console.log("clientIp ====>>> ",clientIp);
-
-/* 
-        //! TEST pour retrouver mon ip locale
-        const {
-            networkInterfaces
-        } = require('os');
-
-        const nets = networkInterfaces();
-        console.log("nets.wlp5s0[0].address ====>>> ", nets.wlp5s0[0].address);
-        const ip = nets.wlp5s0[0].address
-
-        const ip2 = "192.168.1.27";
-        const geo = geoip.lookup(ip2);
-
-        console.log("geo =====>> ", geo); */
-
-        
         res.status(200).render("index");
     },
 
@@ -69,8 +49,10 @@ const mainController = {
     mail: async (req, res) => {
         try {
 
-            const geo = geoip.lookup(req.ip);
-            console.log(geo);
+            const clientIp = requestIp.getClientIp(req); 
+
+            //const geo = geoip.lookup(req.ip);
+            //console.log(geo);
 
 
             // Je vérifie que mon body contient bien un email, que celui ci est bien un email,  
@@ -116,16 +98,13 @@ const mainController = {
 
             if (req.body.copy === 'true') {
                 // j'envoie le mail et une copie a son expéditeur
-                console.log(await formatLong(new Date()));
-                console.log(formatLong(new Date()));
-                console.log(new Date());
 
                 // dans le mail de renvoie, on renvoie la date d'envoie de l'email et son ip par sécurité !
                 contexte = {
                     email,
                     textArea,
                     dateEnvoi: formatLong(new Date()),
-                    ip: req.ip,
+                    ip: clientIp,
                 };
 
 
@@ -170,7 +149,7 @@ const mainController = {
                     email,
                     textArea,
                     dateEnvoi: formatLong(new Date()),
-                    ip: req.ip,
+                    ip: clientIp,
 
                 };
 
