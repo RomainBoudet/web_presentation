@@ -1,4 +1,15 @@
 const path = require('path');
+const {
+    sendEmail
+} = require('../service/sendMail');
+const validator = require('validator');
+const {
+    formatLong
+} = require('../service/date');
+const geoip = require('geoip-lite');
+const requestIp = require('request-ip');
+
+
 
 
 const mainController = {
@@ -6,6 +17,25 @@ const mainController = {
 
     main: (req, res) => {
 
+        const clientIp = requestIp.getClientIp(req); 
+        console.log("clientIp ====>>> ",clientIp);
+
+/* 
+        //! TEST pour retrouver mon ip locale
+        const {
+            networkInterfaces
+        } = require('os');
+
+        const nets = networkInterfaces();
+        console.log("nets.wlp5s0[0].address ====>>> ", nets.wlp5s0[0].address);
+        const ip = nets.wlp5s0[0].address
+
+        const ip2 = "192.168.1.27";
+        const geo = geoip.lookup(ip2);
+
+        console.log("geo =====>> ", geo); */
+
+        
         res.status(200).render("index");
     },
 
@@ -29,6 +59,147 @@ const mainController = {
 
 
     } */
+
+    //TODO //FLAG
+
+    //renvoyer un info jolie si plus de 5 mail ! ==>> https://www.npmjs.com/package/limiter 
+    // essayer d'envoyer des info flash temporaire, au début de la template : ==>> https://stackoverflow.com/questions/23160743/how-to-send-flash-messages-in-express-4-0
+    // adresse ip lisible ! 
+
+    mail: async (req, res) => {
+        try {
+
+            const geo = geoip.lookup(req.ip);
+            console.log(geo);
+
+
+            // Je vérifie que mon body contient bien un email, que celui ci est bien un email,  
+
+            //on vérifie que l'email a un format valide
+            if (!validator.isEmail(req.body.email)) {
+                //le format de l'email est incorrect
+                return res.render('index', {
+                    errorMail: 'Le format de l\'email est incorrect'
+                });
+            }
+
+            const email = req.body.email;
+
+            // on trim le message
+            const textArea = validator.trim(req.body.textArea);
+
+
+            // on vérifit que le contenu ne soit pas égal a zéro
+            if (validator.isEmpty(textArea, {
+                    ignore_whitespace: false
+                })) {
+                //le contenu du mail est égal a zéro.
+                return res.render('index', {
+                    errorTextArea: 'Le format de votre message est incorrect'
+                });
+            }
+
+            //on vérifit que le contenu du message soit supérieur a 10 et inf a 5000 caractéres
+
+            if (textArea.length < 10) {
+                return res.render('index', {
+                    errorTextArea: 'Le format de votre message est incorrect, celui-ci doit comporter plus de 10 caractéres pour être envoyé.'
+                });
+            }
+
+            if (textArea.length > 5000) {
+                return res.render('index', {
+                    errorTextArea: 'Le format de votre message est incorrect, celui-ci doit comporter moins de 5000 caractéres pour être envoyé.'
+                });
+            }
+
+
+            if (req.body.copy === 'true') {
+                // j'envoie le mail et une copie a son expéditeur
+                console.log(await formatLong(new Date()));
+                console.log(formatLong(new Date()));
+                console.log(new Date());
+
+                // dans le mail de renvoie, on renvoie la date d'envoie de l'email et son ip par sécurité !
+                contexte = {
+                    email,
+                    textArea,
+                    dateEnvoi: formatLong(new Date()),
+                    ip: req.ip,
+                };
+
+
+                // Le message que reçois l'expéditeur du message, sur la boite mail qu'il a rentrée.
+                const emailSend = email;
+                const text = `Envoyé par l'email ${email} : ${textArea}`;
+                const template = 'email';
+                const subject = "La copie de votre message envoyé via le site romainboudet.fr";
+                const infoEmail = await sendEmail(emailSend, subject, contexte, text, template);
+
+                // Le message que je reçois sur ma boite perso :
+                const emailSend2 = process.env.MYEMAIL;
+                const template2 = 'emailPerso';
+                const subject2 = "Un nouveau message via romainboudet.fr avec copie à l'expéditeur";
+                const infoEmail2 = await sendEmail(emailSend2, subject2, contexte, text, template2);
+
+
+                // Prise en compte des différentes configurations d'érreurs
+                if (typeof infoEmail === undefined && typeof infoEmail2 === undefined) {
+                    return res.render('index', {
+                        errorGeneral: "Une érreur est survenue, merci de réessayer."
+                    });
+                } else if (typeof infoEmail !== undefined && typeof infoEmail2 !== undefined) {
+                    return res.render('index', {
+                        info: "Votre message et sa copie sur votre email ont bien été envoyés !"
+                    });
+                } else if (typeof infoEmail === undefined && typeof infoEmail2 !== undefined) {
+                    return res.render('index', {
+                        errorGeneral: " Une érreur est survenue, seule une copie sur votre boite mail a pu être envoyée mais Romain Boudet n'a reçu aucun email !"
+                    });
+                } else if (typeof infoEmail !== undefined && typeof infoEmail2 === undefined) {
+                    return res.render('index', {
+                        info: "Une érreur est survenue, Romain Boudet a bien reçu votre message mais aucune copie n'a pu vous être envoyée !"
+                    });
+                }
+
+
+            } else {
+                // j'envoie le mail, sans copie !
+
+                contexte = {
+                    email,
+                    textArea,
+                    dateEnvoi: formatLong(new Date()),
+                    ip: req.ip,
+
+                };
+
+                const emailSend = process.env.MYEMAIL;
+                const text = `${textArea}`;
+                const template = 'emailPerso';
+                const subject = "Un nouveau message via romainboudet.fr sans copie à l'expéditeur";
+                const infoEmail = await sendEmail(emailSend, subject, contexte, text, template);
+
+
+                if (typeof infoEmail === undefined) {
+                    return res.render('index', {
+                        errorGeneral: "Une érreur est survenue lors de l'envoie, merci de réessayer."
+                    });
+                } else {
+                    return res.render('index', {
+                        info: "Votre message a bien été envoyé !"
+                    });
+                }
+            }
+
+
+        } catch (error) {
+            console.trace(error);
+            res.status(500).end();
+        }
+
+
+    },
 
 
 

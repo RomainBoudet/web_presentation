@@ -9,6 +9,9 @@ const router = require('./app/router');
 
 const app = express();
 
+// Pour récupérer les données du formulaire
+app.use(express.urlencoded({extended: true}));
+
 const port = process.env.PORT;
 
 //configuration pour utiliser EJS comme moteur de templates
@@ -26,12 +29,12 @@ app.use((_, res, next) => {
 app.use(helmet());
 // https://ponyfoo.com/articles/content-security-policy-in-express-apps
 //configuration de nos header !
-app.use(helmet.contentSecurityPolicy({
+ app.use(helmet.contentSecurityPolicy({
         directives: {
             defaultSrc: [`'self'`, ],
             "script-src": [ (_, res) => `'nonce-${res.locals.nonce}'`],
-            "img-src": [`'self'`],
-            "font-src": ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf", "https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/fonts/flexslider-icon.woff", "https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/fonts/flexslider-icon.ttf"],
+            "img-src": [`'self'`, "https://filedn.eu/lD5jpSv048KLfgLMlwC2cLz/RB.png"],
+            "font-src": ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf"],
 
             "style-src": ["'unsafe-inline'", `'self'`], //
             "style-src-elem": [`'self'`, (_, res) => `'nonce-${res.locals.nonce}'`], //
@@ -51,7 +54,7 @@ app.use(helmet.contentSecurityPolicy({
         enforce: true, //demander qu'un navigateur applique toujours l'exigence de transparence du certificat SSL ! //TODO  repasser a true
         //reportUri: "https://example.com/report", Pourrait être intérresant de se prévoir une url pour l'admin avec aussi 
     }))
-
+ 
 // ATTENTION cette protection contre les reflextive XSS pourrait être la porte ouverte pour les attaques XS search.. :
 //https://infosecwriteups.com/xss-auditor-the-protector-of-unprotected-f900a5e15b7b
 //https://portswigger.net/research/top-10-web-hacking-techniques-of-2019
@@ -67,18 +70,19 @@ app.set('x-powered-by', false);
 
 
 
-app.use(cors({
+ /* app.use(cors({
     optionsSuccessStatus: 200,
     origin: "*", //! a pas oublier pour la prod ! => remplacer par le bon nom de domaine
     methods: "GET, OPTIONS", // ok via un array aussi
     allowedHeaders: ['Content-Type'],
-}));
+}));  */
 
 //on ne va pas utiliser les fichiers html fournis mais des vues ejs
 //le middleware static servira uniquement pour les fichiers css
 app.use(express.static('./app/public'));
 
+
 //Mon routeur
-app.use('/', router);
+app.use(router);
 
 app.listen(port, () => console.log(`API running on port ${port}`))

@@ -245,7 +245,11 @@ img#bg {
   color: #565299;
 }
 
+button.btn.btn-sm.sendmail:hover {
+  background-color: #dbdbdb;
+  color: #565299;
 
+}
 
 
 /* SECTION 4 CV */
@@ -479,6 +483,21 @@ a#cRetour.cInvisible {
 a#cRetour.cVisible {
   bottom: 20px;
   opacity: 1;
+}
+
+
+/* =================================
+  # EJS
+================================= */
+
+.info {
+  color: green;
+  font-size: 2rem;
+}
+
+.error {
+  color: red;
+  font-size: 2rem;
 }
 
 /* =================================
