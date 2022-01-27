@@ -12,6 +12,8 @@ const geoip = require('geoip-lite');
 
 
 
+
+
 const mainController = {
 
 
@@ -43,14 +45,13 @@ const mainController = {
 
     //TODO //FLAG
 
-    //renvoyer un info jolie si plus de 5 mail ! ==>> https://www.npmjs.com/package/limiter 
     // essayer d'envoyer des info flash temporaire, au début de la template : ==>> https://stackoverflow.com/questions/23160743/how-to-send-flash-messages-in-express-4-0
 
     mail: async (req, res) => {
         try {
-
+            
             // on utilise cette valeur puisqu'on est derriere un proxy...
-            const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress ;
+            const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
             // avec l'ip je récupére quelques détail sur la localisation possible...
             const geo = geoip.lookup(clientIp);
 
@@ -94,24 +95,35 @@ const mainController = {
                 });
             }
 
+            //Je définit les variables pour mes mails :
+            let contexte = {};
 
-            if (req.body.copy === 'true') {
-                // j'envoie le mail et une copie a son expéditeur
-
-                // dans le mail de renvoie, on renvoie la date d'envoie de l'email et son ip par sécurité !
+            if (geo === null) {
                 contexte = {
                     email,
                     textArea,
                     dateEnvoi: formatLong(new Date()),
                     ip: clientIp,
-                    ville:geo.city,
-                    pays: geo.country,
-                    coord:geo.ll,
-                    precision:geo.area,
 
                 };
 
+            } else {
+                contexte = {
+                    email,
+                    textArea,
+                    dateEnvoi: formatLong(new Date()),
+                    ip: clientIp,
+                    ville: geo.city,
+                    pays: geo.country,
+                    coord: geo.ll,
+                    precision: geo.area,
 
+                };
+            }
+
+
+            if (req.body.copy === 'true') {
+                // j'envoie le mail et une copie a son expéditeur. Pour des raison de sécurités, je renseigne l'adresse ip dans chaque copie de mail. 
 
                 // Le message que reçois l'expéditeur du message, sur la boite mail qu'il a rentrée.
                 const emailSend = email;
@@ -149,17 +161,6 @@ const mainController = {
 
             } else {
                 // j'envoie le mail, sans copie !
-
-                contexte = {
-                    email,
-                    textArea,
-                    dateEnvoi: formatLong(new Date()),
-                    ip: clientIp,
-                    ville:geo.city,
-                    pays: geo.country,
-                    coord:geo.ll,
-                    precision:geo.area,
-                };
 
                 const emailSend = process.env.MYEMAIL;
                 const text = `${textArea}`;

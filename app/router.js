@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const router = Router();
-// le MW limitant le nombre de requetes pour un user (defense contre les attaques par Brute-Force)
+// le rate limiter est déporté dans un service.
+const {apiLimiter} = require('./service/rateLimitRedisSetting');
 
 const mainController = require('./controller/mainController');
 
@@ -17,7 +18,7 @@ router.get('/secnumacademie', mainController.anssi);
 
 router.get('/cv', mainController.cv);
 
-router.post('/', clean, mainController.mail);
+router.post('/',apiLimiter, clean, mainController.mail);
 
 //router.get('/csp/report', mainController.csp);
 

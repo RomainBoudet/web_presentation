@@ -1,4 +1,5 @@
-<!doctype html>
+const rateLimitView = () => {
+const view = `<!doctype html>
 <html lang="en">
 
 <head>
@@ -6,11 +7,19 @@
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords"
+      content="romain boudet, développeur web, développeur, développeur montpellier, développeur javascript, montpellier ">
+    <meta name="description"
+      content="Portfolio Romain Boudet, Développeur Web, Développeur à Montpellier, a la recherche d'un emploi">
     <!-- Reset CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Romain BOUDET - Développeur Backend </title>
+
+    <link rel="shortcut icon" type="images/ico" href="/images/RB.png" />
+
 </head>
 
 <body>
@@ -31,26 +40,15 @@
     </header>
     <main class="container">
 
-        <h3>Bonjour,</h3> <br>
-        <p>Vous avez recu un nouveau message en provenance de l'email {{email}} .</p> <br>
-        <p>Contenu du message : </p> <br>
-        <p> <strong>{{textArea}}</strong> </p>
-        <br>
-        <p>{{geo}}</p>
-        <p>L'administrateur.</p> <br>
+        <h4>Bonjour,</h4> <br>
+        <p>Vous avez dépassé les 5 envois d'emails autorisé par jour.</p> <br>
+        <p> Si vous souhaitez néanmoins envoyer un nouvel email, merci de rééssayer dans 12h. <p> 
         <p>Bonne journée.</p> <br>
+        <p>L'administrateur du site <a href="https://romainboudet.fr">romainboudet.fr</a> .</p> 
+        
         <br>
-
-        <small>Cet email a été envoyé le {{dateEnvoi}} via l'adresse ip : {{ip}}</small>
-        {{#if pays}}
-        <br>
-        <small> 🧐 Ville : {{ville}}, pays : {{pays}}, coordonées lat -long : {{coord}}, precision: {{precision}}kms <br>
-        </small>
-        {{else}}
-
-        {{/if}}
-
     </main>
+
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
             <div class="col-12 col-md text-center">
@@ -59,7 +57,10 @@
         </div>
     </footer>
 </body>
+</html>`
+    return view;
 
-</html>
-
-{{!-- pour la syntaxe et les opérateur de conditions =>  https://www.npmjs.com/package/handlebars-helpers --}}
+};
+module.exports = {
+    rateLimitView
+};
