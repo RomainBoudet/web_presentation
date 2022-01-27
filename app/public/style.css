@@ -659,7 +659,7 @@ a#cRetour.cVisible {
 
 @viewport {
   width: device-width;
-  zoom: 1.0;
+  transform-origin: 1.0;
 }
 
 @-webkit-keyframes fadeIn {
