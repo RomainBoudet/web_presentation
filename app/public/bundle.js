@@ -219,14 +219,11 @@ $(document).ready(function () {
 function addClass() {
 
     const allDiv = document.querySelectorAll("div.bandeau");
-    console.log("allDiv ======> ",allDiv);
 
     for (const item of allDiv) {
-        console.log("item =====>>>> ", item);
         item.className = "hide";
     };
 
-   
 };
 // on déinit un temps de 5 secondes avant la disparition du bandeau !
 setTimeout(addClass, 10000);

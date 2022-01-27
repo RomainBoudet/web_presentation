@@ -40,7 +40,7 @@ app.use(helmet());
             "font-src": ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf"],
 
             //"style-src": ["'unsafe-inline'",`'self'`,"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", (_, res) => `'nonce-${res.locals.nonce}'`], //
-            "style-src": ["'unsafe-inline'", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", `'self'`],
+            "style-src": ["'unsafe-inline'", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", `'self'`],
             "base-uri": ["'none'"],
             "object-src": ["'none'"],
             //reportUri: `/csp/report`,
