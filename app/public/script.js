@@ -210,5 +210,7 @@ $(document).ready(function () {
   
   })
 
-  const otherScript = require('./qrcode');
+  const temporaryDisplay = require('./temporaryDisplay');
+
+  
   

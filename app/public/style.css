@@ -490,14 +490,50 @@ a#cRetour.cVisible {
   # EJS
 ================================= */
 
-.info {
-  color: green;
+.bandeau.info {
+  background-color: green;
+  color: rgb(2, 2, 2);
   font-size: 2rem;
+  text-align: center;
+  animation: blinker 3s linear infinite;
+
 }
 
-.error {
+.bandeau.error {
   color: red;
   font-size: 2rem;
+  animation: blinker 3s linear infinite;
+
+}
+
+.bandeau.bandeaudivinfo {
+  background-color: green;
+  color: rgb(2, 2, 2);
+  font-size: 2rem;
+  text-align: center;
+  animation: blinker 3s linear infinite;
+}
+
+
+
+.bandeau.bandeauerror{
+  background-color: rgb(207, 24, 24);
+  color: rgb(2, 2, 2);
+  font-size: 2rem;
+  text-align: center;
+  z-index: 10000;
+  animation: blinker 3s linear infinite;
+
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hide {
+  display: none;
 }
 
 /* =================================
