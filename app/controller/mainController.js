@@ -34,7 +34,7 @@ const mainController = {
         res.setHeader('Content-type', 'application/pdf');
     },
 
-    dwwm: (req, res) => {
+    dossier_de_projet: (req, res) => {
 
         res.status(200).sendFile(path.resolve(__dirname + `./../public/DProjet-Boudet_Romain.pdf`));
         res.setHeader('Content-type', 'application/pdf');

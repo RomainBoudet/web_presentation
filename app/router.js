@@ -18,7 +18,7 @@ router.get('/secnumacademie', mainController.anssi);
 
 router.get('/cv', mainController.cv);
 
-router.get('/dwwm', mainController.dwwm);
+router.get('/dossier_de_projet', mainController.dossier_de_projet);
 
 router.post('/',apiLimiter, clean, mainController.mail);
 
