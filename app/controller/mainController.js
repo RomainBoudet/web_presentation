@@ -34,6 +34,13 @@ const mainController = {
         res.setHeader('Content-type', 'application/pdf');
     },
 
+    dwwm: (req, res) => {
+
+        res.status(200).sendFile(path.resolve(__dirname + `./../public/DProjet-Boudet_Romain.pdf`));
+        res.setHeader('Content-type', 'application/pdf');
+    },
+
+
     // un futur logger sera a configurer !
     /* csp: (req, res) => {
 
@@ -42,10 +49,6 @@ const mainController = {
 
 
     } */
-
-    //TODO //FLAG
-
-    // essayer d'envoyer des info flash temporaire, au début de la template : ==>> https://stackoverflow.com/questions/23160743/how-to-send-flash-messages-in-express-4-0
 
     mail: async (req, res) => {
         try {

@@ -18,6 +18,8 @@ router.get('/secnumacademie', mainController.anssi);
 
 router.get('/cv', mainController.cv);
 
+router.get('/dwwm', mainController.dwwm);
+
 router.post('/',apiLimiter, clean, mainController.mail);
 
 //router.get('/csp/report', mainController.csp);
