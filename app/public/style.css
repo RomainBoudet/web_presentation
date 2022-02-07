@@ -224,7 +224,7 @@ img#bg {
 
 .btn {
   margin-bottom: 10px;
-  
+
 }
 
 .btn-slider1,
@@ -516,7 +516,7 @@ a#cRetour.cVisible {
 
 
 
-.bandeau.bandeauerror{
+.bandeau.bandeauerror {
   background-color: rgb(207, 24, 24);
   color: rgb(2, 2, 2);
   font-size: 2rem;
@@ -544,6 +544,31 @@ a#cRetour.cVisible {
 @media (max-width: 991px) {}
 
 @media (max-width: 767px) {
+
+
+   .boxmjc {
+    height: 400px ! important;
+  }
+  .boxcadex {
+    height: 600px ! important;
+  }
+  .boxkanban {
+    height: 500px ! important;
+  }
+  .boxcommerce {
+    height: 575px ! important;
+  }
+  .boxquizz {
+    height: 500px ! important;
+  }
+
+  .containerButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 100000000;
+    font-size: 1rem;
+  }
 
   .ct-sliderPop-container {
     overflow: hidden;

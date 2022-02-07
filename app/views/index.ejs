@@ -128,12 +128,12 @@
     <div class="titreProjets col-md-offset-2 col-md-8 col-md-offset-2  ">
       <h2 class="text-capitalize">PORTFOLIO</h2>
     </div>
-    <div class="col-sm-12 col-xs-10">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 
 
       <!-- projet MJC -->
       <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div id="projetsBox" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div id="projetsBox" class="boxmjc col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <h3>API Club de jeux</h3>
           <h4 class="description">Développement d'une API pour un club de jeux d'une MJC. </h4>
           <div id="list">
@@ -144,17 +144,13 @@
               <li>Langages utilisés : SQL, JS</li>
               <li>Framework utilisé : Express</li>
               <li>Architecture : Active Record</li>
-              <br>
-              <br>
-
-              <br>
-              <br>
+           
 
             </ul>
           </div>
           <div class="boutton-details">
-            <a class="police" href="https://github.com/RomainBoudet/MJC" style="text-decoration: none;" target="_blank" nonce="<%=locals.nonce%>"
-              crossorigin="anonymous">
+            <a class="police" href="https://github.com/RomainBoudet/MJC" style="text-decoration: none;" target="_blank"
+              nonce="<%=locals.nonce%>" crossorigin="anonymous">
               <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;" nonce="<%=locals.nonce%>"
                 crossorigin="anonymous">Consulter le code sur GitHub
               </button>
@@ -166,7 +162,7 @@
 
       <!-- projet Cadex -->
       <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div id="projetsBox" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div id="projetsBox" class="boxcadex col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <h3>Cadex</h3>
           <h4 class="description">Développement d'une API web <br /> pour la construction d'un cadavre <br /> Exquis
             aléatoire</h4>
@@ -212,7 +208,7 @@
 
       <!-- projet Kanban -->
       <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div id="projetsBox" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div id="projetsBox" class="boxkanban col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <h3>Kanban</h3>
           <h4 id="description">Réalisation d'un front en JS vanilla<br /> pour la réalisation d'un Kanban
             (rédaction de ToDo list)</h4>
@@ -225,10 +221,6 @@
               <li>Framework utilisé : Express</li>
               <li>Serveur web : Nginx</li>
               <li>Hébergement : OVH</li>
-              <br>
-              <br>
-
-
             </ul>
           </div>
           <div class="containerButtons">
@@ -260,7 +252,7 @@
 
       <!-- projet E-Commerce -->
       <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div id="projetsBox" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div id="projetsBox" class="boxcommerce col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <h3>API E-commerce</h3>
           <h4 class="description">Développement d'une API pour un site de e-commerce <br> avec intégration de STRIPE
             (paiement carte, SEPA, remboursement)
@@ -300,52 +292,51 @@
 
         </div>
       </div>
-    </div>
 
-    <!-- The Quizz -->
-    <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <div id="projetsBox"
-        class="col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12"
-        data-bs-target="">
-        <h3>The Quizz</h3>
-        <h4 class="description">Développement d'un site de quiz (reset du mot de passe, double authentification...) </h4>
-        <div id="list">
-          <ul>
-            <li>Base de données : PostgreSQL, via sequelize (ORM)</li>
-            <li>Création du MCD / MLD: Mocodo</li>
-            <li>Environnement de travail : Node.js</li>
-            <li>Langages utilisés : JavaScript</li>
-            <li>Framework utilisé : Express</li>
-            <li>Architecture : Active Record</li>
-            <li>Serveur web : Nginx</li>
-            <br>
-            <br>
-            <br>
-          </ul>
-        </div>
-        <div class="containerButtons">
-          <div class="boutton-details">
-            <a href="https://github.com/RomainBoudet/Kanban" style="text-decoration: none;" target="_blank">
-              <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
-                <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le code sur GitHub
-                </button>
+      <!-- The Quizz -->
+      <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="projetsBox"
+          class="boxquizz col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12"
+          data-bs-target="">
+          <h3>The Quizz</h3>
+          <h4 class="description">Développement d'un site de quiz (reset du mot de passe, double authentification...)
+          </h4>
+          <div id="list">
+            <ul>
+              <li>Base de données : PostgreSQL, via sequelize (ORM)</li>
+              <li>Création du MCD / MLD: Mocodo</li>
+              <li>Environnement de travail : Node.js</li>
+              <li>Langages utilisés : JavaScript</li>
+              <li>Framework utilisé : Express</li>
+              <li>Architecture : Active Record</li>
+              <li>Serveur web : Nginx</li>
+            </ul>
+          </div>
+          <div class="containerButtons">
+            <div class="boutton-details">
+              <a href="https://github.com/RomainBoudet/Kanban" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le code sur GitHub
+                  </button>
 
-              </div>
-            </a>
+                </div>
+              </a>
+            </div>
+
+            <div class="boutton-details">
+              <a href="https://quiz.romainboudet.fr/" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le projet en ligne
+                  </button>
+                </div>
+              </a>
+            </div>
           </div>
 
-          <div class="boutton-details">
-            <a href="https://quiz.romainboudet.fr/" style="text-decoration: none;" target="_blank">
-              <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
-                <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le projet en ligne
-                </button>
-              </div>
-            </a>
-          </div>
         </div>
-
       </div>
     </div>
+
   </section>
 
 
@@ -366,11 +357,13 @@
                     <p class="annee sm-text-xs-center">07/2021</p>
                   </div>
                   <div class="col-sm-8 col-xs-12">
-                    <a class="logo navbar-brand" href="https://oclock.io/"><img src="/images/oclock.jpeg"
+                    <a class="logo navbar-brand" href="https://oclock.io/"><img src="/images/ministere_travail.png"
                         alt="logo Ecole O'Clock" target="_blank" /></a>
                     <p class="titreStyle">Validation du Titre Profesionnel Developpeur Web et Web mobile</p>
                     <p><a href="https://oclock.io/formations/developpeur-web-fullstack-javascript" target="_blank"
-                        rel="nofollow noreferrer noopener">Ecole O'Clock</a> / <a href="https://romainboudet.fr/dossier_de_projet" target="_blank">Dossier de projet</a>  pour le passage du titre.          
+                        rel="nofollow noreferrer noopener">Ecole O'Clock</a> / <a
+                        href="https://romainboudet.fr/dossier_de_projet" target="_blank">Dossier de projet</a> pour le
+                      passage du titre.
                     </p>
                   </div>
                 </div>
@@ -546,6 +539,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                       <ul>
                         <li> - Carthographie des milieux</li>
+                        <li> - Traitement de données statistique</li>
                         <li> - Travaux d"aménagements</li>
                         <li> - Recensement d'espéces</li>
                         <li> - Sensibilisation</li>
