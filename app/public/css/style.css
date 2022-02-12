@@ -64,7 +64,7 @@ img#bg {
 
 /* SECTION 1  */
 .first-section {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.65)), url(images/background.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.65)), url(/images/background.jpg);
   height: 100%;
   background-size: cover;
   color: #fff;

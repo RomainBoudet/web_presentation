@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "build": "browserify app/public/script.js -o app/public/bundle.js",
+    "build": "browserify app/public/js/script.js -o app/public/js/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

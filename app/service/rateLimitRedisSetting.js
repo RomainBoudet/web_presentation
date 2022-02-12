@@ -20,7 +20,6 @@ let client;
 })();
 
 
-
 // le MW limitant le nombre de requetes pour un user (defense contre les attaques par Brute-Force ou le flooding de mail...)
 const apiLimiter = rateLimit({
     windowMs: 3600 * 1000 * 12, // la fenetre de tir pour le nombre de connexion : 12h

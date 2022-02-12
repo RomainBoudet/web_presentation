@@ -20,7 +20,7 @@ app.set('views', './app/views');
 
 // Config for sub-resources integrity 
 app.use((_, res, next) => {
-    res.locals.nonce = crypto.randomBytes(16).toString("hex");
+    res.locals.nonce = crypto.randomBytes(150).toString("base64");
     next();
 });
 
@@ -35,7 +35,7 @@ app.use(helmet());
  app.use(helmet.contentSecurityPolicy({
         directives: {
             defaultSrc: [`'self'`, ],
-            "script-src": [ (_, res) => `'nonce-${res.locals.nonce}'`],
+            "script-src": [(_, res) => `'nonce-${res.locals.nonce}'`, `'strict-dynamic'`], //'strict-dynamic' allows the execution of scripts dynamically added to the page, as long as they were loaded by a safe, already-trusted script https://web.dev/strict-csp/?utm_source=devtools https://www.w3.org/TR/CSP3/#strict-dynamic-usage 
             "img-src": [`'self'`, "https://filedn.eu/lD5jpSv048KLfgLMlwC2cLz/RB.png"],
             "font-src": ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf"],
 
@@ -43,6 +43,7 @@ app.use(helmet());
             "style-src": ["'unsafe-inline'", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", `'self'`],
             "base-uri": ["'none'"],
             "object-src": ["'none'"],
+            "connect-src":["https://www.google-analytics.com/"], //https://w3c.github.io/webappsec-csp/#directive-connect-src
             //reportUri: `/csp/report`,
 
             upgradeInsecureRequests: []
@@ -81,7 +82,7 @@ app.set('x-powered-by', false);
 }));  */
 
 //on ne va pas utiliser les fichiers html fournis mais des vues ejs
-//le middleware static servira uniquement pour les fichiers css
+
 app.use(express.static('./app/public'));
 
 

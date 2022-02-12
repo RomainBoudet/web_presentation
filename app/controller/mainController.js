@@ -24,19 +24,19 @@ const mainController = {
 
     anssi: (req, res) => {
 
-        res.status(200).sendFile(path.resolve(__dirname + `./../public/attestation_secnumacademie.pdf`));
+        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/attestation_secnumacademie.pdf`));
         res.setHeader('Content-type', 'application/pdf');
     },
 
     cv: (req, res) => {
 
-        res.status(200).sendFile(path.resolve(__dirname + `./../public/romain_CV.pdf`));
+        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/romain_CV.pdf`));
         res.setHeader('Content-type', 'application/pdf');
     },
 
     dossier_de_projet: (req, res) => {
 
-        res.status(200).sendFile(path.resolve(__dirname + `./../public/DProjet-Boudet_Romain.pdf`));
+        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/DProjet-Boudet_Romain.pdf`));
         res.setHeader('Content-type', 'application/pdf');
     },
 
