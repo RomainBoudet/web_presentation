@@ -66,5 +66,6 @@ $(document).ready(function () {
 
   const analyticLaunch = require('./analyticLaunch');
 
+  const invader = require('./invader');
   
   

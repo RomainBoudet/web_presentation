@@ -24,4 +24,12 @@ router.post('/',apiLimiter, clean, mainController.mail);
 
 //router.get('/csp/report', mainController.csp);
 
+/**
+ * Redirection vers une page 404
+ */
+ router.use((_, res) => {
+    res.status(404).render(`erreur`);
+  });
+  
+
 module.exports = router;

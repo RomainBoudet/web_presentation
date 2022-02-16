@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="keywords"
+    content="romain boudet, développeur web, développeur, développeur montpellier, développeur javascript, montpellier ">
+  <meta name="description"
+    content="Portfolio Romain Boudet, Développeur Web, Développeur à Montpellier, a la recherche d'un emploi">
+
+  <link rel="shortcut icon" type="images/ico" href="/images/RB.png" />
+
+  <!-- space invader only -->
+
+  <title>404 - Page non trouvée</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css" nonce="<%=locals.nonce%>"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" nonce="<%=locals.nonce%>"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/css/style_Invader.css" nonce="<%=locals.nonce%>"
+    crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" nonce="<%=locals.nonce%>"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/js/jquery-ui.min.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/js/jquery-migrate.min.js" nonce="<%=locals.nonce%>" crossorigin="anonymous">
+  </script>
+  <script type="text/javascript" src="/js/modernizr.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+  </script>
+  <style>
+    body {
+      padding-top: 30px;
+      height: 100%;
+      background: #282828;
+      background: url(/images/bg_outerspace.webp);
+      background-size: cover;
+    }
+
+    canvas {
+      margin: 0 auto 0 auto !important;
+      width: 2000px
+    }
+
+    .modal-backdrop {
+      background-color: #4F030B;
+      opacity: 0.9 !important;
+    }
+
+    .center {
+      text-align: center
+    }
+
+    #space-invaders {
+      margin: 0 auto;
+      display: block;
+    }
+
+
+    .modal {
+      text-align: center;
+    }
+
+    @media screen and (min-width: 768px) {
+      .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+      }
+    }
+
+    .modal-dialog {
+      display: inline-block;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .wrap {
+      margin: 25px;
+    }
+
+    #fade {
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 0;
+      margin: 0;
+      border: 0;
+      position: absolute;
+      overflow: hidden;
+      left: 0px;
+      top: 0px;
+      display: block;
+    }
+
+    .cont {
+      margin: 10% auto 0 auto;
+      width: 300px;
+      height: 300px;
+      background-color: #FFF;
+      -moz-box-shadow: 0 0 100px 1px #444;
+      -webkit-box-shadow: 0 0 100px 1px #444;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="container-wide micro-padding-bottom">
+    <div class="row">
+      <div class="col-sm-2">
+        <a href="/"><img class="img-responsive" src="/images/RB.png" /></a>
+      </div>
+      <div class="textalignright col-sm-10">
+        <h1 class="textalignright white-text">404 - Page Not Found</h1>
+        <p class="textalignright">Utilisez <span class="label label-danger">Espace</span> pour tirer et <span
+            class="label label-danger">←</span>&#160;<span class="label label-danger">→</span> pour
+          bouger !&#160;&#160;&#160;<button class="btn btn-default btn-xs" id="restart">Recommencez</button></p>
+      </div>
+    </div>
+  </div>
+
+    <div style="padding-bottom:5px">
+      <div class="col-sm-12">
+
+        <h2 style="color: #c2ff66; font-size: 40px" class="center">Harg !!! Les space-invaders tentent une invasion, repoussez-les !</h2>
+        <h3 class="textaligncenter white-text"><a href="javascript:void()"
+            style="font-weight: normal; text-decoration: none; border-bottom: 1px dotted #fff"
+            onclick="window.history.back();">(Ou fuyez commen un lâche...)</a></h3>
+      </div>
+    </div>
+
+    <div id="gameFinished" class="modal fade" role="dialog">
+      <div class="modal-dialog textaligncenter">
+        <h1 class="textaligncenter white-text" style="font-size: 100px">Vous avez perdu !</h1>
+        <h3 class="small-padding-bottom white-text textaligncenter" id="totalpoints">
+          </h3>
+          <h2 class="white-text textaligncenter" id="message">Faite plus de 1000 points pour rentrer dans l'histoire !</h2>
+          <p class="textaligncenter">
+            <button type="button" id="modalrestart" class="button-main button-large aligncenter textaligncenter"
+              style="display: inline-block; margin-top: 30px" data-dismiss="modal">Réessayer</button>
+            <a class="button-main button-large aligncenter textaligncenter" href="https://romainboudet.fr"
+              style="display: inline-block; margin-top: 30px">Revenir sur mon site</a>
+          </p>
+
+      </div>
+    </div>
+
+    <div id="lifelost"
+      style="overflow: none; width: 100%; height: 100%; position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 10000; background-color: rgba(255,0,0,0.5); display: none">
+    </div>
+    <div id="levelup"
+      style="overflow: none; width: 100%; height: 100%; padding-top: 20%; padding-bottom: 20%; position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 10000; background-color: rgba(0,200,0,0.8); display: none">
+      <h1 style="font-size: 100px" class="textaligncenter white-text">Good Job</h1>
+      <h2 class="textaligncenter white-text">Vous avez gagné(e) une vie supplémentaire. Soyez prêt pour le niveau d'après...</h2>
+    </div>
+
+
+    <canvas id="space-invaders">
+
+      <script src="/js/invader.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
+
+      <script type="text/javascript" nonce="<%=locals.nonce%>" crossorigin="anonymous">
+        $(document).ready(function () {});
+        //alert('nodal');
+      </script>
+
+    </canvas>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" nonce="<%=locals.nonce%>"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" nonce="<%=locals.nonce%>"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
