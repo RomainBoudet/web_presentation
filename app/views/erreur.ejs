@@ -20,6 +20,13 @@
   <title>404 - Page non trouvée</title>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" nonce="<%=locals.nonce%>"
     crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" nonce="<%=locals.nonce%>"
+      crossorigin="anonymous"></script> 
+    <script src ="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    nonce= "<%=locals.nonce%>"
+    crossorigin="anonymous">
+  </script> 
+
 
   <style>
     body {
@@ -32,7 +39,7 @@
 
     canvas {
       margin: 0 auto 0 auto !important;
-      width: 2000px
+      width: 1200px
     }
 
     .modal-backdrop {
@@ -109,8 +116,8 @@
           height: auto;" src="/images/RB.png" /></a>
       </div>
       <div class="col-sm-10">
-        <h1 class="p-4 fw-bold" style="color: #9d7d07; margin-right: 20rem; font-size: 4rem;">404 - Page Not Found</h1>
-        <p class="text-white fw-bold fs-4" style="margin-right: 20rem;">Utilisez <span
+        <h1 class="p-4" style="color: #9d7d07; margin-right: 20rem; font-size: 3rem;">404 - Page Not Found</h1>
+        <p class="text-white fw-bold fs-5" style="margin-right: 20rem;">Utilisez <span
             class="badge bg-danger text-white">Espace</span> pour tirer et <span class="badge bg-danger"> ⬅️ </span>
           <span class="badge bg-danger"> ➡️ </span> pour
           vous déplacer !&#160;&#160;&#160;<button class="btn btn-success btn-sm" id="restart">Recommencez</button></p>
@@ -121,7 +128,8 @@
   <div style="padding-bottom:5px">
     <div class="col-sm-12 text-center">
 
-      <h2 style="color: #c2ff66; font-size: 40px" class="text-center pt-4">Harg !!! Les space-invaders ont envahit cette page, repoussez-les !</h2>
+      <h2 style="color: #c2ff66; font-size: 2rem" class="text-center pt-4">Harg !!! Les space-invaders ont envahit cette
+        page, repoussez-les !</h2>
       <button id="back" style="all: unset; cursor: pointer;">
         <h3 class="mb-5" style="color: #c2ff66; text-decoration: none; border-bottom: 1px dotted #fff">(Ou fuyez comme
           un lâche...)</h3>
@@ -130,19 +138,22 @@
     </div>
   </div>
 
-  <div id="gameFinished" class="modal fade" role="dialog" style="opacity: 1;" > <!-- ajout de la class "in" passe l'opacity a 1 sur ancienne version de boostrap -->
-    <div class="modal-dialog text-center text-white" > 
+  <div id="gameFinished" class="modal fade" role="dialog" style="opacity: 1;">
+    <!-- ajout de la class "in" passe l'opacity a 1 sur ancienne version de boostrap -->
+    <div class="modal-dialog text-center text-white">
+
+
+
       <h1 class="text-center text-white" style="font-size: 100px; z-index: 10000;">Vous avez perdu !</h1>
       <h3 class="small-padding-bottom text-white text-center" id="totalpoints"></h3>
       <h2 class="text-white text-center" id="message">Faite plus de 1000 points pour rentrer dans l'histoire !</h2>
       <div class="text-center">
         <button type="button" id="modalrestart" class="btn btn-success aligncenter text-center"
-          style="display: inline-block;" data-dismiss="modal">Réessayer</button>
-       
-          <a class="btn btn-success aligncenter text-center" href="https://romainboudet.fr"
-          style="display: inline-block;">Revenir sur la page principale</a>
-      </div>
+          style="display: inline-block;" data-bs-dismiss="modal">Réessayer</button>
 
+        <button class="btn btn-success aligncenter text-center" type="submit"><a id="modalback" class="btn btn-success aligncenter text-center" href="https://romainboudet.fr"
+          style="display: inline-block;">Revenir sur la page principale</a></button>
+      </div>
     </div>
   </div>
 
@@ -160,14 +171,11 @@
 
   <canvas id="space-invaders">
 
-    <script src="/js/invader.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
 
+  <script src="/js/invader.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
+ 
   </canvas>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" nonce="<%=locals.nonce%>"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" nonce="<%=locals.nonce%>"
-    crossorigin="anonymous"></script>
 </body>
 
 </html>

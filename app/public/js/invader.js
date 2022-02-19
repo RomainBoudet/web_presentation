@@ -24,16 +24,16 @@
     spawnDelayCounter = invaderSpawnDelay;
 
   var invaderDownTimer;
-  
+
   // Text => 404
-    var blocks = [
+  var blocks = [
     [3, 4, 8, 9, 10, 15, 16],
     [2, 4, 7, 11, 14, 16],
     [1, 4, 7, 11, 13, 16],
     [1, 2, 3, 4, 5, 7, 11, 13, 14, 15, 16, 17],
     [4, 7, 11, 16],
     [4, 8, 9, 10, 16]
-  ];  
+  ];
 
   // Text => [RB]
   /*   var blocks = [
@@ -142,7 +142,12 @@
       if (this.lost) {
 
         if (!$('#gameFinished').hasClass('in')) {
-          $("#gameFinished").modal();
+
+          $("#gameFinished").modal('show');
+
+          $('#gameFinished').on('shown.bs.modal', function () {
+            $('#modalback').trigger('focus')
+          })
 
 
           if (kills > 999) {
