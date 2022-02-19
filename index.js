@@ -35,11 +35,11 @@ app.use(helmet());
  app.use(helmet.contentSecurityPolicy({
         directives: {
             defaultSrc: [`'self'`, ],
-            "script-src": [(_, res) => `'nonce-${res.locals.nonce}'`, `'strict-dynamic'`], //'strict-dynamic' allows the execution of scripts dynamically added to the page, as long as they were loaded by a safe, already-trusted script https://web.dev/strict-csp/?utm_source=devtools https://www.w3.org/TR/CSP3/#strict-dynamic-usage 
+            "script-src": [(_, res) => `'nonce-${res.locals.nonce}'`, `'strict-dynamic'`, "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"], //'strict-dynamic' allows the execution of scripts dynamically added to the page, as long as they were loaded by a safe, already-trusted script https://web.dev/strict-csp/?utm_source=devtools https://www.w3.org/TR/CSP3/#strict-dynamic-usage 
             "img-src": [`'self'`, "https://filedn.eu/lD5jpSv048KLfgLMlwC2cLz/RB.png"],
-            "font-src": ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf"],
+            "font-src": ["http://localhost:5000/fonts/glyphicons-halflings-regular.woff", "http://localhost:5000/fonts/glyphicons-halflings-regular.ttf", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf"],
 
-            //"style-src": ["'unsafe-inline'",`'self'`,"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", (_, res) => `'nonce-${res.locals.nonce}'`], //
+            "style-src": ["'unsafe-inline'",`'self'`,"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", (_, res) => `'nonce-${res.locals.nonce}'`], //
             "style-src": ["'unsafe-inline'", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", `'self'`],
             "base-uri": ["'none'"],
             "object-src": ["'none'"],

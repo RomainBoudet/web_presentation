@@ -1,4 +1,3 @@
-;
 (function () {
   "use strict";
 
@@ -25,39 +24,31 @@
     spawnDelayCounter = invaderSpawnDelay;
 
   var invaderDownTimer;
-
-  // Text
-   var blocks = [
-    [12, 4, 8, 9, 10, 15, 16],
+  
+  // Text => 404
+    var blocks = [
+    [3, 4, 8, 9, 10, 15, 16],
     [2, 4, 7, 11, 14, 16],
     [1, 4, 7, 11, 13, 16],
     [1, 2, 3, 4, 5, 7, 11, 13, 14, 15, 16, 17],
     [4, 7, 11, 16],
     [4, 8, 9, 10, 16]
-  ]; 
+  ];  
 
-  var blocks = [
+  // Text => [RB]
+  /*   var blocks = [
+
+    [4, 5, 15, 16],
+    [4,7,8,9,11,12,13, 16],
+    [4,7,9,11,13, 16],
+    [4,7,8,9,11,12,13, 16],
+    [4,7,11, 12,13, 14, 16],
+    [4,7,8,11,14, 16],
+    [4,7,9,11,12,13,14, 16],
+    [4, 5, 15, 16]
     
-   /*  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], */
-
-
-  ];
-
+  ]; 
+ */
 
 
   // Game Controller
@@ -153,6 +144,7 @@
         if (!$('#gameFinished').hasClass('in')) {
           $("#gameFinished").modal();
 
+
           if (kills > 999) {
 
             // on envoie en bdd sur un endpoint le nom du winner et son score !! et on réactualize un tableau des scores ! 
@@ -160,7 +152,7 @@
             $("#message").html("Impressionant ! ");
             $("#totalpoints").html(kills + " Invaders détruits !");
           } else {
-            $("#message").html("Arf.. pas encore assez bon pour intégrer le tableau des scores... ");
+            $("#message").html("Vous n'êtes pas encore assez bon pour intégrer le tableau des scores... ");
             $("#totalpoints").html(kills + " Invaders détruits !");
           }
 
@@ -170,11 +162,11 @@
       } else {
         screen.clearRect(0, 0, gameSize.width, gameSize.height);
 
-        screen.font = "20px Oswald";
+        screen.font = "20px Arial"; // anciennement en Oswald
         screen.textAlign = "right";
-        screen.fillText("Points: " + kills, gameSize.width - 50, gameSize.height - 12);
-        screen.fillText("Lives: " + lives, gameSize.width - 50, gameSize.height - 44);
-        screen.fillText("Level: " + game.level, gameSize.width - 50, gameSize.height - 76);
+        screen.fillText("Points: " + kills, gameSize.width - 50, gameSize.height - 16);
+        screen.fillText("Vies: " + lives, gameSize.width - 50, gameSize.height - 44);
+        screen.fillText("Niveau: " + game.level, gameSize.width - 50, gameSize.height - 76);
       }
 
       screen.beginPath();
