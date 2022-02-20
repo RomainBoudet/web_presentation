@@ -1,4 +1,7 @@
-(function () {
+let isGameLost;
+let globalID;
+
+function spaceInvader() {
   "use strict";
 
   // General
@@ -53,6 +56,8 @@
 
   // Game Controller
   // ---------------
+
+  let isGameLost;
   var Game = function () {
 
     this.level = -1;
@@ -137,41 +142,63 @@
 
     },
 
+    /*     */
+
     draw: function () {
+
+      isGameLost = this.lost;
 
       if (this.lost) {
 
         if (!$('#gameFinished').hasClass('in')) {
 
-          $("#gameFinished").modal('show');
+          if (kills < 10) {
 
-          $('#gameFinished').on('shown.bs.modal', function () {
-            $('#modalback').trigger('focus')
-          })
+            $("#gameFinished").modal('show');
+
+            $('#gameFinished').on('shown.bs.modal', function () {
+              $('#modalback').focus();
+            })
+
+            $("#titre").html("Vous avez perdu !");
+            $("#message").html("Vous n'êtes pas encore assez bon pour intégrer le tableau des scores... Faite plus de 1000 points pour rentrer dans l'histoire ! ");
+            $("#totalpoints").html(kills + " Invaders détruits !");
+          }
+
+          if (kills > 10) {
+
+            // on ouvre une modale ou on demande le nom et le prénom. 
+            $("#winnerinput").modal('show');
+
+            $('#winnerinput').on('shown.bs.modal', function () {
+              $('#nom').focus()
+            })
+
+            $("#titrewinner").html(" 🎉 Victoire ! ");
+            $("#messagewinner").html("Impressionant ! Si vous le souhaitez vous pouvez laisser votre nom dans le tableau des score de cette page ! ");
+            $("#totalpointswinner").html(kills + " Invaders détruits !");
 
 
-          if (kills > 999) {
 
             // on envoie en bdd sur un endpoint le nom du winner et son score !! et on réactualize un tableau des scores ! 
 
-            $("#message").html("Impressionant ! ");
-            $("#totalpoints").html(kills + " Invaders détruits !");
-          } else {
-            $("#message").html("Vous n'êtes pas encore assez bon pour intégrer le tableau des scores... ");
-            $("#totalpoints").html(kills + " Invaders détruits !");
+            // on l'envoi en bdd via un appel ajax 
+
           }
 
         }
 
 
       } else {
+
         screen.clearRect(0, 0, gameSize.width, gameSize.height);
 
-        screen.font = "20px Arial"; // anciennement en Oswald
+        screen.font = "20px Arial";
         screen.textAlign = "right";
         screen.fillText("Points: " + kills, gameSize.width - 50, gameSize.height - 16);
         screen.fillText("Vies: " + lives, gameSize.width - 50, gameSize.height - 44);
         screen.fillText("Niveau: " + game.level, gameSize.width - 50, gameSize.height - 76);
+
       }
 
       screen.beginPath();
@@ -180,7 +207,7 @@
       this.player.draw();
       if (!this.lost)
         screen.fillStyle = "#90C9F4";
-      screen.fillStyle = "white";
+      screen.fillStyle = "white"; //couleur des projectule et du player
 
       for (i = 0; i < this.invaders.length; i++) this.invaders[i].draw();
 
@@ -335,7 +362,7 @@
           game.player.draw();
           colideexecuted = 0;
           lives -= 1;
-        }, 500);
+        }, 200);
 
       } else {
         this.active = false;
@@ -469,20 +496,64 @@
 
   });
 
-  window.addEventListener('resize', function () {
-    initGameStart();
-  });
+
+
   document.getElementById('restart').addEventListener('click', function () {
-    initGameStart();
-  });
-  document.getElementById('modalrestart').addEventListener('click', function () {
-    initGameStart();
-  });
-  document.getElementById('gameFinished').addEventListener('click', function () {
+    console.log("on passe dans le restart");
     initGameStart();
   });
 
+
+  document.getElementById('modalrestart').addEventListener('click', function () {
+    //initGameStart();
+    var invaderAsset = new Image;
+    invaderAsset.onload = function () {
+
+      invaderCanvas = document.createElement('canvas');
+      invaderCanvas.width = invaderSize;
+      invaderCanvas.height = invaderSize;
+      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
+
+      // Game Creation
+      canvas = document.getElementById("space-invaders");
+      screen = canvas.getContext('2d');
+
+      initGameStart();
+      loop();
+
+    };
+    invaderAsset.src = "/images/invader.gif";
+  });
+
+  document.getElementById('modalrestart2').addEventListener('click', function () {
+    //initGameStart();
+    var invaderAsset = new Image;
+    invaderAsset.onload = function () {
+
+      invaderCanvas = document.createElement('canvas');
+      invaderCanvas.width = invaderSize;
+      invaderCanvas.height = invaderSize;
+      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
+
+      // Game Creation
+      canvas = document.getElementById("space-invaders");
+      screen = canvas.getContext('2d');
+
+      initGameStart();
+      loop();
+
+    };
+    invaderAsset.src = "/images/invader.gif";
+  });
+
+  /* document.getElementById('gameFinished').addEventListener('click', function () {
+
+    console.log("on es dans addEventListener du game finish !")
+    initGameStart();
+  }); */
+
   function initGameStart() {
+
     if (window.innerWidth > 1100) {
       screen.canvas.width = 1200;
       screen.canvas.height = 480;
@@ -519,15 +590,35 @@
     spawnDelayCounter = invaderSpawnDelay;
 
     game = new Game();
+
+
   }
 
   function loop() {
+
     game.update();
     game.draw();
 
-    requestAnimationFrame(loop);
+    globalID = requestAnimationFrame(loop);
+
+    if (isGameLost) {
+
+      cancelAnimationFrame(globalID)
+      console.log("GAME STOPPED !");
+
+    }
+
+
   }
 
 
 
-})();
+};
+
+spaceInvader();
+
+
+
+
+
+// https://obfuscator.io/
