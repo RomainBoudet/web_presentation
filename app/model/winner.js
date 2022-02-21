@@ -69,7 +69,7 @@ class Winner {
             await mongo.connect();
 
             const query = {};
-            const sort = { score: -1 };
+            const sort = { score:-1 };
             const projection = {_id:0, nom:1, prenom:2, score:3}; //https://docs.mongodb.com/drivers/node/current/fundamentals/crud/read-operations/project/
 
             const allWinners = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).find(query).sort(sort).project(projection).toArray();

@@ -34,9 +34,11 @@ const spaceInvaderController = {
                 score
             } = req.body;
 
-            const allWinnersBefore = await Winner.findAll();
+            //const allWinnersBefore = await Winner.findAll();
 
-            //! faire un calcul des rang !!!!
+            //! faire un calcul des rang !
+            // https://docs.mongodb.com/manual/reference/operator/aggregation/rank/
+
 
             // je fais des vérif avant insertion !
             //nom et prenom ne doivent pas dépasser 20 caractéres et score doit être un entier entre 999 et 9999.
@@ -56,6 +58,8 @@ const spaceInvaderController = {
             //! check, si le nom ou le prenom existe déja existe déja, on refuse ! et on renvoie la modale por un nouveau choix. 
             //! si IP identique on accepte de prendre le même nom ! 
 
+
+
             if (nom.length > 20 || prenom.length > 20) {
                 console.log("Erreur dans la longeur des nom / prénom !");
                 const allWinnersBis = await Winner.findAllWithoutIpAndDate();
@@ -68,13 +72,15 @@ const spaceInvaderController = {
             const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
             //console.log("clientip ==> ", clientIp);
 
+
+
             //
             const doc = {
                 nom,
                 prenom,
                 ip: `${clientIp}`,
-                score,
-                createdDate: formatLongBDD()
+                score:parseInt(score, 10),
+                createdDate: formatLongBDD(),
             };
 
             // on insert des donnée en BDD => méthode d'instance

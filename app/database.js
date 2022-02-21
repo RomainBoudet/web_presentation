@@ -63,7 +63,7 @@ async function listDatabases(client) {
 // https://docs.mongodb.com/drivers/node/current/fundamentals/connection/
 
 // https://www.mongodb.com/fr-fr/basics/create-database 
-// https://www.mongodb.com/basics/crud#:~:text=The%20basic%20methods%20of%20interacting,the%20data%20in%20your%20databases.
+// https://www.mongodb.com/basics/crud#:~:text=The%20basic%20methods%20of%20interacting,the%20data%20in%20your%20databases
 
 // https://docs.mongodb.com/drivers/node/current/fundamentals/crud/read-operations/limit/
 
