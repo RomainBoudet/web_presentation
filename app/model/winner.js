@@ -1,11 +1,12 @@
 const mongo = require('../database');
+const { all } = require('../router');
 
 class Winner {
 
-    id;
-    ip;
+    
     nom;
     prenom;
+    ip;
     score;
     createdDate;
 
@@ -32,22 +33,21 @@ class Winner {
             await mongo.connect();
 
             const allWinners = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).find({}).toArray();
-            //console.log('allWinners dans le model  =>', allWinners);
+            //reçoit un tableau d'objet 
+            //console.log("allWinners in model => ", allWinners);
 
-            //const oneWinner = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).findOne({});
-            //console.log(' oneWinner dans le model  =>',  oneWinner);
-
-            if (!allWinners) {
+            if (!allWinners[0] || allWinners[0] === undefined) {
                 return null;
-            } 
+            }
 
-            return allWinners;
+
+            //On retourn un tableau d'instance !
+            return allWinners.map((item) => new Winner(item));
 
         } catch (error) {
 
             console.log("Erreur dans le model Winner, dans la méthode findAll :", error);
-            await mongo.close();
-            return res.stattus(500).end();
+            return res.status(500).end();
 
         } finally {
 
@@ -56,6 +56,118 @@ class Winner {
         }
 
     }
+
+    /**
+     * Méthode chargé d'aller chercher toutes les informations relatives à tous les winners en base de donnée
+     * @returns - tous les winners présent en BDD
+     * @static - une méthode static
+     * @async - une méthode asynchrone
+     */
+     static async findAllWithoutIpAndDate() {
+
+        try {
+            await mongo.connect();
+
+            const query = {};
+            const sort = { score: -1 };
+            const projection = {_id:0, nom:1, prenom:2, score:3}; //https://docs.mongodb.com/drivers/node/current/fundamentals/crud/read-operations/project/
+
+            const allWinners = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).find(query).sort(sort).project(projection).toArray();
+            //reçoit un tableau d'objet 
+            //console.log("allWinners in model => ", allWinners);
+
+            if (!allWinners[0] || allWinners[0] === undefined) {
+                return null;
+            }
+
+
+            //On retourn un tableau d'instance !
+            return allWinners.map((item) => new Winner(item));
+
+        } catch (error) {
+
+            console.log("Erreur dans le model Winner, dans la méthode findAllWithoutIpAndDate :", error);
+            return res.status(500).end();
+
+        } finally {
+
+            await mongo.close();
+
+        }
+
+    }
+
+
+    /**
+     * Méthode chargé d'aller chercher toutes les informations relatives à un(e) winner en base de donnée
+     * @returns - un winners présent en BDD
+     * @static - une méthode static
+     * @async - une méthode asynchrone
+     */
+     static async findOne() {
+
+        try {
+            await mongo.connect();
+
+            const oneWinner = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).findOne({});
+            //console.log(' oneWinner dans le model  =>',  oneWinner);
+
+            if (!oneWinner) {
+                return null;
+            } 
+
+            // et on retourne l'instance !
+            return new Winner(oneWinner);
+
+        } catch (error) {
+
+            console.log("Erreur dans le model Winner, dans la méthode findOne :", error);
+            return res.status(500).end();
+
+        } finally {
+
+            await mongo.close();
+
+        }
+
+    }
+
+    /**
+     * Méthode chargé d'aller chercher toutes les informations relatives à un(e) winner en base de donnée
+     * @returns - un winners présent en BDD
+     * @async - une méthode asynchrone
+     */
+
+     async insert() {
+
+        try {
+            await mongo.connect();
+
+            const oneWinner = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).insertOne(this);
+            //console.log(' oneWinner dans le model  =>',  oneWinner);
+
+            console.log("oneWinner dans le model ==> ", oneWinner);
+
+            if (!oneWinner) {
+                return null;
+            } 
+
+            return oneWinner;
+
+        } catch (error) {
+
+            console.log("Erreur dans le model Winner, dans la méthode insert :", error);
+            return res.status(500).end();
+
+        } finally {
+
+            await mongo.close();
+
+        }
+
+    }
+
+
 
 }
 

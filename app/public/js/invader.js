@@ -167,6 +167,7 @@ function spaceInvader() {
 
           if (kills > 9) {
 
+            $('#score').val(kills);
             // on ouvre une modale ou on demande le nom et le prénom. 
             $("#winnerinput").modal('show');
 

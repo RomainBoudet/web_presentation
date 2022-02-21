@@ -1,3 +1,5 @@
+const Winner = require('./model/winner');
+
 const {Router} = require('express');
 const router = Router();
 // le rate limiter est déporté dans un service.
@@ -5,6 +7,9 @@ const {apiLimiter} = require('./service/rateLimitRedisSetting');
 
 const mainController = require('./controller/mainController');
 const spaceInvaderController = require('./controller/spaceInvaderController');
+
+// implémentation de joi, avec un validator  dans le dossier "services".
+
 
 
 // Un petit service pour néttoyer nos entrée et enlever tous caractéres spéciaux. 
@@ -33,8 +38,10 @@ router.post('/winner/insert', clean, spaceInvaderController.insertWinner)
 /**
  * Redirection vers une page 404
  */
- router.use((_, res) => {
-    res.status(404).render(`erreur`);
+ router.use(async(_, res) => {
+
+  const allWinners = await Winner.findAllWithoutIpAndDate();
+    res.status(404).render(`erreur`, {allWinners});
   });
   
 

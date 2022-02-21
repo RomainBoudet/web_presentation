@@ -14,6 +14,12 @@ const formatLong = (date) => {
     return date;
 }
 
+const formatLongBDD = () => {
+    date = dayjs(new Date).format('dddd D MMMM YYYY H:mm:ss');
+    return date;
+}
+
 module.exports = {
     formatLong,
+    formatLongBDD,
 }

@@ -217,12 +217,14 @@
           <form role="form" method="POST" action="/winner/insert">
             <div class="form-group">
               <div class="form-floating mt-3">
-              <input type="text" placeholder="Votre nom" class="form-control" name="nom" id="nom">
+              <input type="text" placeholder="Votre nom" class="form-control" name="nom" id="nom" maxlength="20">
                 <label class="text-dark" for="nom">Votre nom</label>
               </div>
               <div class="form-floating mt-3">
-              <input type="text" placeholder="Votre prénom" class="form-control" name="prenom" id="prenom">
+              <input type="text" placeholder="Votre prénom" class="form-control" name="prenom" id="prenom" maxlength="20">
               <label class="text-dark" for="nom">Votre prénom</label>
+              <input value="" type="hidden" id="score" name="score" maxlength="4">
+
             </div>
 
               <button id="validateWinner" type="submit" class="btn btn-success d-grid gap-2 col-6 mx-auto mt-3" data-bs-dismiss="modal">valider</button>
@@ -279,24 +281,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>1200</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>1140</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>1000</td>
-        </tr>
+        <% for (const winner of allWinners) { %>
+          <tr>
+            <th scope="row">1</th>
+            <td><%= winner.nom %></td>
+            <td><%= winner.prenom %></td>
+            <td><%= winner.score %></td>
+          </tr>
+          <% } %>
        
       </tbody>
     </table>
