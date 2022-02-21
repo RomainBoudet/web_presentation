@@ -152,7 +152,7 @@ function spaceInvader() {
 
         if (!$('#gameFinished').hasClass('in')) {
 
-          if (kills < 999) {
+          if (kills < 9) {
 
             $("#gameFinished").modal('show');
 
@@ -165,7 +165,7 @@ function spaceInvader() {
             $("#totalpoints").html(kills + " Invaders détruits !");
           }
 
-          if (kills > 999) {
+          if (kills > 9) {
 
             // on ouvre une modale ou on demande le nom et le prénom. 
             $("#winnerinput").modal('show');
@@ -524,6 +524,43 @@ function spaceInvader() {
     };
     invaderAsset.src = "/images/invader.gif";
   });
+
+  function prettyDate() {
+    var date = new Date();
+    return date.toLocaleTimeString(navigator.language, {
+      hour: '2-digit',
+      minute:'2-digit'
+    });
+  };
+
+
+  document.getElementById('validateWinner').addEventListener('click', function () {
+    //initGameStart();
+    var invaderAsset = new Image;
+    invaderAsset.onload = function () {
+
+      invaderCanvas = document.createElement('canvas');
+      invaderCanvas.width = invaderSize;
+      invaderCanvas.height = invaderSize;
+      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
+
+      // Game Creation
+      canvas = document.getElementById("space-invaders");
+      screen = canvas.getContext('2d');
+
+      initGameStart();
+      loop();
+
+    };
+
+    invaderAsset.src = "/images/invader.gif";
+
+    // et valider l'envoi d'un toast !
+    $("#validateWinnerToast").toast("show");
+    $("#date").html(prettyDate());
+
+  });
+
 
   document.getElementById('modalrestart2').addEventListener('click', function () {
     //initGameStart();

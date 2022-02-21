@@ -4,6 +4,8 @@ const router = Router();
 const {apiLimiter} = require('./service/rateLimitRedisSetting');
 
 const mainController = require('./controller/mainController');
+const spaceInvaderController = require('./controller/spaceInvaderController');
+
 
 // Un petit service pour néttoyer nos entrée et enlever tous caractéres spéciaux. 
 const {clean} = require('./service/sanitiz');
@@ -21,6 +23,10 @@ router.get('/cv', mainController.cv);
 router.get('/dossier_de_projet', mainController.dossier_de_projet);
 
 router.post('/',apiLimiter, clean, mainController.mail);
+
+//space Invader 
+
+router.post('/winner/insert', clean, spaceInvaderController.insertWinner)
 
 //router.get('/csp/report', mainController.csp);
 

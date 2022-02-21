@@ -1,5 +1,4 @@
 require('dotenv').config();
-const cors = require('cors');
 const helmet = require('helmet');
 const crypto = require("crypto");
 
@@ -27,7 +26,6 @@ app.use((_, res, next) => {
 // On lancera notre app derriere un proxie => Si la valeur est true, l’adresse IP du client est interprétée comme étant l’entrée la plus à gauche dans l’en-tête X-Forwarded-*.
 app.set('trust proxy', true)
 
-/*  */
 
 app.use(helmet());
 // https://ponyfoo.com/articles/content-security-policy-in-express-apps
@@ -43,7 +41,7 @@ app.use(helmet());
             "style-src": ["'unsafe-inline'", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", `'self'`],
             "base-uri": ["'none'"],
             "object-src": ["'none'"],
-            "connect-src":["https://www.google-analytics.com/"], //https://w3c.github.io/webappsec-csp/#directive-connect-src
+            "connect-src":["https://www.google-analytics.com/", "https://api.ipify.org"], //https://w3c.github.io/webappsec-csp/#directive-connect-src
             //reportUri: `/csp/report`,
 
             upgradeInsecureRequests: []
@@ -59,12 +57,7 @@ app.use(helmet());
         //reportUri: "https://example.com/report", Pourrait être intérresant de se prévoir une url pour l'admin avec aussi 
     }))
  
-// ATTENTION cette protection contre les reflextive XSS pourrait être la porte ouverte pour les attaques XS search.. :
-//https://infosecwriteups.com/xss-auditor-the-protector-of-unprotected-f900a5e15b7b
-//https://portswigger.net/research/top-10-web-hacking-techniques-of-2019
-//https://github.com/xsleaks/xsleaks/wiki/Browser-Side-Channels
-// risque de XS leak important, des attaquant peuvent soutirer des infos en provoquant des faux postive, l'API XSS filter étant sensible a ce type d'attaque..
-// cette option override celle de helmet qui la méttait a 0
+
 app.use((req, res, next) => {
     res.setHeader("X-XSS-Protection", "1; mode=block");
     next();
@@ -72,14 +65,10 @@ app.use((req, res, next) => {
 
 app.set('x-powered-by', false);
 
+//pour géreer les donnée en post et réceptionné un req.body !
+app.use(express.urlencoded({extended: true}));
 
 
- /* app.use(cors({
-    optionsSuccessStatus: 200,
-    origin: "*", //! a pas oublier pour la prod ! => remplacer par le bon nom de domaine
-    methods: "GET, OPTIONS", // ok via un array aussi
-    allowedHeaders: ['Content-Type'],
-}));  */
 
 //on ne va pas utiliser les fichiers html fournis mais des vues ejs
 
