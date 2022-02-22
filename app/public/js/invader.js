@@ -152,7 +152,7 @@ function spaceInvader() {
 
         if (!$('#gameFinished').hasClass('in')) {
 
-          if (kills < 999) {
+          if (kills < 9) {
 
             $("#gameFinished").modal('show');
 
@@ -165,7 +165,7 @@ function spaceInvader() {
             $("#totalpoints").html(kills + " Invaders détruits !");
           }
 
-          if (kills > 999) {
+          if (kills > 9) {
 
             $('#score').val(kills);
             // on ouvre une modale ou on demande le nom et le prénom. 
@@ -176,7 +176,7 @@ function spaceInvader() {
             })
 
             $("#titrewinner").html(" 🎉 Victoire ! ");
-            $("#messagewinner").html("Impressionant ! Si vous le souhaitez vous pouvez laisser votre nom dans le tableau des score de cette page ! ");
+            $("#messagewinner").html("Impressionant ! Si vous le souhaitez, vous pouvez laisser votre nom dans le tableau des score de cette page ! ");
             $("#totalpointswinner").html(kills + " Invaders détruits !");
 
             // je supprime les EventListener pour pouvoir réutilisé l'espace et les flèches dans l'input
@@ -527,13 +527,13 @@ function spaceInvader() {
     invaderAsset.src = "/images/invader.gif";
   });
 
-  function prettyDate() {
+  /* function prettyDate() {
     var date = new Date();
     return date.toLocaleTimeString(navigator.language, {
       hour: '2-digit',
       minute: '2-digit'
     });
-  };
+  }; */
 
 
   document.getElementById('validateWinner').addEventListener('click', function () {
@@ -558,8 +558,8 @@ function spaceInvader() {
     invaderAsset.src = "/images/invader.gif";
 
     // et valider l'envoi d'un toast !
-    $("#validateWinnerToast").toast("show");
-    $("#date").html(prettyDate());
+    /* $("#validateWinnerToast").toast("show");
+    $("#date").html(prettyDate()); */
 
   });
 

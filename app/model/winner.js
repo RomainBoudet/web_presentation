@@ -58,7 +58,7 @@ class Winner {
     }
 
     /**
-     * Méthode chargé d'aller chercher toutes les informations relatives à tous les winners en base de donnée
+     * Méthode chargé d'aller chercher certaines informations relatives à tous les winners en base de donnée
      * @returns - tous les winners présent en BDD
      * @static - une méthode static
      * @async - une méthode asynchrone
@@ -99,7 +99,7 @@ class Winner {
 
 
     /**
-     * Méthode chargé d'aller chercher toutes les informations relatives à un(e) winner en base de donnée
+     * Méthode chargé d'aller chercher une information relative à un(e) winner en base de donnée
      * @returns - un winners présent en BDD
      * @static - une méthode static
      * @async - une méthode asynchrone
@@ -133,7 +133,7 @@ class Winner {
     }
 
     /**
-     * Méthode chargé d'aller chercher toutes les informations relatives à un(e) winner en base de donnée
+     * Méthode chargé d'aller insérer une donnée relatives à un(e) winner en base de donnée
      * @returns - un winners présent en BDD
      * @async - une méthode asynchrone
      */
@@ -146,7 +146,38 @@ class Winner {
             const oneWinner = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).insertOne(this);
             //console.log(' oneWinner dans le model  =>',  oneWinner);
 
-            console.log("oneWinner dans le model ==> ", oneWinner);
+
+            if (!oneWinner) {
+                return null;
+            } 
+
+            return oneWinner;
+
+        } catch (error) {
+
+            console.log("Erreur dans le model Winner, dans la méthode insert :", error);
+            return null;
+
+        } finally {
+
+            await mongo.close();
+
+        }
+
+    }
+
+     /**
+     * Méthode chargé d'aller mettre a jour une information relative à un(e) winner en base de donnée
+     * @returns - un winners présent en BDD
+     * @async - une méthode asynchrone
+     */
+
+      async update() {
+
+        try {
+            await mongo.connect();
+
+            const oneWinner = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).updateOne(this.filter, this.updateobj);
 
             if (!oneWinner) {
                 return null;

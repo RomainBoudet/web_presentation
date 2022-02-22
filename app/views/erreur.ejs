@@ -174,8 +174,8 @@
 
           <button id="modalrestart" class="btn btn-success" data-bs-dismiss="modal">Réessayer</button>
 
-          <button class="btn btn-success" id="modalback" type="button"><a class="btn btn-success "
-              href="https://romainboudet.fr">Revenir sur la page principale</a></button>
+          <a href="https://romainboudet.fr"><button class="btn btn-success" id="modalback" type="button">Revenir sur la
+              page principale</button></a>
         </div>
 
       </div>
@@ -217,17 +217,22 @@
           <form role="form" method="POST" action="/winner/insert">
             <div class="form-group">
               <div class="form-floating mt-3">
-              <input type="text" placeholder="Votre nom" class="form-control" name="nom" id="nom" maxlength="30">
+                <input type="text" placeholder="Votre nom" class="form-control" name="nom" id="nom" maxlength="30"
+                  minlength="3" data-bs-toggle="tooltip" data-bs-placement="left"
+                  title="Votre nom doit être composé de 3 a 30 caractéres, sans espaces. Les caractéres spéciaux seront supprimés.">
                 <label class="text-dark" for="nom">Votre nom</label>
               </div>
               <div class="form-floating mt-3">
-              <input type="text" placeholder="Votre prénom" class="form-control" name="prenom" id="prenom" maxlength="30">
-              <label class="text-dark" for="nom">Votre prénom</label>
-              <input value="" type="hidden" id="score" name="score" maxlength="4">
+                <input type="text" placeholder="Votre prénom" class="form-control" name="prenom" id="prenom"
+                  maxlength="30" minlength="3" data-bs-toggle="tooltip" data-bs-placement="left"
+                  title="Votre prénom doit être composé de 3 a 30 caractéres, sans espaces. Les caractéres spéciaux seront supprimés.">
+                <label class="text-dark" for="nom">Votre prénom</label>
+                <input value="" type="hidden" id="score" name="score" maxlength="4">
 
-            </div>
+              </div>
 
-              <button id="validateWinner" type="submit" class="btn btn-success d-grid gap-2 col-6 mx-auto mt-3" data-bs-dismiss="modal">valider</button>
+              <button id="validateWinner" type="submit" class="btn btn-success d-grid gap-2 col-6 mx-auto mt-3"
+                data-bs-dismiss="modal">valider</button>
             </div>
           </form>
         </div>
@@ -235,8 +240,8 @@
         <div class="modal-footer">
 
           <button id="modalrestart2" class="btn btn-success" data-bs-dismiss="modal">Réessayer</button>
-          <button class="btn btn-success" id="modalback2" type="submit"><a class="btn btn-success "
-              href="https://romainboudet.fr">Revenir sur la page principale</a></button>
+          <a href="https://romainboudet.fr"><button class="btn btn-success" id="modalback2" type="submit">Revenir sur la
+              page principale</button></a>
         </div>
 
       </div>
@@ -244,24 +249,43 @@
     </div>
   </div>
 
+
+  <% if (locals.toastMessage) {%>
+
   <div class="position-fixed bottom-0 end-0 p-3 text-white" style="z-index: 11">
-    <div id="validateWinnerToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="validateWinnerToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header bg-primary text-white">
         <img src="/images/invader.gif" class="rounded me-2" alt="invader picture">
         <strong class="me-auto">Space Invader</strong>
-        <small id="date"></small>
+        <small id="date"><%= toastDate %></small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
-      <div class="toast-body bg-primary">
-        Votre nom et prénom ont bien été enregistré !
-      </div>
+      <div class="toast-body bg-primary"><%= toastMessage %></div>
     </div>
   </div>
+
+  <%  } else { %>
+
+  <% } %>
 
   <canvas id="space-invaders">
 
 
     <script src="/js/invader.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
+
+    <% if (locals.toastMessage) {%>
+
+    <script type="text/javascript" nonce="<%=locals.nonce%>" crossorigin="anonymous">
+      $(window).on('load', function () {
+        $("#validateWinnerToast").toast("show");
+
+      });
+    </script>
+
+    <%  } else { %>
+
+    <% } %>
+
 
   </canvas>
 
@@ -281,15 +305,22 @@
         </tr>
       </thead>
       <tbody>
+        <% if (locals.allWinners) {%>
+
         <% for (const winner of allWinners) { %>
-          <tr>
-            <th scope="row">1</th>
-            <td><%= winner.nom %></td>
-            <td><%= winner.prenom %></td>
-            <td><%= winner.score %></td>
-          </tr>
-          <% } %>
-       
+        <tr>
+          <th scope="row">1</th>
+          <td><%= winner.nom %></td>
+          <td><%= winner.prenom %></td>
+          <td><%= winner.score %></td>
+        </tr>
+        <% } %>
+
+
+        <%  } else { %>
+        <th>Aucun score enregistré ! Soyez le premier !</th>
+        <% } %>
+
       </tbody>
     </table>
 

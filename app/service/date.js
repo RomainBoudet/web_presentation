@@ -19,7 +19,15 @@ const formatLongBDD = () => {
     return date;
 }
 
+const formatToast = () => {
+    date = dayjs(new Date).format('H:mm');
+    return date;
+}
+
+
+
 module.exports = {
     formatLong,
     formatLongBDD,
+    formatToast,
 }
