@@ -47,7 +47,7 @@ class Winner {
         } catch (error) {
 
             console.log("Erreur dans le model Winner, dans la méthode findAll :", error);
-            return res.status(500).end();
+            return null;
 
         } finally {
 
@@ -87,7 +87,7 @@ class Winner {
         } catch (error) {
 
             console.log("Erreur dans le model Winner, dans la méthode findAllWithoutIpAndDate :", error);
-            return res.status(500).end();
+            return null;
 
         } finally {
 
@@ -122,7 +122,7 @@ class Winner {
         } catch (error) {
 
             console.log("Erreur dans le model Winner, dans la méthode findOne :", error);
-            return res.status(500).end();
+            return null;
 
         } finally {
 
@@ -157,7 +157,7 @@ class Winner {
         } catch (error) {
 
             console.log("Erreur dans le model Winner, dans la méthode insert :", error);
-            return res.status(500).end();
+            return null;
 
         } finally {
 

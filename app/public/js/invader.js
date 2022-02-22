@@ -179,7 +179,7 @@ function spaceInvader() {
             $("#messagewinner").html("Impressionant ! Si vous le souhaitez vous pouvez laisser votre nom dans le tableau des score de cette page ! ");
             $("#totalpointswinner").html(kills + " Invaders détruits !");
 
-
+            // je supprime les EventListener pour pouvoir réutilisé l'espace et les flèches dans l'input
 
             // on envoie en bdd sur un endpoint le nom du winner et son score !! et on réactualize un tableau des scores ! 
 
@@ -499,10 +499,11 @@ function spaceInvader() {
 
 
 
-  document.getElementById('restart').addEventListener('click', function () {
-    console.log("on passe dans le restart");
-    initGameStart();
-  });
+ 
+  // jQuery => au click du boutton "recommencer", on recharge la page
+    $('#restart').on('click', function () {
+     location.reload();
+   }); 
 
 
   document.getElementById('modalrestart').addEventListener('click', function () {
@@ -530,7 +531,7 @@ function spaceInvader() {
     var date = new Date();
     return date.toLocaleTimeString(navigator.language, {
       hour: '2-digit',
-      minute:'2-digit'
+      minute: '2-digit'
     });
   };
 

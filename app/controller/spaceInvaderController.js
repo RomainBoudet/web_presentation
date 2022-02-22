@@ -3,7 +3,9 @@ const validator = require('validator');
 const {
     formatLongBDD
 } = require('../service/date');
-const { checkout } = require('../router');
+const {
+    checkout
+} = require('../router');
 
 
 const spaceInvaderController = {
@@ -34,7 +36,6 @@ const spaceInvaderController = {
                 score
             } = req.body;
 
-            //const allWinnersBefore = await Winner.findAll();
 
             //! faire un calcul des rang !
             // https://docs.mongodb.com/manual/reference/operator/aggregation/rank/
@@ -45,23 +46,10 @@ const spaceInvaderController = {
 
 
             if (!validator.isInt(score, {
-                    min: 9,
+                    min: 999,
                     max: 9999
                 })) {
                 console.log("Erreur dans les score !");
-                const allWinnersBis = await Winner.findAllWithoutIpAndDate();
-                return res.status(404).render(`erreur`, {
-                    allWinnersBis
-                });
-            }
-
-            //! check, si le nom ou le prenom existe déja existe déja, on refuse ! et on renvoie la modale por un nouveau choix. 
-            //! si IP identique on accepte de prendre le même nom ! 
-
-
-
-            if (nom.length > 20 || prenom.length > 20) {
-                console.log("Erreur dans la longeur des nom / prénom !");
                 const allWinnersBis = await Winner.findAllWithoutIpAndDate();
                 return res.status(404).render(`erreur`, {
                     allWinnersBis
@@ -72,6 +60,26 @@ const spaceInvaderController = {
             const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
             //console.log("clientip ==> ", clientIp);
 
+            //! check, si le nom ou le prenom existe déja existe déja, on refuse ! et on renvoie la modale por un nouveau choix. 
+            //! si IP identique on accepte de prendre le même nom ! 
+
+
+
+            if (nom.length > 30 || prenom.length > 30) {
+                console.log("Erreur dans la longeur des nom / prénom !");
+                const allWinnersBis = await Winner.findAllWithoutIpAndDate();
+                return res.status(404).render(`erreur`, {
+                    allWinnersBis
+                });
+            }
+
+            
+
+            //const allWinnersBefore = await Winner.findAll();
+
+
+
+
 
 
             //
@@ -79,7 +87,7 @@ const spaceInvaderController = {
                 nom,
                 prenom,
                 ip: `${clientIp}`,
-                score:parseInt(score, 10),
+                score: parseInt(score, 10),
                 createdDate: formatLongBDD(),
             };
 
@@ -87,10 +95,10 @@ const spaceInvaderController = {
             const newWinner = new Winner(doc);
             const insertWinner = await newWinner.insert();
             //console.log("insertWinners ==> ", insertWinner); 
-          /*   insertWinners == > {
-                acknowledged: true,
-                insertedId: new ObjectId("6213dee425aeec3f987339b1")
-            } */
+            /*   insertWinners == > {
+                  acknowledged: true,
+                  insertedId: new ObjectId("6213dee425aeec3f987339b1")
+              } */
 
             const allWinners = await Winner.findAllWithoutIpAndDate();
 
