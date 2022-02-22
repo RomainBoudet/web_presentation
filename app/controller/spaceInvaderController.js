@@ -32,14 +32,9 @@ const spaceInvaderController = {
             const nom = validator.trim(req.body.nom);
             const prenom = validator.trim(req.body.prenom);
 
-
-            //! faire un calcul des rang !
-            // https://docs.mongodb.com/manual/reference/operator/aggregation/rank/
-
-
             //nom et prenom ne doivent pas dépasser 30 caractéres et score doit être un entier entre 999 et 9999.
             if (!validator.isInt(req.body.score, {
-                    min: 999,
+                    min: 799,
                     max: 9999
                 })) {
                 console.log("Erreur dans les score !");
@@ -73,6 +68,7 @@ const spaceInvaderController = {
             //! Sinon, on vérifie si le score est supérieur, et seulement si c'est la cas, on update !
 
             const allWinnersBefore = await Winner.findAll();
+
 
             // On prépare et mutualise notre objet que l'on passera au model avec une méthode d'instance :
             const doc = {

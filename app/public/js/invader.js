@@ -152,7 +152,7 @@ function spaceInvader() {
 
         if (!$('#gameFinished').hasClass('in')) {
 
-          if (kills < 999) {
+          if (kills < 799) {
 
             $("#gameFinished").modal('show');
 
@@ -161,11 +161,11 @@ function spaceInvader() {
             })
 
             $("#titre").html("Vous avez perdu !");
-            $("#message").html("Vous n'êtes pas encore assez bon pour intégrer le tableau des scores... Faite plus de 1000 points pour rentrer dans l'histoire ! ");
+            $("#message").html("Vous n'êtes pas encore assez bon pour intégrer le tableau des scores... Faites plus de 800 points pour rentrer dans l'histoire ! ");
             $("#totalpoints").html(kills + " Invaders détruits !");
           }
 
-          if (kills > 999) {
+          if (kills > 799) {
 
             $('#score').val(kills);
             // on ouvre une modale ou on demande le nom et le prénom. 

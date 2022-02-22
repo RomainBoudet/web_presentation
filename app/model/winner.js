@@ -1,9 +1,11 @@
 const mongo = require('../database');
-const { all } = require('../router');
+const {
+    all
+} = require('../router');
 
 class Winner {
 
-    
+
     nom;
     prenom;
     ip;
@@ -32,9 +34,23 @@ class Winner {
         try {
             await mongo.connect();
 
-            const allWinners = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).find({}).toArray();
+            const allWinners = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).aggregate([{
+                $setWindowFields: {
+                    //partitionBy:
+                    sortBy: {
+                        score: -1
+                    },
+                    output: {
+                        rang: {
+                            $denseRank: {}
+                        }
+                    }
+                }
+            }]).toArray();
+
             //reçoit un tableau d'objet 
             //console.log("allWinners in model => ", allWinners);
+
 
             if (!allWinners[0] || allWinners[0] === undefined) {
                 return null;
@@ -63,18 +79,56 @@ class Winner {
      * @static - une méthode static
      * @async - une méthode asynchrone
      */
-     static async findAllWithoutIpAndDate() {
+    static async findAllWithoutIpAndDate() {
 
         try {
             await mongo.connect();
 
-            const query = {};
-            const sort = { score:-1 };
-            const projection = {_id:0, nom:1, prenom:2, score:3}; //https://docs.mongodb.com/drivers/node/current/fundamentals/crud/read-operations/project/
-
+            /* const query = {};
+            const sort = {
+               score: -1
+            };
+            const projection = {
+                _id: 0, // je ne veux pas l'id...
+                rang: 1,
+                nom: 1,
+                prenom: 1,
+                score: 1,
+            };  
             const allWinners = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).find(query).sort(sort).project(projection).toArray();
+            https://docs.mongodb.com/drivers/node/current/fundamentals/crud/read-operations/project/
+            */
+
+
+            // https://docs.mongodb.com/manual/reference/operator/aggregation/rank/
+            // On utilise aggregate pour faire une autre données => les rangs !
+            const allWinners = await mongo.db(process.env.MONGO_DBNAME).collection(process.env.MONGO_DBCOLLECTION).aggregate([{
+                $setWindowFields: {
+                    //partitionBy:
+                    sortBy: {
+                        score: -1
+                    },
+                    output: {
+                        rang: {
+                            $denseRank: {}
+                        }
+                    }
+                },
+
+            }, {
+                $project: {
+                    _id: 0, // je ne veux pas l'id...
+                    rang: 1,
+                    nom: 1,
+                    prenom: 1,
+                    score: 1,
+                }
+            }]).toArray();
+
+            // (on aurrait ausssi put utiliser l'objet projection défini plus haut et faire ==> .aggregate().project(projection).toArray();)
+
             //reçoit un tableau d'objet 
-            //console.log("allWinners in model => ", allWinners);
+            //console.log("allWinners in model, methode findAllWithoutIpAndDate => ", allWinners);
 
             if (!allWinners[0] || allWinners[0] === undefined) {
                 return null;
@@ -104,7 +158,7 @@ class Winner {
      * @static - une méthode static
      * @async - une méthode asynchrone
      */
-     static async findOne() {
+    static async findOne() {
 
         try {
             await mongo.connect();
@@ -114,7 +168,7 @@ class Winner {
 
             if (!oneWinner) {
                 return null;
-            } 
+            }
 
             // et on retourne l'instance !
             return new Winner(oneWinner);
@@ -138,7 +192,7 @@ class Winner {
      * @async - une méthode asynchrone
      */
 
-     async insert() {
+    async insert() {
 
         try {
             await mongo.connect();
@@ -149,7 +203,7 @@ class Winner {
 
             if (!oneWinner) {
                 return null;
-            } 
+            }
 
             return oneWinner;
 
@@ -166,13 +220,13 @@ class Winner {
 
     }
 
-     /**
+    /**
      * Méthode chargé d'aller mettre a jour une information relative à un(e) winner en base de donnée
      * @returns - un winners présent en BDD
      * @async - une méthode asynchrone
      */
 
-      async update() {
+    async update() {
 
         try {
             await mongo.connect();
@@ -181,7 +235,7 @@ class Winner {
 
             if (!oneWinner) {
                 return null;
-            } 
+            }
 
             return oneWinner;
 

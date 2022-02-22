@@ -138,8 +138,8 @@
                         class="badge bg-danger text-white">Espace</span> pour tirer et <span class="badge bg-danger"> ⬅️
                     </span>
                     <span class="badge bg-danger"> ➡️ </span> pour
-                    vous déplacer !&#160;&#160;&#160;<button class="btn btn-success btn-sm"
-                        id="restart">Recommencez</button></p>
+                    vous déplacer !&#160;&#160;&#160;<a href="https://romainboudet.fr/404"> <button class="btn btn-success btn-sm"
+                        id="restart">Recommencez</button></a></p>
             </div>
         </div>
     </div>
@@ -222,13 +222,13 @@
                         <div class="form-group">
                             <div class="form-floating mt-3">
                                 <input type="text" placeholder="Votre nom" class="form-control" name="nom" id="nom"
-                                    maxlength="30" minlength="3" data-bs-toggle="tooltip" data-bs-placement="left"
+                                    maxlength="30" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Votre nom doit être composé de 3 a 30 caractéres, sans espaces. Les caractéres spéciaux seront supprimés.">
                                 <label class="text-dark" for="nom">Votre nom</label>
                             </div>
                             <div class="form-floating mt-3">
                                 <input type="text" placeholder="Votre prénom" class="form-control" name="prenom"
-                                    id="prenom" maxlength="30" minlength="3" data-bs-toggle="tooltip"
+                                    id="prenom" maxlength="30" data-bs-toggle="tooltip"
                                     data-bs-placement="left"
                                     title="Votre prénom doit être composé de 3 a 30 caractéres, sans espaces. Les caractéres spéciaux seront supprimés.">
                                 <label class="text-dark" for="nom">Votre prénom</label>
@@ -306,7 +306,7 @@
             <tbody>
                 <% for (const winner of allWinners) { %>
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"><%= winner.rang %></th>
                     <td><%= winner.nom %></td>
                     <td><%= winner.prenom %></td>
                     <td><%= winner.score %></td>

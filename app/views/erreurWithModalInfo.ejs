@@ -138,8 +138,8 @@
                         class="badge bg-danger text-white">Espace</span> pour tirer et <span class="badge bg-danger"> ⬅️
                     </span>
                     <span class="badge bg-danger"> ➡️ </span> pour
-                    vous déplacer !&#160;&#160;&#160;<button class="btn btn-success btn-sm"
-                        id="restart">Recommencez</button></p>
+                    vous déplacer !&#160;&#160;&#160;<a href="https://romainboudet.fr/404"><button class="btn btn-success btn-sm"
+                        id="restart">Recommencez</button></a></p>
             </div>
         </div>
     </div>
@@ -277,7 +277,7 @@
             <tbody>
                 <% for (const winner of allWinners) { %>
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"><%= winner.rang %></th>
                     <td><%= winner.nom %></td>
                     <td><%= winner.prenom %></td>
                     <td><%= winner.score %></td>
