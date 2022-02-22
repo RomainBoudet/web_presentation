@@ -39,7 +39,7 @@ const spaceInvaderController = {
 
             //nom et prenom ne doivent pas dépasser 30 caractéres et score doit être un entier entre 999 et 9999.
             if (!validator.isInt(req.body.score, {
-                    min: 9,
+                    min: 999,
                     max: 9999
                 })) {
                 console.log("Erreur dans les score !");
