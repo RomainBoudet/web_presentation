@@ -1,663 +1,329 @@
-let isGameLost;
-let globalID;
+function _0x437a() {
+  var _0x6ac3c3 = ['speedX', '#totalpoints', 'Space', '61020yjJugZ', 'lost', 'shown.bs.modal', 'player', '#90C9F4', 'isDown', 'preventDefault', 'space-invaders', '#restart', 'src', 'addEventListener', 'beginPath', 'GAME\x20STOPPED\x20!', 'html', '\x20Invaders\x20détruits\x20!', 'abs', 'show', 'invadersBelow', '20px\x20Arial', 'drawImage', '#messagewinner', 'forEach', 'patrolX', '#modalback', 'Points:\x20', '#message', '7cWiCRP', 'fadeOut', '#nom', 'clearRect', 'validateWinner', '#lifelost', 'fadeIn', 'load', 'getElementById', 'push', 'LEFT', 'height', 'active', '9937161GLIokM', '19WjPtWc', 'keyboarder', 'onload', 'rect', 'destroy', 'font', 'reload', '#gameFinished', 'random', 'val', '#winnerinput', '10qKdDdZ', 'keyCode', 'invaders', '/images/invader.gif', 'canvas', '\x20🎉\x20Victoire\x20!\x20', 'white', 'focus', 'modalrestart', 'getContext', 'RIGHT', '#titre', 'Vous\x20n\x27êtes\x20pas\x20encore\x20assez\x20bon\x20pour\x20intégrer\x20le\x20tableau\x20des\x20scores...\x20Faites\x20plus\x20de\x20800\x20points\x20pour\x20rentrer\x20dans\x20l\x27histoire\x20!\x20', '2584212KdwFVY', 'innerWidth', 'click', '126jRyjIH', 'Vies:\x20', 'fillStyle', '4031400BDIacY', 'width', 'invaderShots', 'modalrestart2', 'filter', 'createElement', 'velocity', 'level', '2306940qExKKj', 'shooterHeat', 'Niveau:\x20', 'fillText', '6482768iNnloG', 'hasClass', 'right', 'Impressionant\x20!\x20Si\x20vous\x20le\x20souhaitez,\x20vous\x20pouvez\x20laisser\x20votre\x20nom\x20dans\x20le\x20tableau\x20des\x20score\x20de\x20cette\x20page\x20!\x20', '11RkzBTx', 'prototype', 'size', 'projectile', '54452GORgdO', 'move', 'KEYS', 'keydown', 'coordinates', '#levelup', 'draw', 'update', 'textAlign', 'length'];
+  _0x437a = function () {
+    return _0x6ac3c3;
+  };
+  return _0x437a();
+}(function (_0x1b118f, _0x53d3ac) {
+  var _0x3f54ff = _0x4c7a,
+    _0x46e446 = _0x1b118f();
+  while (!![]) {
+    try {
+      var _0x501e47 = parseInt(_0x3f54ff(0x119)) / 0x1 * (parseInt(_0x3f54ff(0x14b)) / 0x2) + parseInt(_0x3f54ff(0x134)) / 0x3 * (-parseInt(_0x3f54ff(0x158)) / 0x4) + parseInt(_0x3f54ff(0x137)) / 0x5 + parseInt(_0x3f54ff(0x13f)) / 0x6 * (-parseInt(_0x3f54ff(0x10b)) / 0x7) + -parseInt(_0x3f54ff(0x143)) / 0x8 + parseInt(_0x3f54ff(0x118)) / 0x9 * (parseInt(_0x3f54ff(0x124)) / 0xa) + parseInt(_0x3f54ff(0x147)) / 0xb * (parseInt(_0x3f54ff(0x131)) / 0xc);
+      if (_0x501e47 === _0x53d3ac) break;
+      else _0x46e446['push'](_0x46e446['shift']());
+    } catch (_0x5c8fdd) {
+      _0x46e446['push'](_0x46e446['shift']());
+    }
+  }
+}(_0x437a, 0xc5254));
+let isGameLost, globalID;
+
+function _0x4c7a(_0x3c53e5, _0x13c410) {
+  var _0x437a4e = _0x437a();
+  return _0x4c7a = function (_0x4c7a4b, _0x191d7a) {
+    _0x4c7a4b = _0x4c7a4b - 0x109;
+    var _0xb44206 = _0x437a4e[_0x4c7a4b];
+    return _0xb44206;
+  }, _0x4c7a(_0x3c53e5, _0x13c410);
+}
 
 function spaceInvader() {
-  "use strict";
-
-  // General
-  var canvas,
-    screen,
-    gameSize,
-    game;
-
-  // Assets
-  var invaderCanvas,
-    invaderMultiplier,
-    invaderSize = 25,
-    initialOffsetInvader,
-    invaderAttackRate,
-    invaderSpeed,
-    invaderSpawnDelay = 250,
-    colideexecuted = 0;
-
-  // Counter
-  var i = 0,
-    kills = 0,
-    lives = 3,
-    spawnDelayCounter = invaderSpawnDelay;
-
-  var invaderDownTimer;
-
-  // Text => 404
-  var blocks = [
-    [3, 4, 8, 9, 10, 15, 16],
-    [2, 4, 7, 11, 14, 16],
-    [1, 4, 7, 11, 13, 16],
-    [1, 2, 3, 4, 5, 7, 11, 13, 14, 15, 16, 17],
-    [4, 7, 11, 16],
-    [4, 8, 9, 10, 16]
-  ];
-
-  // Text => [RB]
-  /*   var blocks = [
-
-    [4, 5, 15, 16],
-    [4,7,8,9,11,12,13, 16],
-    [4,7,9,11,13, 16],
-    [4,7,8,9,11,12,13, 16],
-    [4,7,11, 12,13, 14, 16],
-    [4,7,8,11,14, 16],
-    [4,7,9,11,12,13,14, 16],
-    [4, 5, 15, 16]
-    
-  ]; 
- */
-
-
-  // Game Controller
-  // ---------------
-
-  let isGameLost;
-  var Game = function () {
-
-    this.level = -1;
-    this.lost = false;
-
-    this.player = new Player();
-    this.invaders = [];
-    this.invaderShots = [];
-
-    if (invaderDownTimer === undefined) {
-      invaderDownTimer = setInterval(function () {
-        for (i = 0; i < game.invaders.length; i++) game.invaders[i].move();
-      }, 1000 - (this.level * 1.8));
-
-    };
-  }
-
-  Game.prototype = {
-    update: function () {
-
-      // Next level
-      if (game.invaders.length === 0) {
-
-        if (this.level != -1) {
-          $("#levelup").fadeIn(70);
-        }
-
-
-        spawnDelayCounter += 1;
-        if (spawnDelayCounter < invaderSpawnDelay) return;
-
-        if (this.level != -1) {
-          $("#levelup").fadeOut(10);
-          lives += 1;
-        }
-
-
-        this.level += 1;
-
-        invaderAttackRate -= 0.001;
-        invaderSpeed += 8;
-
-
-
-        game.invaders = createInvaders();
-
-        spawnDelayCounter = 0;
+  'use strict';
+  var _0x4dcf23 = _0x4c7a;
+  var _0x3206db, _0x4e3be4, _0x1d55c8, _0xca04da, _0x42eba1, _0x37bf86, _0x4c68c2 = 0x19,
+    _0x575f95, _0x1732b7, _0x1b36d2, _0x9234a9 = 0xfa,
+    _0x5318a4 = 0x0,
+    _0xf70b1c = 0x0,
+    _0x110ef2 = 0x0,
+    _0x44c86c = 0x3,
+    _0x15aab2 = _0x9234a9,
+    _0x243867, _0x3ad87b = [
+      [0x3, 0x4, 0x8, 0x9, 0xa, 0xf, 0x10],
+      [0x2, 0x4, 0x7, 0xb, 0xe, 0x10],
+      [0x1, 0x4, 0x7, 0xb, 0xd, 0x10],
+      [0x1, 0x2, 0x3, 0x4, 0x5, 0x7, 0xb, 0xd, 0xe, 0xf, 0x10, 0x11],
+      [0x4, 0x7, 0xb, 0x10],
+      [0x4, 0x8, 0x9, 0xa, 0x10]
+    ];
+  let _0x1291c8;
+  var _0x32e6e7 = function () {
+    var _0x187b3a = _0x4c7a;
+    this['level'] = -0x1, this[_0x187b3a(0x159)] = ![], this[_0x187b3a(0x15b)] = new _0x18162e(), this['invaders'] = [], this[_0x187b3a(0x139)] = [];
+    _0x243867 === undefined && (_0x243867 = setInterval(function () {
+      var _0x3dd1a3 = _0x187b3a;
+      for (_0xf70b1c = 0x0; _0xf70b1c < _0xca04da['invaders'][_0x3dd1a3(0x154)]; _0xf70b1c++) _0xca04da['invaders'][_0xf70b1c][_0x3dd1a3(0x14c)]();
+    }, 0x3e8 - this[_0x187b3a(0x13e)] * 1.8));;
+  };
+  _0x32e6e7['prototype'] = {
+    'update': function () {
+      var _0x153ed4 = _0x4c7a;
+      if (_0xca04da[_0x153ed4(0x126)]['length'] === 0x0) {
+        this[_0x153ed4(0x13e)] != -0x1 && $('#levelup')[_0x153ed4(0x111)](0x46);
+        _0x15aab2 += 0x1;
+        if (_0x15aab2 < _0x9234a9) return;
+        this[_0x153ed4(0x13e)] != -0x1 && ($(_0x153ed4(0x150))[_0x153ed4(0x10c)](0xa), _0x44c86c += 0x1), this[_0x153ed4(0x13e)] += 0x1, _0x1732b7 -= 0.001, _0x1b36d2 += 0x8, _0xca04da[_0x153ed4(0x126)] = _0x830f6b(), _0x15aab2 = 0x0;
       }
-
-      if (!this.lost) {
-
-        // Collision
-        game.player.projectile.forEach(function (projectile) {
-          game.invaders.forEach(function (invader) {
-            if (collides(projectile, invader)) {
-              invader.destroy();
-              projectile.active = false;
-            }
+      if (!this['lost']) {
+        _0xca04da['player'][_0x153ed4(0x14a)][_0x153ed4(0x16d)](function (_0x128d77) {
+          var _0x286308 = _0x153ed4;
+          _0xca04da[_0x286308(0x126)][_0x286308(0x16d)](function (_0x108816) {
+            var _0x20c3af = _0x286308;
+            _0x33cfb9(_0x128d77, _0x108816) && (_0x108816[_0x20c3af(0x11d)](), _0x128d77[_0x20c3af(0x117)] = ![]);
           });
+        }), this['invaderShots'][_0x153ed4(0x16d)](function (_0x3fb892) {
+          var _0x56e796 = _0x153ed4;
+          _0x33cfb9(_0x3fb892, _0xca04da[_0x56e796(0x15b)]) && (_0xca04da[_0x56e796(0x139)]['active'] = ![], _0x5318a4 != 0x1 && _0xca04da['player'][_0x56e796(0x11d)]());
         });
-
-        this.invaderShots.forEach(function (invaderShots) {
-          if (collides(invaderShots, game.player)) {
-            game.invaderShots.active = false;
-            if (colideexecuted != 1) {
-              game.player.destroy();
-            }
-          }
-        });
-
-        for (i = 0; i < game.invaders.length; i++) game.invaders[i].update();
-
+        for (_0xf70b1c = 0x0; _0xf70b1c < _0xca04da[_0x153ed4(0x126)]['length']; _0xf70b1c++) _0xca04da[_0x153ed4(0x126)][_0xf70b1c]['update']();
       }
-
-      // Don't stop player & projectiles.. they look nice
-      game.player.update();
-      for (i = 0; i < game.invaderShots.length; i++) game.invaderShots[i].update();
-
-      this.invaders = game.invaders.filter(function (invader) {
-        return invader.active;
+      _0xca04da[_0x153ed4(0x15b)][_0x153ed4(0x152)]();
+      for (_0xf70b1c = 0x0; _0xf70b1c < _0xca04da[_0x153ed4(0x139)]['length']; _0xf70b1c++) _0xca04da['invaderShots'][_0xf70b1c][_0x153ed4(0x152)]();
+      this[_0x153ed4(0x126)] = _0xca04da['invaders'][_0x153ed4(0x13b)](function (_0x4e3a0e) {
+        return _0x4e3a0e['active'];
       });
-
     },
-
-    /*     */
-
-    draw: function () {
-
-      isGameLost = this.lost;
-
-      if (this.lost) {
-
-        if (!$('#gameFinished').hasClass('in')) {
-
-          if (kills < 799) {
-
-            $("#gameFinished").modal('show');
-
-            $('#gameFinished').on('shown.bs.modal', function () {
-              $('#modalback').focus();
-            })
-
-            $("#titre").html("Vous avez perdu !");
-            $("#message").html("Vous n'êtes pas encore assez bon pour intégrer le tableau des scores... Faites plus de 800 points pour rentrer dans l'histoire ! ");
-            $("#totalpoints").html(kills + " Invaders détruits !");
-          }
-
-          if (kills > 799) {
-
-            $('#score').val(kills);
-            // on ouvre une modale ou on demande le nom et le prénom. 
-            $("#winnerinput").modal('show');
-
-            $('#winnerinput').on('shown.bs.modal', function () {
-              $('#nom').focus()
-            })
-
-            $("#titrewinner").html(" 🎉 Victoire ! ");
-            $("#messagewinner").html("Impressionant ! Si vous le souhaitez, vous pouvez laisser votre nom dans le tableau des score de cette page ! ");
-            $("#totalpointswinner").html(kills + " Invaders détruits !");
-
-            // je supprime les EventListener pour pouvoir réutilisé l'espace et les flèches dans l'input
-
-            // on envoie en bdd sur un endpoint le nom du winner et son score !! et on réactualize un tableau des scores ! 
-
-            // on l'envoi en bdd via un appel ajax 
-
-          }
-
-        }
-
-
-      } else {
-
-        screen.clearRect(0, 0, gameSize.width, gameSize.height);
-
-        screen.font = "20px Arial";
-        screen.textAlign = "right";
-        screen.fillText("Points: " + kills, gameSize.width - 50, gameSize.height - 16);
-        screen.fillText("Vies: " + lives, gameSize.width - 50, gameSize.height - 44);
-        screen.fillText("Niveau: " + game.level, gameSize.width - 50, gameSize.height - 76);
-
-      }
-
-      screen.beginPath();
-
-      var i;
-      this.player.draw();
-      if (!this.lost)
-        screen.fillStyle = "#90C9F4";
-      screen.fillStyle = "white"; //couleur des projectule et du player
-
-      for (i = 0; i < this.invaders.length; i++) this.invaders[i].draw();
-
-
-
-      for (i = 0; i < this.invaderShots.length; i++) this.invaderShots[i].draw();
-
-      screen.fill();
-
+    'draw': function () {
+      var _0x339995 = _0x4c7a;
+      _0x1291c8 = this[_0x339995(0x159)];
+      this[_0x339995(0x159)] ? !$(_0x339995(0x120))[_0x339995(0x144)]('in') && (_0x110ef2 < 0x31f && ($(_0x339995(0x120))['modal'](_0x339995(0x168)), $(_0x339995(0x120))['on'](_0x339995(0x15a), function () {
+        var _0x208e8e = _0x339995;
+        $(_0x208e8e(0x16f))['focus']();
+      }), $(_0x339995(0x12f))[_0x339995(0x165)]('Vous\x20avez\x20perdu\x20!'), $(_0x339995(0x10a))['html'](_0x339995(0x130)), $(_0x339995(0x156))[_0x339995(0x165)](_0x110ef2 + _0x339995(0x166))), _0x110ef2 > 0x31f && ($('#score')[_0x339995(0x122)](_0x110ef2), $(_0x339995(0x123))['modal']('show'), $(_0x339995(0x123))['on']('shown.bs.modal', function () {
+        var _0x192ff2 = _0x339995;
+        $(_0x192ff2(0x10d))[_0x192ff2(0x12b)]();
+      }), $('#titrewinner')[_0x339995(0x165)](_0x339995(0x129)), $(_0x339995(0x16c))[_0x339995(0x165)](_0x339995(0x146)), $('#totalpointswinner')[_0x339995(0x165)](_0x110ef2 + _0x339995(0x166)))) : (_0x4e3be4[_0x339995(0x10e)](0x0, 0x0, _0x1d55c8[_0x339995(0x138)], _0x1d55c8[_0x339995(0x116)]), _0x4e3be4[_0x339995(0x11e)] = _0x339995(0x16a), _0x4e3be4[_0x339995(0x153)] = _0x339995(0x145), _0x4e3be4[_0x339995(0x142)](_0x339995(0x109) + _0x110ef2, _0x1d55c8[_0x339995(0x138)] - 0x32, _0x1d55c8[_0x339995(0x116)] - 0x10), _0x4e3be4[_0x339995(0x142)](_0x339995(0x135) + _0x44c86c, _0x1d55c8[_0x339995(0x138)] - 0x32, _0x1d55c8[_0x339995(0x116)] - 0x2c), _0x4e3be4[_0x339995(0x142)](_0x339995(0x141) + _0xca04da[_0x339995(0x13e)], _0x1d55c8[_0x339995(0x138)] - 0x32, _0x1d55c8[_0x339995(0x116)] - 0x4c));
+      _0x4e3be4[_0x339995(0x163)]();
+      var _0x1e1e88;
+      this['player'][_0x339995(0x151)]();
+      if (!this[_0x339995(0x159)]) _0x4e3be4[_0x339995(0x136)] = _0x339995(0x15c);
+      _0x4e3be4[_0x339995(0x136)] = _0x339995(0x12a);
+      for (_0x1e1e88 = 0x0; _0x1e1e88 < this['invaders'][_0x339995(0x154)]; _0x1e1e88++) this[_0x339995(0x126)][_0x1e1e88][_0x339995(0x151)]();
+      for (_0x1e1e88 = 0x0; _0x1e1e88 < this[_0x339995(0x139)]['length']; _0x1e1e88++) this[_0x339995(0x139)][_0x1e1e88][_0x339995(0x151)]();
+      _0x4e3be4['fill']();
     },
-
-    invadersBelow: function (invader) {
-      return this.invaders.filter(function (b) {
-        return Math.abs(invader.coordinates.x - b.coordinates.x) === 0 &&
-          b.coordinates.y > invader.coordinates.y;
-      }).length > 0;
+    'invadersBelow': function (_0x1b45a5) {
+      var _0x23f3f0 = _0x4c7a;
+      return this[_0x23f3f0(0x126)][_0x23f3f0(0x13b)](function (_0x2063f2) {
+        var _0x3ddf7d = _0x23f3f0;
+        return Math[_0x3ddf7d(0x167)](_0x1b45a5[_0x3ddf7d(0x14f)]['x'] - _0x2063f2[_0x3ddf7d(0x14f)]['x']) === 0x0 && _0x2063f2['coordinates']['y'] > _0x1b45a5[_0x3ddf7d(0x14f)]['y'];
+      })[_0x23f3f0(0x154)] > 0x0;
     }
-
   };
-
-  // Invaders
-  // --------
-  var Invader = function (coordinates) {
-    this.active = true;
-    this.coordinates = coordinates;
-    this.size = {
-      width: invaderSize,
-      height: invaderSize
-    };
-
-    this.patrolX = 0;
-    this.speedX = invaderSpeed;
-
+  var _0x4f4e22 = function (_0x1f33fe) {
+    var _0x1a0c84 = _0x4c7a;
+    this[_0x1a0c84(0x117)] = !![], this['coordinates'] = _0x1f33fe, this[_0x1a0c84(0x149)] = {
+      'width': _0x4c68c2,
+      'height': _0x4c68c2
+    }, this[_0x1a0c84(0x16e)] = 0x0, this[_0x1a0c84(0x155)] = _0x1b36d2;
   };
-
-  Invader.prototype = {
-    update: function () {
-
-      if (Math.random() > invaderAttackRate && !game.invadersBelow(this)) {
-        var projectile = new Projectile({
-          x: this.coordinates.x + this.size.width / 2,
-          y: this.coordinates.y + this.size.height - 5
+  _0x4f4e22[_0x4dcf23(0x148)] = {
+    'update': function () {
+      var _0x12db53 = _0x4dcf23;
+      if (Math[_0x12db53(0x121)]() > _0x1732b7 && !_0xca04da[_0x12db53(0x169)](this)) {
+        var _0x25f648 = new _0x59132e({
+          'x': this[_0x12db53(0x14f)]['x'] + this[_0x12db53(0x149)][_0x12db53(0x138)] / 0x2,
+          'y': this[_0x12db53(0x14f)]['y'] + this['size'][_0x12db53(0x116)] - 0x5
         }, {
-          x: 0,
-          y: 2
+          'x': 0x0,
+          'y': 0x2
         });
-        game.invaderShots.push(projectile);
+        _0xca04da[_0x12db53(0x139)]['push'](_0x25f648);
       }
-
     },
-    draw: function () {
-      if (this.active) screen.drawImage(invaderCanvas, this.coordinates.x, this.coordinates.y);
-
+    'draw': function () {
+      var _0x587520 = _0x4dcf23;
+      if (this[_0x587520(0x117)]) _0x4e3be4[_0x587520(0x16b)](_0x42eba1, this[_0x587520(0x14f)]['x'], this[_0x587520(0x14f)]['y']);
     },
-    move: function () {
-
-
-
-      if (this.patrolX < 0 || this.patrolX > 100) {
-
-        this.speedX = -this.speedX;
-        this.patrolX += this.speedX;
-        this.coordinates.y += this.size.height;
-
-        if (this.coordinates.y + this.size.height * 2 > gameSize.height) game.lost = true;
-
-      } else {
-        this.coordinates.x += this.speedX;
-        this.patrolX += this.speedX;
-      }
-
+    'move': function () {
+      var _0x150f0d = _0x4dcf23;
+      if (this['patrolX'] < 0x0 || this['patrolX'] > 0x64) {
+        this[_0x150f0d(0x155)] = -this['speedX'], this[_0x150f0d(0x16e)] += this[_0x150f0d(0x155)], this['coordinates']['y'] += this[_0x150f0d(0x149)][_0x150f0d(0x116)];
+        if (this['coordinates']['y'] + this[_0x150f0d(0x149)][_0x150f0d(0x116)] * 0x2 > _0x1d55c8[_0x150f0d(0x116)]) _0xca04da[_0x150f0d(0x159)] = !![];
+      } else this[_0x150f0d(0x14f)]['x'] += this[_0x150f0d(0x155)], this[_0x150f0d(0x16e)] += this[_0x150f0d(0x155)];
     },
-    destroy: function () {
-      this.active = false;
-      kills += 1;
-
+    'destroy': function () {
+      var _0x45354e = _0x4dcf23;
+      this[_0x45354e(0x117)] = ![], _0x110ef2 += 0x1;
     }
-
   };
-
-  // Player
-  // ------
-  var Player = function () {
-    this.active = true;
-    this.size = {
-      width: 16,
-      height: 8
-    };
-    this.shooterHeat = -3;
-    screen.fillStyle = "#90C9F4";
-
-    this.coordinates = {
-      x: gameSize.width / 2 - (this.size.width / 2) | 0,
-      y: gameSize.height - this.size.height * 2
-    };
-
-    this.projectile = [];
-    this.keyboarder = new KeyController();
+  var _0x18162e = function () {
+    var _0x1d2f64 = _0x4dcf23;
+    this['active'] = !![], this[_0x1d2f64(0x149)] = {
+      'width': 0x10,
+      'height': 0x8
+    }, this['shooterHeat'] = -0x3, _0x4e3be4[_0x1d2f64(0x136)] = _0x1d2f64(0x15c), this[_0x1d2f64(0x14f)] = {
+      'x': _0x1d55c8['width'] / 0x2 - this[_0x1d2f64(0x149)]['width'] / 0x2 | 0x0,
+      'y': _0x1d55c8[_0x1d2f64(0x116)] - this[_0x1d2f64(0x149)][_0x1d2f64(0x116)] * 0x2
+    }, this[_0x1d2f64(0x14a)] = [], this[_0x1d2f64(0x11a)] = new _0x25aead();
   };
-
-  Player.prototype = {
-    update: function () {
-
-      for (var i = 0; i < this.projectile.length; i++) this.projectile[i].update();
-
-      this.projectile = this.projectile.filter(function (projectile) {
-        return projectile.active;
+  _0x18162e[_0x4dcf23(0x148)] = {
+    'update': function () {
+      var _0x3e565c = _0x4dcf23;
+      for (var _0x31844d = 0x0; _0x31844d < this[_0x3e565c(0x14a)][_0x3e565c(0x154)]; _0x31844d++) this[_0x3e565c(0x14a)][_0x31844d][_0x3e565c(0x152)]();
+      this[_0x3e565c(0x14a)] = this[_0x3e565c(0x14a)][_0x3e565c(0x13b)](function (_0x17aa9b) {
+        var _0x5d4117 = _0x3e565c;
+        return _0x17aa9b[_0x5d4117(0x117)];
       });
-
-      if (!this.active) return;
-
-      if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT) && this.coordinates.x > 0) this.coordinates.x -= 2;
-      else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT) && this.coordinates.x < gameSize.width - this.size.width) this.coordinates.x += 2;
-
-      if (this.keyboarder.isDown(this.keyboarder.KEYS.Space)) {
-        this.shooterHeat += 1;
-        if (this.shooterHeat < 0) {
-          var projectile = new Projectile({
-            x: this.coordinates.x + this.size.width / 2 - 1,
-            y: this.coordinates.y - 1
+      if (!this[_0x3e565c(0x117)]) return;
+      if (this[_0x3e565c(0x11a)]['isDown'](this[_0x3e565c(0x11a)][_0x3e565c(0x14d)][_0x3e565c(0x115)]) && this[_0x3e565c(0x14f)]['x'] > 0x0) this[_0x3e565c(0x14f)]['x'] -= 0x2;
+      else {
+        if (this['keyboarder']['isDown'](this[_0x3e565c(0x11a)][_0x3e565c(0x14d)][_0x3e565c(0x12e)]) && this[_0x3e565c(0x14f)]['x'] < _0x1d55c8['width'] - this['size'][_0x3e565c(0x138)]) this[_0x3e565c(0x14f)]['x'] += 0x2;
+      }
+      if (this[_0x3e565c(0x11a)][_0x3e565c(0x15d)](this[_0x3e565c(0x11a)]['KEYS'][_0x3e565c(0x157)])) {
+        this[_0x3e565c(0x140)] += 0x1;
+        if (this[_0x3e565c(0x140)] < 0x0) {
+          var _0x3cbff9 = new _0x59132e({
+            'x': this[_0x3e565c(0x14f)]['x'] + this[_0x3e565c(0x149)][_0x3e565c(0x138)] / 0x2 - 0x1,
+            'y': this['coordinates']['y'] - 0x1
           }, {
-            x: 0,
-            y: -7
+            'x': 0x0,
+            'y': -0x7
           });
-          this.projectile.push(projectile);
-        } else if (this.shooterHeat > 12) this.shooterHeat = -3;
-      } else {
-        this.shooterHeat = -3;
-      }
-
+          this[_0x3e565c(0x14a)][_0x3e565c(0x114)](_0x3cbff9);
+        } else {
+          if (this[_0x3e565c(0x140)] > 0xc) this['shooterHeat'] = -0x3;
+        }
+      } else this[_0x3e565c(0x140)] = -0x3;
     },
-    draw: function () {
-      if (this.active) {
-        screen.rect(this.coordinates.x, this.coordinates.y, this.size.width, this.size.height);
-        screen.rect(this.coordinates.x - 2, this.coordinates.y + 2, 20, 6);
-        screen.rect(this.coordinates.x + 6, this.coordinates.y - 4, 4, 4);
-      }
-
-      for (var i = 0; i < this.projectile.length; i++) this.projectile[i].draw();
-
+    'draw': function () {
+      var _0x12b7f1 = _0x4dcf23;
+      this[_0x12b7f1(0x117)] && (_0x4e3be4[_0x12b7f1(0x11c)](this[_0x12b7f1(0x14f)]['x'], this[_0x12b7f1(0x14f)]['y'], this[_0x12b7f1(0x149)][_0x12b7f1(0x138)], this['size']['height']), _0x4e3be4[_0x12b7f1(0x11c)](this[_0x12b7f1(0x14f)]['x'] - 0x2, this[_0x12b7f1(0x14f)]['y'] + 0x2, 0x14, 0x6), _0x4e3be4[_0x12b7f1(0x11c)](this[_0x12b7f1(0x14f)]['x'] + 0x6, this['coordinates']['y'] - 0x4, 0x4, 0x4));
+      for (var _0x427915 = 0x0; _0x427915 < this[_0x12b7f1(0x14a)]['length']; _0x427915++) this[_0x12b7f1(0x14a)][_0x427915][_0x12b7f1(0x151)]();
     },
-    destroy: function () {
-      if (lives > 0 && colideexecuted == 0) {
-
-        $("#lifelost").fadeIn(70).fadeOut(70).fadeIn(70).fadeOut(200);
-
-        colideexecuted = 1;
-        this.active = false;
-
-        setTimeout(function () {
-          game.player.active = true;
-          game.player.draw();
-          colideexecuted = 0;
-          lives -= 1;
-        }, 200);
-
-      } else {
-        this.active = false;
-        game.lost = true;
-      }
+    'destroy': function () {
+      var _0x455f3b = _0x4dcf23;
+      _0x44c86c > 0x0 && _0x5318a4 == 0x0 ? ($(_0x455f3b(0x110))[_0x455f3b(0x111)](0x46)[_0x455f3b(0x10c)](0x46)[_0x455f3b(0x111)](0x46)[_0x455f3b(0x10c)](0xc8), _0x5318a4 = 0x1, this[_0x455f3b(0x117)] = ![], setTimeout(function () {
+        var _0x41f693 = _0x455f3b;
+        _0xca04da[_0x41f693(0x15b)][_0x41f693(0x117)] = !![], _0xca04da[_0x41f693(0x15b)][_0x41f693(0x151)](), _0x5318a4 = 0x0, _0x44c86c -= 0x1;
+      }, 0xc8)) : (this[_0x455f3b(0x117)] = ![], _0xca04da[_0x455f3b(0x159)] = !![]);
     }
   };
-
-  // Projectile
-  // ------
-  var Projectile = function (coordinates, velocity) {
-    this.active = true;
-    this.coordinates = coordinates;
-    this.size = {
-      width: 3,
-      height: 3
-    };
-    this.velocity = velocity;
+  var _0x59132e = function (_0x513860, _0xb4ba02) {
+    var _0x5dd797 = _0x4dcf23;
+    this[_0x5dd797(0x117)] = !![], this[_0x5dd797(0x14f)] = _0x513860, this['size'] = {
+      'width': 0x3,
+      'height': 0x3
+    }, this['velocity'] = _0xb4ba02;
   };
-
-  Projectile.prototype = {
-    update: function () {
-      this.coordinates.x += this.velocity.x;
-      this.coordinates.y += this.velocity.y;
-
-      if (this.coordinates.y > gameSize.height || this.coordinates.y < 0) this.active = false;
-
+  _0x59132e['prototype'] = {
+    'update': function () {
+      var _0x45d29e = _0x4dcf23;
+      this[_0x45d29e(0x14f)]['x'] += this[_0x45d29e(0x13d)]['x'], this[_0x45d29e(0x14f)]['y'] += this[_0x45d29e(0x13d)]['y'];
+      if (this['coordinates']['y'] > _0x1d55c8['height'] || this[_0x45d29e(0x14f)]['y'] < 0x0) this[_0x45d29e(0x117)] = ![];
     },
-    draw: function () {
-      if (this.active) screen.rect(this.coordinates.x, this.coordinates.y, this.size.width, this.size.height);
-
+    'draw': function () {
+      var _0x8aa082 = _0x4dcf23;
+      if (this[_0x8aa082(0x117)]) _0x4e3be4['rect'](this['coordinates']['x'], this[_0x8aa082(0x14f)]['y'], this[_0x8aa082(0x149)][_0x8aa082(0x138)], this[_0x8aa082(0x149)][_0x8aa082(0x116)]);
     }
   };
-
-  // Keyboard input tracking
-  // -----------------------
-  var KeyController = function () {
-    this.KEYS = {
-      LEFT: 37,
-      RIGHT: 39,
-      Space: 32
+  var _0x25aead = function () {
+    var _0x4ee448 = _0x4dcf23;
+    this[_0x4ee448(0x14d)] = {
+      'LEFT': 0x25,
+      'RIGHT': 0x27,
+      'Space': 0x20
     };
-    var keyCode = [37, 39, 32];
-    var keyState = {};
-
-    var counter;
-    window.addEventListener('keydown', function (e) {
-      for (counter = 0; counter < keyCode.length; counter++)
-        if (keyCode[counter] == e.keyCode) {
-          keyState[e.keyCode] = true;
-          e.preventDefault();
-        }
-
-    });
-
-    window.addEventListener('keyup', function (e) {
-      for (counter = 0; counter < keyCode.length; counter++)
-        if (keyCode[counter] == e.keyCode) {
-          keyState[e.keyCode] = false;
-          e.preventDefault();
-        }
-    });
-
-    this.isDown = function (keyCode) {
-      return keyState[keyCode] === true;
+    var _0x24157a = [0x25, 0x27, 0x20],
+      _0x28384c = {},
+      _0x1921dd;
+    window[_0x4ee448(0x162)](_0x4ee448(0x14e), function (_0x1aaded) {
+      var _0x19ba0f = _0x4ee448;
+      for (_0x1921dd = 0x0; _0x1921dd < _0x24157a[_0x19ba0f(0x154)]; _0x1921dd++) _0x24157a[_0x1921dd] == _0x1aaded['keyCode'] && (_0x28384c[_0x1aaded[_0x19ba0f(0x125)]] = !![], _0x1aaded[_0x19ba0f(0x15e)]());
+    }), window['addEventListener']('keyup', function (_0xe992de) {
+      var _0x32b389 = _0x4ee448;
+      for (_0x1921dd = 0x0; _0x1921dd < _0x24157a[_0x32b389(0x154)]; _0x1921dd++) _0x24157a[_0x1921dd] == _0xe992de[_0x32b389(0x125)] && (_0x28384c[_0xe992de['keyCode']] = ![], _0xe992de[_0x32b389(0x15e)]());
+    }), this[_0x4ee448(0x15d)] = function (_0x426b83) {
+      return _0x28384c[_0x426b83] === !![];
     };
-
   };
 
-  // Other functions
-  // ---------------
-  function collides(a, b) {
-    return a.coordinates.x < b.coordinates.x + b.size.width &&
-      a.coordinates.x + a.size.width > b.coordinates.x &&
-      a.coordinates.y < b.coordinates.y + b.size.height &&
-      a.coordinates.y + a.size.height > b.coordinates.y;
+  function _0x33cfb9(_0x344131, _0x5008fa) {
+    var _0x20d043 = _0x4dcf23;
+    return _0x344131['coordinates']['x'] < _0x5008fa[_0x20d043(0x14f)]['x'] + _0x5008fa[_0x20d043(0x149)]['width'] && _0x344131[_0x20d043(0x14f)]['x'] + _0x344131[_0x20d043(0x149)][_0x20d043(0x138)] > _0x5008fa[_0x20d043(0x14f)]['x'] && _0x344131[_0x20d043(0x14f)]['y'] < _0x5008fa[_0x20d043(0x14f)]['y'] + _0x5008fa['size'][_0x20d043(0x116)] && _0x344131['coordinates']['y'] + _0x344131[_0x20d043(0x149)][_0x20d043(0x116)] > _0x5008fa[_0x20d043(0x14f)]['y'];
   }
 
-  function getPixelRow(rowRaw) {
-    var textRow = [],
-      placer = 0,
-      row = Math.floor(rowRaw / invaderMultiplier);
-    if (row >= blocks.length) return [];
-    for (var i = 0; i < blocks[row].length; i++) {
-      var tmpContent = blocks[row][i] * invaderMultiplier;
-      for (var j = 0; j < invaderMultiplier; j++) textRow[placer + j] = tmpContent + j;
-      placer += invaderMultiplier;
+  function _0xd08482(_0x2d3100) {
+    var _0x1865da = _0x4dcf23,
+      _0x318426 = [],
+      _0x28ec58 = 0x0,
+      _0xbee51a = Math['floor'](_0x2d3100 / _0x37bf86);
+    if (_0xbee51a >= _0x3ad87b[_0x1865da(0x154)]) return [];
+    for (var _0x77e8c4 = 0x0; _0x77e8c4 < _0x3ad87b[_0xbee51a][_0x1865da(0x154)]; _0x77e8c4++) {
+      var _0x10bf2a = _0x3ad87b[_0xbee51a][_0x77e8c4] * _0x37bf86;
+      for (var _0x55290e = 0x0; _0x55290e < _0x37bf86; _0x55290e++) _0x318426[_0x28ec58 + _0x55290e] = _0x10bf2a + _0x55290e;
+      _0x28ec58 += _0x37bf86;
     }
-    return textRow;
+    return _0x318426;
   }
 
-  // Write Text
-  // -----------
-  function createInvaders() {
-    var invaders = [];
-
-    var i = blocks.length * invaderMultiplier;
-    while (i--) {
-      var j = getPixelRow(i);
-      for (var k = 0; k < j.length; k++) {
-        invaders.push(new Invader({
-          x: j[k] * invaderSize,
-          y: i * invaderSize
+  function _0x830f6b() {
+    var _0x5ac177 = _0x4dcf23,
+      _0x1efe94 = [],
+      _0xf2a429 = _0x3ad87b['length'] * _0x37bf86;
+    while (_0xf2a429--) {
+      var _0x2052e4 = _0xd08482(_0xf2a429);
+      for (var _0x1e69df = 0x0; _0x1e69df < _0x2052e4[_0x5ac177(0x154)]; _0x1e69df++) {
+        _0x1efe94[_0x5ac177(0x114)](new _0x4f4e22({
+          'x': _0x2052e4[_0x1e69df] * _0x4c68c2,
+          'y': _0xf2a429 * _0x4c68c2
         }));
       }
     }
-    return invaders;
+    return _0x1efe94;
+  }
+  window[_0x4dcf23(0x162)](_0x4dcf23(0x112), function () {
+    var _0x4120b0 = _0x4dcf23,
+      _0x1bb9f9 = new Image();
+    _0x1bb9f9['onload'] = function () {
+      var _0x3af456 = _0x4c7a;
+      _0x42eba1 = document[_0x3af456(0x13c)](_0x3af456(0x128)), _0x42eba1[_0x3af456(0x138)] = _0x4c68c2, _0x42eba1['height'] = _0x4c68c2, _0x42eba1[_0x3af456(0x12d)]('2d')[_0x3af456(0x16b)](_0x1bb9f9, 0x0, 0x0), _0x3206db = document[_0x3af456(0x113)](_0x3af456(0x15f)), _0x4e3be4 = _0x3206db[_0x3af456(0x12d)]('2d'), _0x2ef8e4(), _0x35c405();
+    }, _0x1bb9f9[_0x4120b0(0x161)] = _0x4120b0(0x127);
+  }), $(_0x4dcf23(0x160))['on'](_0x4dcf23(0x133), function () {
+    var _0x30c69c = _0x4dcf23;
+    location[_0x30c69c(0x11f)]();
+  }), document[_0x4dcf23(0x113)](_0x4dcf23(0x12c))['addEventListener'](_0x4dcf23(0x133), function () {
+    var _0x4b86dd = _0x4dcf23,
+      _0x349477 = new Image();
+    _0x349477[_0x4b86dd(0x11b)] = function () {
+      var _0x305aeb = _0x4b86dd;
+      _0x42eba1 = document[_0x305aeb(0x13c)](_0x305aeb(0x128)), _0x42eba1[_0x305aeb(0x138)] = _0x4c68c2, _0x42eba1[_0x305aeb(0x116)] = _0x4c68c2, _0x42eba1[_0x305aeb(0x12d)]('2d')[_0x305aeb(0x16b)](_0x349477, 0x0, 0x0), _0x3206db = document['getElementById'](_0x305aeb(0x15f)), _0x4e3be4 = _0x3206db[_0x305aeb(0x12d)]('2d'), _0x2ef8e4(), _0x35c405();
+    }, _0x349477[_0x4b86dd(0x161)] = '/images/invader.gif';
+  }), document['getElementById'](_0x4dcf23(0x10f))['addEventListener'](_0x4dcf23(0x133), function () {
+    var _0x582ede = _0x4dcf23,
+      _0x1f47e8 = new Image();
+    _0x1f47e8[_0x582ede(0x11b)] = function () {
+      var _0x9de9a6 = _0x582ede;
+      _0x42eba1 = document['createElement'](_0x9de9a6(0x128)), _0x42eba1['width'] = _0x4c68c2, _0x42eba1['height'] = _0x4c68c2, _0x42eba1[_0x9de9a6(0x12d)]('2d')[_0x9de9a6(0x16b)](_0x1f47e8, 0x0, 0x0), _0x3206db = document['getElementById']('space-invaders'), _0x4e3be4 = _0x3206db[_0x9de9a6(0x12d)]('2d'), _0x2ef8e4(), _0x35c405();
+    }, _0x1f47e8['src'] = _0x582ede(0x127);
+  }), document[_0x4dcf23(0x113)](_0x4dcf23(0x13a))['addEventListener'](_0x4dcf23(0x133), function () {
+    var _0x4d2499 = _0x4dcf23,
+      _0x5d3708 = new Image();
+    _0x5d3708[_0x4d2499(0x11b)] = function () {
+      var _0x1c0388 = _0x4d2499;
+      _0x42eba1 = document[_0x1c0388(0x13c)](_0x1c0388(0x128)), _0x42eba1['width'] = _0x4c68c2, _0x42eba1['height'] = _0x4c68c2, _0x42eba1[_0x1c0388(0x12d)]('2d')[_0x1c0388(0x16b)](_0x5d3708, 0x0, 0x0), _0x3206db = document[_0x1c0388(0x113)](_0x1c0388(0x15f)), _0x4e3be4 = _0x3206db['getContext']('2d'), _0x2ef8e4(), _0x35c405();
+    }, _0x5d3708[_0x4d2499(0x161)] = _0x4d2499(0x127);
+  });
+
+  function _0x2ef8e4() {
+    var _0x193c46 = _0x4dcf23;
+    if (window[_0x193c46(0x132)] > 0x44c) _0x4e3be4[_0x193c46(0x128)][_0x193c46(0x138)] = 0x4b0, _0x4e3be4['canvas'][_0x193c46(0x116)] = 0x1e0, _0x1d55c8 = {
+      'width': 0x4b0,
+      'height': 0x1e0
+    }, _0x37bf86 = 0x2, _0x575f95 = 0x1f4;
+    else window[_0x193c46(0x132)] > 0x320 ? (_0x4e3be4[_0x193c46(0x128)]['width'] = 0x384, _0x4e3be4[_0x193c46(0x128)][_0x193c46(0x116)] = 0x258, _0x1d55c8 = {
+      'width': 0x384,
+      'height': 0x258
+    }, _0x37bf86 = 0x1, _0x575f95 = 0x118) : (_0x4e3be4[_0x193c46(0x128)]['width'] = 0x258, _0x4e3be4[_0x193c46(0x128)]['height'] = 0x12c, _0x1d55c8 = {
+      'width': 0x258,
+      'height': 0x12c
+    }, _0x37bf86 = 0x1, _0x575f95 = 0x8c);
+    _0x110ef2 = 0x0, _0x44c86c = 0x3, _0x1732b7 = 0.999, _0x1b36d2 = 0x2, _0x15aab2 = _0x9234a9, _0xca04da = new _0x32e6e7();
   }
 
-  // Start game
-  // ----------
-  window.addEventListener('load', function () {
-
-    var invaderAsset = new Image;
-    invaderAsset.onload = function () {
-
-      invaderCanvas = document.createElement('canvas');
-      invaderCanvas.width = invaderSize;
-      invaderCanvas.height = invaderSize;
-      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
-
-      // Game Creation
-      canvas = document.getElementById("space-invaders");
-      screen = canvas.getContext('2d');
-
-      initGameStart();
-      loop();
-
-    };
-    invaderAsset.src = "/images/invader.gif";
-
-  });
-
-
-
- 
-  // jQuery => au click du boutton "recommencer", on recharge la page
-    $('#restart').on('click', function () {
-     location.reload();
-   }); 
-
-
-  document.getElementById('modalrestart').addEventListener('click', function () {
-    //initGameStart();
-    var invaderAsset = new Image;
-    invaderAsset.onload = function () {
-
-      invaderCanvas = document.createElement('canvas');
-      invaderCanvas.width = invaderSize;
-      invaderCanvas.height = invaderSize;
-      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
-
-      // Game Creation
-      canvas = document.getElementById("space-invaders");
-      screen = canvas.getContext('2d');
-
-      initGameStart();
-      loop();
-
-    };
-    invaderAsset.src = "/images/invader.gif";
-  });
-
-  /* function prettyDate() {
-    var date = new Date();
-    return date.toLocaleTimeString(navigator.language, {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  }; */
-
-
-  document.getElementById('validateWinner').addEventListener('click', function () {
-    //initGameStart();
-    var invaderAsset = new Image;
-    invaderAsset.onload = function () {
-
-      invaderCanvas = document.createElement('canvas');
-      invaderCanvas.width = invaderSize;
-      invaderCanvas.height = invaderSize;
-      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
-
-      // Game Creation
-      canvas = document.getElementById("space-invaders");
-      screen = canvas.getContext('2d');
-
-      initGameStart();
-      loop();
-
-    };
-
-    invaderAsset.src = "/images/invader.gif";
-
-    // et valider l'envoi d'un toast !
-    /* $("#validateWinnerToast").toast("show");
-    $("#date").html(prettyDate()); */
-
-  });
-
-
-  document.getElementById('modalrestart2').addEventListener('click', function () {
-    //initGameStart();
-    var invaderAsset = new Image;
-    invaderAsset.onload = function () {
-
-      invaderCanvas = document.createElement('canvas');
-      invaderCanvas.width = invaderSize;
-      invaderCanvas.height = invaderSize;
-      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
-
-      // Game Creation
-      canvas = document.getElementById("space-invaders");
-      screen = canvas.getContext('2d');
-
-      initGameStart();
-      loop();
-
-    };
-    invaderAsset.src = "/images/invader.gif";
-  });
-
-  /* document.getElementById('gameFinished').addEventListener('click', function () {
-
-    console.log("on es dans addEventListener du game finish !")
-    initGameStart();
-  }); */
-
-  function initGameStart() {
-
-    if (window.innerWidth > 1100) {
-      screen.canvas.width = 1200;
-      screen.canvas.height = 480;
-      gameSize = {
-        width: 1200,
-        height: 480
-      };
-      invaderMultiplier = 2;
-      initialOffsetInvader = 500;
-    } else if (window.innerWidth > 800) {
-      screen.canvas.width = 900;
-      screen.canvas.height = 600;
-      gameSize = {
-        width: 900,
-        height: 600
-      };
-      invaderMultiplier = 1;
-      initialOffsetInvader = 280;
-    } else {
-      screen.canvas.width = 600;
-      screen.canvas.height = 300;
-      gameSize = {
-        width: 600,
-        height: 300
-      };
-      invaderMultiplier = 1;
-      initialOffsetInvader = 140;
-    }
-
-    kills = 0;
-    lives = 3;
-    invaderAttackRate = 0.999;
-    invaderSpeed = 2;
-    spawnDelayCounter = invaderSpawnDelay;
-
-    game = new Game();
-
-
+  function _0x35c405() {
+    var _0x26f908 = _0x4dcf23;
+    _0xca04da[_0x26f908(0x152)](), _0xca04da[_0x26f908(0x151)](), globalID = requestAnimationFrame(_0x35c405), _0x1291c8 && (cancelAnimationFrame(globalID), console['log'](_0x26f908(0x164)));
   }
-
-  function loop() {
-
-    game.update();
-    game.draw();
-
-    globalID = requestAnimationFrame(loop);
-
-    if (isGameLost) {
-
-      cancelAnimationFrame(globalID)
-      console.log("GAME STOPPED !");
-
-    }
-
-
-  }
-
-
-
 };
-
 spaceInvader();
-
-
-
-
-
-// https://obfuscator.io/

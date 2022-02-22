@@ -147,7 +147,7 @@ class Winner {
             // (on aurrait ausssi put utiliser l'objet projection défini plus haut et faire ==> .aggregate().project(projection).toArray();)
 
             //reçoit un tableau d'objet 
-            console.log("allWinners in model, methode findAllWithoutIpAndDate => ", allWinners);
+            //console.log("allWinners in model, methode findAllWithoutIpAndDate => ", allWinners);
 
             if (!allWinners[0] || allWinners[0] === undefined) {
                 return null;
