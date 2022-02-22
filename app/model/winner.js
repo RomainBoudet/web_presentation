@@ -45,8 +45,17 @@ class Winner {
                             $denseRank: {}
                         }
                     }
+                },
+
+            }, 
+            // si rang vaut 1 $eq ou $cond
+            // alors j'override rang avec des valeur que je veux ...
+            {
+                $addFields: { rang:
+                    {$cond: { if: { $eq: [ "$rang", 1 ] }, then: "🎊 1 🎊" , else: "$rang" }}
                 }
-            }]).toArray();
+              },
+            ]).toArray();
 
             //reçoit un tableau d'objet 
             //console.log("allWinners in model => ", allWinners);
@@ -115,20 +124,30 @@ class Winner {
                     }
                 },
 
-            }, {
+            }, 
+            // si rang vaut 1 ($eq) alors j'applique la condition ($cond)
+            // alors j'override rang avec des valeur que je veux ...
+            {
+                $addFields: { rang:
+                    {$cond: { if: { $eq: [ "$rang", 1 ] }, then: "🎊 1 🎊" , else: "$rang" }}
+                }
+              },
+            {
+                // je filtre les données voulue !
                 $project: {
                     _id: 0, // je ne veux pas l'id...
                     rang: 1,
                     nom: 1,
                     prenom: 1,
                     score: 1,
+                    test:1,
                 }
             }]).toArray();
 
             // (on aurrait ausssi put utiliser l'objet projection défini plus haut et faire ==> .aggregate().project(projection).toArray();)
 
             //reçoit un tableau d'objet 
-            //console.log("allWinners in model, methode findAllWithoutIpAndDate => ", allWinners);
+            console.log("allWinners in model, methode findAllWithoutIpAndDate => ", allWinners);
 
             if (!allWinners[0] || allWinners[0] === undefined) {
                 return null;

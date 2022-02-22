@@ -111,7 +111,7 @@ const spaceInvaderController = {
                             }
 
 
-
+                            //Personalisation du message selon l'ip, dans deux cas !
                             if (clientIp === '88.163.249.23') {
 
                                 const updateWinner = new Winner(dataToSend);
@@ -184,7 +184,7 @@ const spaceInvaderController = {
 
                         // Le nouveau score est inférieur, on renvoie la modale en expliquant ce qui se passe :
                         const allWinners = await Winner.findAllWithoutIpAndDate();
-                        const message = "Ce nom et ce prénom sont déja existant. Votre adresse ip étant la même que celle qui a servit à réaliser le précédant score avec ce même nom et prénom, vous pouvez mettre à jour votre score en gardant le nom et prénom du précédent score. Néanmoins, comme votre score actuel est inférieur au précédent score réalisé, celui-çi n'a pas été enregistré !";
+                        const message = "Ce nom et ce prénom sont déja existant. Votre adresse ip étant la même que celle qui a servit à réaliser le précédant score avec ce même nom et prénom, vous pouvez mettre à jour votre score en gardant le nom et prénom du précédent score. Néanmoins, comme votre score actuel est inférieur au précédent score réalisé, celui-çi n'a donc pas été enregistré !";
                         return res.status(404).render('erreurWithModalInfo', {
                             allWinners,
                             score,
@@ -253,9 +253,6 @@ const spaceInvaderController = {
 
 
                 }
-
-
-
 
 
                 // on insert des donnée en BDD => méthode d'instance
