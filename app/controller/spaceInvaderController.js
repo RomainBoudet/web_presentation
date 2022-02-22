@@ -3,7 +3,9 @@ const validator = require('validator');
 const {
     formatLongBDD
 } = require('../service/date');
-const {formatToast} = require('../service/date');
+const {
+    formatToast
+} = require('../service/date');
 
 
 
@@ -108,6 +110,56 @@ const spaceInvaderController = {
                                 },
                             }
 
+
+
+                            if (clientIp === '88.163.249.23') {
+
+                                const updateWinner = new Winner(dataToSend);
+                                const updateWinnerDone = await updateWinner.update();
+
+                                if (updateWinnerDone === null) {
+
+                                    console.log("Erreur dans la méthode insertWinner du spaceinvaderController, Le retour de l'update de doit pas être null ! ");
+                                    return res.status(500).end()
+                                }
+
+                                const allWinners = await Winner.findAllWithoutIpAndDate();
+                                const toastMessage = " Ho ! Il me semble que l'on se connait...! 😘 Ton score est à jour ! 🎉 ";
+                                const toastDate = await formatToast();
+                                return res.status(404).render(`erreur`, {
+                                    allWinners,
+                                    toastDate,
+                                    toastMessage
+                                });
+
+
+                            };
+
+                            if (clientIp === '86.227.129.119') {
+
+                                const updateWinner = new Winner(dataToSend);
+                                const updateWinnerDone = await updateWinner.update();
+
+                                if (updateWinnerDone === null) {
+
+                                    console.log("Erreur dans la méthode insertWinner du spaceinvaderController, Le retour de l'update de doit pas être null ! ");
+                                    return res.status(500).end()
+                                }
+
+                                const allWinners = await Winner.findAllWithoutIpAndDate();
+                                const toastMessage = " Ho ! Enchanté cher colloc ! ✌️  Ton score est à jour ! 🎉";
+                                const toastDate = await formatToast();
+                                return res.status(404).render(`erreur`, {
+                                    allWinners,
+                                    toastDate,
+                                    toastMessage
+                                });
+
+
+                            }
+
+
+                            // si ip inconnue..
                             const updateWinner = new Winner(dataToSend);
                             const updateWinnerDone = await updateWinner.update();
 
@@ -118,11 +170,14 @@ const spaceInvaderController = {
                             }
 
 
+
                             const allWinners = await Winner.findAllWithoutIpAndDate();
-                            const toastMessage = "Votre score a été mis à jour avec succés ! 🎉 "; 
+                            const toastMessage = "Votre score a été mis à jour avec succés ! 🎉 ";
                             const toastDate = await formatToast();
                             return res.status(404).render('erreur', {
-                                allWinners, toastMessage, toastDate
+                                allWinners,
+                                toastMessage,
+                                toastDate
                             });
 
                         }
@@ -154,22 +209,24 @@ const spaceInvaderController = {
                 };
 
 
-        
+
                 if (clientIp === '88.163.249.23') {
 
                     const newWinner = new Winner(doc);
                     const newWinnerInsert = await newWinner.insert();
-    
+
                     if (newWinnerInsert === null) {
                         console.log("Erreur dans la méthode insertWinner du spaceinvaderController, Le retour de l'insert de doit pas être null (L154) ! ");
                         return res.status(500).end()
                     }
-    
+
                     const allWinners = await Winner.findAllWithoutIpAndDate();
-                    const toastMessage = " Ho ! Il me semble que l'on ce connait... ! 😘"; 
+                    const toastMessage = " Ho ! Il me semble que l'on se connait... ! 😘";
                     const toastDate = await formatToast();
                     return res.status(404).render(`erreur`, {
-                        allWinners, toastDate, toastMessage
+                        allWinners,
+                        toastDate,
+                        toastMessage
                     });
 
 
@@ -179,23 +236,25 @@ const spaceInvaderController = {
 
                     const newWinner = new Winner(doc);
                     const newWinnerInsert = await newWinner.insert();
-    
+
                     if (newWinnerInsert === null) {
                         console.log("Erreur dans la méthode insertWinner du spaceinvaderController, Le retour de l'insert de doit pas être null (L154) ! ");
                         return res.status(500).end()
                     }
-    
+
                     const allWinners = await Winner.findAllWithoutIpAndDate();
-                    const toastMessage = " Ho ! Enchanté cher colloc ! ✌️ "; 
+                    const toastMessage = " Ho ! Enchanté cher colloc ! ✌️ ";
                     const toastDate = await formatToast();
                     return res.status(404).render(`erreur`, {
-                        allWinners, toastDate, toastMessage
+                        allWinners,
+                        toastDate,
+                        toastMessage
                     });
 
 
                 }
 
-            
+
 
 
 
@@ -209,10 +268,12 @@ const spaceInvaderController = {
                 }
 
                 const allWinners = await Winner.findAllWithoutIpAndDate();
-                const toastMessage = " Vos nom et prénom ont bien été enregistrés avec votre score ! 🎊 "; 
+                const toastMessage = " Vos nom et prénom ont bien été enregistrés avec votre score ! 🎊 ";
                 const toastDate = await formatToast();
                 return res.status(404).render(`erreur`, {
-                    allWinners, toastDate, toastMessage
+                    allWinners,
+                    toastDate,
+                    toastMessage
                 });
 
 
@@ -229,10 +290,12 @@ const spaceInvaderController = {
             }
 
             const allWinners = await Winner.findAllWithoutIpAndDate();
-            const toastMessage = " 🎊 Vous êtes le premier à avoir repoussé l'invasion ! votre score restera gravé pour l'éternité ! 🎊"; 
+            const toastMessage = " 🎊 Vous êtes le premier à avoir repoussé l'invasion ! votre score restera gravé pour l'éternité ! 🎊";
             const toastDate = await formatToast();
             return res.status(404).render(`erreur`, {
-                allWinners, toastDate, toastMessage
+                allWinners,
+                toastDate,
+                toastMessage
             });
 
 
