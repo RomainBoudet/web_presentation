@@ -692,7 +692,4 @@ function handleChangeColor(event) {
 
 
 
-
-
-
 //https://obfuscator.io/
