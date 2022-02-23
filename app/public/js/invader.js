@@ -1,703 +1,357 @@
+var _0x578104 = _0x543e;
+(function (_0x137432, _0xbbb8bb) {
+  var _0x118136 = _0x543e,
+    _0x294906 = _0x137432();
+  while (!![]) {
+    try {
+      var _0xcb10c2 = -parseInt(_0x118136(0x114)) / 0x1 * (parseInt(_0x118136(0x124)) / 0x2) + parseInt(_0x118136(0x106)) / 0x3 + parseInt(_0x118136(0xfb)) / 0x4 + parseInt(_0x118136(0x12a)) / 0x5 * (parseInt(_0x118136(0x125)) / 0x6) + parseInt(_0x118136(0xef)) / 0x7 + -parseInt(_0x118136(0xe2)) / 0x8 + parseInt(_0x118136(0xbf)) / 0x9 * (-parseInt(_0x118136(0xc6)) / 0xa);
+      if (_0xcb10c2 === _0xbbb8bb) break;
+      else _0x294906['push'](_0x294906['shift']());
+    } catch (_0x49e059) {
+      _0x294906['push'](_0x294906['shift']());
+    }
+  }
+}(_0x1b9b, 0x2e98b));
 
 function spaceInvader() {
-  "use strict";
-
-  // General
-  var canvas,
-    screen,
-    gameSize,
-    game;
-
-  // Assets
-  var invaderCanvas,
-    invaderMultiplier,
-    invaderSize = 25,
-    initialOffsetInvader,
-    invaderAttackRate,
-    invaderSpeed,
-    invaderSpawnDelay = 250,
-    colideexecuted = 0;
-
-  // Counter
-  var i = 0,
-    kills = 0,
-    lives = 3,
-    spawnDelayCounter = invaderSpawnDelay;
-
-  var invaderDownTimer;
-
-  // Text => 404
-  var blocks = [
-    [3, 4, 8, 9, 10, 15, 16],
-    [2, 4, 7, 11, 14, 16],
-    [1, 4, 7, 11, 13, 16],
-    [1, 2, 3, 4, 5, 7, 11, 13, 14, 15, 16, 17],
-    [4, 7, 11, 16],
-    [4, 8, 9, 10, 16]
-  ];
-
-  // Text => [RB]
-  /*   var blocks = [
-
-    [4, 5, 15, 16],
-    [4,7,8,9,11,12,13, 16],
-    [4,7,9,11,13, 16],
-    [4,7,8,9,11,12,13, 16],
-    [4,7,11, 12,13, 14, 16],
-    [4,7,8,11,14, 16],
-    [4,7,9,11,12,13,14, 16],
-    [4, 5, 15, 16]
-    
-  ]; 
- */
-
-
-  // Game Controller
-  // ---------------
-
-  let isGameLost;
-  var Game = function () {
-
-    this.level = -1;
-    this.lost = false;
-
-    this.player = new Player();
-    this.invaders = [];
-    this.invaderShots = [];
-
-    if (invaderDownTimer === undefined) {
-      invaderDownTimer = setInterval(function () {
-        for (i = 0; i < game.invaders.length; i++) game.invaders[i].move();
-      }, 1000 - (this.level * 1.8));
-
-    };
-  }
-
-  Game.prototype = {
-    update: function () {
-
-
-      // Next level
-      if (game.invaders.length === 0) {
-
-        if (this.level != -1) {
-          $("#levelup").fadeIn(70);
-        }
-
-
-        spawnDelayCounter += 1;
-        if (spawnDelayCounter < invaderSpawnDelay) return;
-
-        if (this.level != -1) {
-          $("#levelup").fadeOut(10);
-          lives += 1;
-        }
-
-
-        this.level += 1;
-
-        invaderAttackRate -= 0.001;
-        invaderSpeed += 8;
-
-
-
-        game.invaders = createInvaders();
-
-        spawnDelayCounter = 0;
+  'use strict';
+  var _0x5e79f0 = _0x543e;
+  var _0x376063, _0x38925b, _0x3d6688, _0x48e99b, _0x5e86e0, _0x5b6242, _0x4f834f = 0x19,
+    _0x11d0e7, _0x26839f, _0x138f5a, _0x486e46 = 0xfa,
+    _0x441260 = 0x0,
+    _0x108b71 = 0x0,
+    _0x566ddc = 0x0,
+    _0x2a5fb3 = 0x3,
+    _0x5d7cd8 = _0x486e46,
+    _0x31a3ae, _0x15a0fb = [
+      [0x3, 0x4, 0x8, 0x9, 0xa, 0xf, 0x10],
+      [0x2, 0x4, 0x7, 0xb, 0xe, 0x10],
+      [0x1, 0x4, 0x7, 0xb, 0xd, 0x10],
+      [0x1, 0x2, 0x3, 0x4, 0x5, 0x7, 0xb, 0xd, 0xe, 0xf, 0x10, 0x11],
+      [0x4, 0x7, 0xb, 0x10],
+      [0x4, 0x8, 0x9, 0xa, 0x10]
+    ];
+  let _0x5d49c6;
+  var _0x2d28af = function () {
+    var _0x2820a2 = _0x543e;
+    this[_0x2820a2(0xfd)] = -0x1, this[_0x2820a2(0xba)] = ![], this[_0x2820a2(0xd1)] = new _0x37ba1e(), this['invaders'] = [], this[_0x2820a2(0xbb)] = [];
+    _0x31a3ae === undefined && (_0x31a3ae = setInterval(function () {
+      var _0x1a26c4 = _0x2820a2;
+      for (_0x108b71 = 0x0; _0x108b71 < _0x48e99b[_0x1a26c4(0xcc)][_0x1a26c4(0x122)]; _0x108b71++) _0x48e99b['invaders'][_0x108b71][_0x1a26c4(0xff)]();
+    }, 0x3e8 - this['level'] * 1.8));;
+  };
+  _0x2d28af[_0x5e79f0(0xc1)] = {
+    'update': function () {
+      var _0x5125fb = _0x5e79f0;
+      if (_0x48e99b[_0x5125fb(0xcc)][_0x5125fb(0x122)] === 0x0) {
+        this[_0x5125fb(0xfd)] != -0x1 && $(_0x5125fb(0xc0))['fadeIn'](0x46);
+        _0x5d7cd8 += 0x1;
+        if (_0x5d7cd8 < _0x486e46) return;
+        this[_0x5125fb(0xfd)] != -0x1 && ($(_0x5125fb(0xc0))[_0x5125fb(0xc4)](0xa), _0x2a5fb3 += 0x1), this['level'] += 0x1, _0x26839f -= 0.001, _0x138f5a += 0x8, _0x48e99b['invaders'] = _0x4f6909(), _0x5d7cd8 = 0x0;
       }
-
-      if (!this.lost) {
-
-        // Collision
-        game.player.projectile.forEach(function (projectile) {
-          game.invaders.forEach(function (invader) {
-            if (collides(projectile, invader)) {
-              invader.destroy();
-              projectile.active = false;
-            }
+      if (!this[_0x5125fb(0xba)]) {
+        _0x48e99b[_0x5125fb(0xd1)]['projectile'][_0x5125fb(0xf2)](function (_0x215d4e) {
+          var _0x62f60f = _0x5125fb;
+          _0x48e99b[_0x62f60f(0xcc)][_0x62f60f(0xf2)](function (_0x74456b) {
+            var _0x486415 = _0x62f60f;
+            _0x41ab46(_0x215d4e, _0x74456b) && (_0x74456b[_0x486415(0xd3)](), _0x215d4e[_0x486415(0xde)] = ![]);
           });
+        }), this[_0x5125fb(0xbb)][_0x5125fb(0xf2)](function (_0x5030b2) {
+          var _0x5d7ee5 = _0x5125fb;
+          _0x41ab46(_0x5030b2, _0x48e99b[_0x5d7ee5(0xd1)]) && (_0x48e99b[_0x5d7ee5(0xbb)][_0x5d7ee5(0xde)] = ![], _0x441260 != 0x1 && _0x48e99b[_0x5d7ee5(0xd1)][_0x5d7ee5(0xd3)]());
         });
-
-        this.invaderShots.forEach(function (invaderShots) {
-          if (collides(invaderShots, game.player)) {
-            game.invaderShots.active = false;
-            if (colideexecuted != 1) {
-              game.player.destroy();
-            }
-          }
-        });
-
-        for (i = 0; i < game.invaders.length; i++) game.invaders[i].update();
-
+        for (_0x108b71 = 0x0; _0x108b71 < _0x48e99b[_0x5125fb(0xcc)][_0x5125fb(0x122)]; _0x108b71++) _0x48e99b[_0x5125fb(0xcc)][_0x108b71][_0x5125fb(0xf4)]();
       }
-
-      // Don't stop player & projectiles.. they look nice
-      game.player.update();
-      for (i = 0; i < game.invaderShots.length; i++) game.invaderShots[i].update();
-
-      this.invaders = game.invaders.filter(function (invader) {
-        return invader.active;
+      _0x48e99b[_0x5125fb(0xd1)]['update']();
+      for (_0x108b71 = 0x0; _0x108b71 < _0x48e99b[_0x5125fb(0xbb)][_0x5125fb(0x122)]; _0x108b71++) _0x48e99b[_0x5125fb(0xbb)][_0x108b71][_0x5125fb(0xf4)]();
+      this[_0x5125fb(0xcc)] = _0x48e99b['invaders'][_0x5125fb(0x10b)](function (_0x22f2bc) {
+        return _0x22f2bc['active'];
       });
-
     },
-
-    /*     */
-
-    draw: function () {
-
-
-      isGameLost = this.lost;
-
-      if (this.lost) {
-
-        if (!$('#gameFinished').hasClass('in')) {
-
-          if (kills < 799) {
-
-            $("#gameFinished").modal('show');
-
-            $('#gameFinished').on('shown.bs.modal', function () {
-              $('#modalrestart').focus();
-            })
-
-            $("#titre").html("Vous avez perdu !");
-            $("#message").html("Vous n'êtes pas encore assez bon pour intégrer le tableau des scores... Faites plus de 800 points pour rentrer dans l'histoire ! ");
-            $("#totalpoints").html(kills + " Invaders détruits !");
-          }
-
-          if (kills > 799) {
-
-            $('#score').val(kills);
-            // on ouvre une modale ou on demande le nom et le prénom. 
-            $("#winnerinput").modal('show');
-
-            $('#winnerinput').on('shown.bs.modal', function () {
-              $('#nom').focus()
-            })
-
-            $("#titrewinner").html(" 🎉 Victoire ! ");
-            $("#messagewinner").html("Impressionant ! Si vous le souhaitez, vous pouvez laisser votre nom dans le tableau des score de cette page ! ");
-            $("#totalpointswinner").html(kills + " Invaders détruits !");
-
-            // je supprime les EventListener pour pouvoir réutilisé l'espace et les flèches dans l'input
-
-            // on envoie en bdd sur un endpoint le nom du winner et son score !! et on réactualize un tableau des scores ! 
-
-            // on l'envoi en bdd via un appel ajax 
-
-          }
-
-        }
-
-
-      } else {
-
-        screen.clearRect(0, 0, gameSize.width, gameSize.height);
-
-        screen.font = "20px Arial";
-        screen.textAlign = "right";
-        screen.fillText("Points: " + kills, gameSize.width - 50, gameSize.height - 16);
-        screen.fillText("Vies: " + lives, gameSize.width - 50, gameSize.height - 44);
-        screen.fillText("Niveau: " + game.level, gameSize.width - 50, gameSize.height - 76);
-
-      }
-
-      screen.beginPath();
-
-
-      var i;
-      this.player.draw();
-      if (!this.lost)
-
-        console.log("Couleur choisie ==>> ", colorValue);
-      screen.fillStyle = colorValue || "#f2f5f3";
-      //screen.fillStyle = "white"; //couleur des projectiles et du player
-
-      for (i = 0; i < this.invaders.length; i++) this.invaders[i].draw();
-
-
-
-      for (i = 0; i < this.invaderShots.length; i++) this.invaderShots[i].draw();
-
-      screen.fill();
-
+    'draw': function () {
+      var _0xab46b7 = _0x5e79f0;
+      _0x5d49c6 = this['lost'];
+      this['lost'] ? !$(_0xab46b7(0xca))['hasClass']('in') && (_0x566ddc < 0x31f && ($(_0xab46b7(0xca))['modal'](_0xab46b7(0x12c)), $(_0xab46b7(0xca))['on'](_0xab46b7(0xd4), function () {
+        var _0x10c688 = _0xab46b7;
+        $(_0x10c688(0x110))[_0x10c688(0xe7)]();
+      }), $(_0xab46b7(0xe5))[_0xab46b7(0xf0)](_0xab46b7(0x121)), $(_0xab46b7(0xfc))['html'](_0xab46b7(0xea)), $(_0xab46b7(0xfe))[_0xab46b7(0xf0)](_0x566ddc + '\x20Invaders\x20détruits\x20!')), _0x566ddc > 0x31f && ($(_0xab46b7(0xeb))[_0xab46b7(0xf3)](_0x566ddc), $(_0xab46b7(0x123))[_0xab46b7(0xbc)]('show'), $(_0xab46b7(0x123))['on'](_0xab46b7(0xd4), function () {
+        var _0x34c522 = _0xab46b7;
+        $(_0x34c522(0x101))[_0x34c522(0xe7)]();
+      }), $(_0xab46b7(0xbd))[_0xab46b7(0xf0)](_0xab46b7(0x105)), $(_0xab46b7(0xcd))[_0xab46b7(0xf0)](_0xab46b7(0x104)), $('#totalpointswinner')[_0xab46b7(0xf0)](_0x566ddc + _0xab46b7(0x103)))) : (_0x38925b[_0xab46b7(0x128)](0x0, 0x0, _0x3d6688['width'], _0x3d6688[_0xab46b7(0xe3)]), _0x38925b[_0xab46b7(0xc2)] = _0xab46b7(0xc8), _0x38925b['textAlign'] = _0xab46b7(0x10c), _0x38925b['fillText'](_0xab46b7(0xe0) + _0x566ddc, _0x3d6688[_0xab46b7(0xe1)] - 0x32, _0x3d6688['height'] - 0x10), _0x38925b[_0xab46b7(0xdf)](_0xab46b7(0x111) + _0x2a5fb3, _0x3d6688[_0xab46b7(0xe1)] - 0x32, _0x3d6688[_0xab46b7(0xe3)] - 0x2c), _0x38925b[_0xab46b7(0xdf)](_0xab46b7(0x119) + _0x48e99b[_0xab46b7(0xfd)], _0x3d6688['width'] - 0x32, _0x3d6688[_0xab46b7(0xe3)] - 0x4c));
+      _0x38925b[_0xab46b7(0x10e)]();
+      var _0x536fbb;
+      this[_0xab46b7(0xd1)][_0xab46b7(0xce)]();
+      if (!this['lost']) console[_0xab46b7(0xd8)]('Couleur\x20choisie\x20==>>\x20', colorValue);
+      _0x38925b[_0xab46b7(0x117)] = colorValue || _0xab46b7(0x129);
+      for (_0x536fbb = 0x0; _0x536fbb < this['invaders'][_0xab46b7(0x122)]; _0x536fbb++) this[_0xab46b7(0xcc)][_0x536fbb][_0xab46b7(0xce)]();
+      for (_0x536fbb = 0x0; _0x536fbb < this[_0xab46b7(0xbb)]['length']; _0x536fbb++) this[_0xab46b7(0xbb)][_0x536fbb]['draw']();
+      _0x38925b[_0xab46b7(0xdc)]();
     },
-
-    invadersBelow: function (invader) {
-      return this.invaders.filter(function (b) {
-        return Math.abs(invader.coordinates.x - b.coordinates.x) === 0 &&
-          b.coordinates.y > invader.coordinates.y;
-      }).length > 0;
+    'invadersBelow': function (_0x240033) {
+      var _0x30a4c9 = _0x5e79f0;
+      return this['invaders'][_0x30a4c9(0x10b)](function (_0xaf8490) {
+        var _0x4b51e8 = _0x30a4c9;
+        return Math[_0x4b51e8(0x108)](_0x240033[_0x4b51e8(0xee)]['x'] - _0xaf8490[_0x4b51e8(0xee)]['x']) === 0x0 && _0xaf8490[_0x4b51e8(0xee)]['y'] > _0x240033[_0x4b51e8(0xee)]['y'];
+      })[_0x30a4c9(0x122)] > 0x0;
     }
-
   };
-
-  // Invaders
-  // --------
-  var Invader = function (coordinates) {
-    this.active = true;
-    this.coordinates = coordinates;
-    this.size = {
-      width: invaderSize,
-      height: invaderSize
-    };
-
-    this.patrolX = 0;
-    this.speedX = invaderSpeed;
-
+  var _0x37a56f = function (_0x42c4de) {
+    var _0x19b550 = _0x5e79f0;
+    this[_0x19b550(0xde)] = !![], this['coordinates'] = _0x42c4de, this[_0x19b550(0xd5)] = {
+      'width': _0x4f834f,
+      'height': _0x4f834f
+    }, this[_0x19b550(0xf6)] = 0x0, this[_0x19b550(0x116)] = _0x138f5a;
   };
-
-  Invader.prototype = {
-    update: function () {
-
-      if (Math.random() > invaderAttackRate && !game.invadersBelow(this)) {
-        var projectile = new Projectile({
-          x: this.coordinates.x + this.size.width / 2,
-          y: this.coordinates.y + this.size.height - 5
+  _0x37a56f[_0x5e79f0(0xc1)] = {
+    'update': function () {
+      var _0x4e12e1 = _0x5e79f0;
+      if (Math[_0x4e12e1(0x112)]() > _0x26839f && !_0x48e99b[_0x4e12e1(0x107)](this)) {
+        var _0x2d3e59 = new _0x14e199({
+          'x': this[_0x4e12e1(0xee)]['x'] + this[_0x4e12e1(0xd5)][_0x4e12e1(0xe1)] / 0x2,
+          'y': this[_0x4e12e1(0xee)]['y'] + this[_0x4e12e1(0xd5)][_0x4e12e1(0xe3)] - 0x5
         }, {
-          x: 0,
-          y: 2
+          'x': 0x0,
+          'y': 0x2
         });
-        game.invaderShots.push(projectile);
+        _0x48e99b['invaderShots']['push'](_0x2d3e59);
       }
-
     },
-    draw: function () {
-      if (this.active) screen.drawImage(invaderCanvas, this.coordinates.x, this.coordinates.y);
-
+    'draw': function () {
+      var _0x332e8c = _0x5e79f0;
+      if (this[_0x332e8c(0xde)]) _0x38925b[_0x332e8c(0xd7)](_0x5e86e0, this[_0x332e8c(0xee)]['x'], this['coordinates']['y']);
     },
-    move: function () {
-
-
-
-      if (this.patrolX < 0 || this.patrolX > 100) {
-
-        this.speedX = -this.speedX;
-        this.patrolX += this.speedX;
-        this.coordinates.y += this.size.height;
-
-        if (this.coordinates.y + this.size.height * 2 > gameSize.height) game.lost = true;
-
-      } else {
-        this.coordinates.x += this.speedX;
-        this.patrolX += this.speedX;
-      }
-
+    'move': function () {
+      var _0x1f490e = _0x5e79f0;
+      if (this[_0x1f490e(0xf6)] < 0x0 || this[_0x1f490e(0xf6)] > 0x64) {
+        this['speedX'] = -this[_0x1f490e(0x116)], this[_0x1f490e(0xf6)] += this[_0x1f490e(0x116)], this[_0x1f490e(0xee)]['y'] += this['size']['height'];
+        if (this['coordinates']['y'] + this['size'][_0x1f490e(0xe3)] * 0x2 > _0x3d6688[_0x1f490e(0xe3)]) _0x48e99b[_0x1f490e(0xba)] = !![];
+      } else this['coordinates']['x'] += this[_0x1f490e(0x116)], this[_0x1f490e(0xf6)] += this['speedX'];
     },
-    destroy: function () {
-      this.active = false;
-      kills += 1;
-
+    'destroy': function () {
+      var _0x58b869 = _0x5e79f0;
+      this[_0x58b869(0xde)] = ![], _0x566ddc += 0x1;
     }
-
   };
-
-  // Player
-  // ------
-  var Player = function () {
-    this.active = true;
-    this.size = {
-      width: 16,
-      height: 8
-    };
-    this.shooterHeat = -3;
-    screen.fillStyle = "#f2f5f3";
-
-    this.coordinates = {
-      x: gameSize.width / 2 - (this.size.width / 2) | 0,
-      y: gameSize.height - this.size.height * 2
-    };
-
-    this.projectile = [];
-    this.keyboarder = new KeyController();
+  var _0x37ba1e = function () {
+    var _0x515936 = _0x5e79f0;
+    this['active'] = !![], this['size'] = {
+      'width': 0x10,
+      'height': 0x8
+    }, this[_0x515936(0x109)] = -0x3, _0x38925b[_0x515936(0x117)] = _0x515936(0x129), this[_0x515936(0xee)] = {
+      'x': _0x3d6688[_0x515936(0xe1)] / 0x2 - this[_0x515936(0xd5)][_0x515936(0xe1)] / 0x2 | 0x0,
+      'y': _0x3d6688[_0x515936(0xe3)] - this['size'][_0x515936(0xe3)] * 0x2
+    }, this[_0x515936(0xe8)] = [], this[_0x515936(0xcf)] = new _0x4a4cec();
   };
-
-  Player.prototype = {
-    update: function () {
-
-      for (var i = 0; i < this.projectile.length; i++) this.projectile[i].update();
-
-      this.projectile = this.projectile.filter(function (projectile) {
-        return projectile.active;
+  _0x37ba1e[_0x5e79f0(0xc1)] = {
+    'update': function () {
+      var _0x14baff = _0x5e79f0;
+      for (var _0x5195a9 = 0x0; _0x5195a9 < this[_0x14baff(0xe8)][_0x14baff(0x122)]; _0x5195a9++) this[_0x14baff(0xe8)][_0x5195a9][_0x14baff(0xf4)]();
+      this[_0x14baff(0xe8)] = this[_0x14baff(0xe8)]['filter'](function (_0xaa36d5) {
+        var _0x1a3dd9 = _0x14baff;
+        return _0xaa36d5[_0x1a3dd9(0xde)];
       });
-
-      if (!this.active) return;
-
-      if (this.keyboarder.isDown(this.keyboarder.KEYS.LEFT) && this.coordinates.x > 0) this.coordinates.x -= 2;
-      else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT) && this.coordinates.x < gameSize.width - this.size.width) this.coordinates.x += 2;
-
-      if (this.keyboarder.isDown(this.keyboarder.KEYS.Space)) {
-        this.shooterHeat += 1;
-        if (this.shooterHeat < 0) {
-          var projectile = new Projectile({
-            x: this.coordinates.x + this.size.width / 2 - 1,
-            y: this.coordinates.y - 1
+      if (!this[_0x14baff(0xde)]) return;
+      if (this[_0x14baff(0xcf)][_0x14baff(0x12b)](this[_0x14baff(0xcf)][_0x14baff(0xd9)][_0x14baff(0xe9)]) && this[_0x14baff(0xee)]['x'] > 0x0) this[_0x14baff(0xee)]['x'] -= 0x2;
+      else {
+        if (this['keyboarder']['isDown'](this[_0x14baff(0xcf)][_0x14baff(0xd9)][_0x14baff(0xdd)]) && this[_0x14baff(0xee)]['x'] < _0x3d6688['width'] - this[_0x14baff(0xd5)][_0x14baff(0xe1)]) this['coordinates']['x'] += 0x2;
+      }
+      if (this[_0x14baff(0xcf)]['isDown'](this[_0x14baff(0xcf)][_0x14baff(0xd9)][_0x14baff(0xf7)])) {
+        this[_0x14baff(0x109)] += 0x1;
+        if (this[_0x14baff(0x109)] < 0x0) {
+          var _0x3314ca = new _0x14e199({
+            'x': this[_0x14baff(0xee)]['x'] + this[_0x14baff(0xd5)]['width'] / 0x2 - 0x1,
+            'y': this[_0x14baff(0xee)]['y'] - 0x1
           }, {
-            x: 0,
-            y: -7
+            'x': 0x0,
+            'y': -0x7
           });
-          this.projectile.push(projectile);
-        } else if (this.shooterHeat > 12) this.shooterHeat = -3;
-      } else {
-        this.shooterHeat = -3;
-      }
-
+          this[_0x14baff(0xe8)][_0x14baff(0xd0)](_0x3314ca);
+        } else {
+          if (this[_0x14baff(0x109)] > 0xc) this[_0x14baff(0x109)] = -0x3;
+        }
+      } else this[_0x14baff(0x109)] = -0x3;
     },
-    draw: function () {
-      if (this.active) {
-        screen.rect(this.coordinates.x, this.coordinates.y, this.size.width, this.size.height);
-        screen.rect(this.coordinates.x - 2, this.coordinates.y + 2, 20, 6);
-        screen.rect(this.coordinates.x + 6, this.coordinates.y - 4, 4, 4);
-      }
-
-      for (var i = 0; i < this.projectile.length; i++) this.projectile[i].draw();
-
+    'draw': function () {
+      var _0x5e5345 = _0x5e79f0;
+      this[_0x5e5345(0xde)] && (_0x38925b[_0x5e5345(0x115)](this[_0x5e5345(0xee)]['x'], this[_0x5e5345(0xee)]['y'], this[_0x5e5345(0xd5)][_0x5e5345(0xe1)], this[_0x5e5345(0xd5)][_0x5e5345(0xe3)]), _0x38925b[_0x5e5345(0x115)](this['coordinates']['x'] - 0x2, this[_0x5e5345(0xee)]['y'] + 0x2, 0x14, 0x6), _0x38925b[_0x5e5345(0x115)](this[_0x5e5345(0xee)]['x'] + 0x6, this[_0x5e5345(0xee)]['y'] - 0x4, 0x4, 0x4));
+      for (var _0x293cd8 = 0x0; _0x293cd8 < this[_0x5e5345(0xe8)]['length']; _0x293cd8++) this['projectile'][_0x293cd8]['draw']();
     },
-    destroy: function () {
-      if (lives > 0 && colideexecuted == 0) {
-
-        $("#lifelost").fadeIn(70).fadeOut(70).fadeIn(70).fadeOut(200);
-
-        colideexecuted = 1;
-        this.active = false;
-
-        setTimeout(function () {
-          game.player.active = true;
-          game.player.draw();
-          colideexecuted = 0;
-          lives -= 1;
-        }, 200);
-
-      } else {
-        this.active = false;
-        game.lost = true;
-      }
+    'destroy': function () {
+      var _0x5f11fc = _0x5e79f0;
+      _0x2a5fb3 > 0x0 && _0x441260 == 0x0 ? ($('#lifelost')[_0x5f11fc(0x10d)](0x46)[_0x5f11fc(0xc4)](0x46)[_0x5f11fc(0x10d)](0x46)[_0x5f11fc(0xc4)](0xc8), _0x441260 = 0x1, this[_0x5f11fc(0xde)] = ![], setTimeout(function () {
+        var _0x1814ac = _0x5f11fc;
+        _0x48e99b[_0x1814ac(0xd1)][_0x1814ac(0xde)] = !![], _0x48e99b[_0x1814ac(0xd1)][_0x1814ac(0xce)](), _0x441260 = 0x0, _0x2a5fb3 -= 0x1;
+      }, 0xc8)) : (this[_0x5f11fc(0xde)] = ![], _0x48e99b[_0x5f11fc(0xba)] = !![]);
     }
   };
-
-  // Projectile
-  // ------
-  var Projectile = function (coordinates, velocity) {
-    this.active = true;
-    this.coordinates = coordinates;
-    this.size = {
-      width: 3,
-      height: 3
-    };
-    this.velocity = velocity;
+  var _0x14e199 = function (_0x276c8f, _0x16e204) {
+    var _0x5898e9 = _0x5e79f0;
+    this[_0x5898e9(0xde)] = !![], this['coordinates'] = _0x276c8f, this['size'] = {
+      'width': 0x3,
+      'height': 0x3
+    }, this[_0x5898e9(0x11f)] = _0x16e204;
   };
-
-  Projectile.prototype = {
-    update: function () {
-      this.coordinates.x += this.velocity.x;
-      this.coordinates.y += this.velocity.y;
-
-      if (this.coordinates.y > gameSize.height || this.coordinates.y < 0) this.active = false;
-
+  _0x14e199['prototype'] = {
+    'update': function () {
+      var _0x112c2b = _0x5e79f0;
+      this[_0x112c2b(0xee)]['x'] += this['velocity']['x'], this['coordinates']['y'] += this[_0x112c2b(0x11f)]['y'];
+      if (this[_0x112c2b(0xee)]['y'] > _0x3d6688[_0x112c2b(0xe3)] || this[_0x112c2b(0xee)]['y'] < 0x0) this[_0x112c2b(0xde)] = ![];
     },
-    draw: function () {
-      if (this.active) screen.rect(this.coordinates.x, this.coordinates.y, this.size.width, this.size.height);
-
+    'draw': function () {
+      var _0x296356 = _0x5e79f0;
+      if (this[_0x296356(0xde)]) _0x38925b[_0x296356(0x115)](this['coordinates']['x'], this[_0x296356(0xee)]['y'], this[_0x296356(0xd5)]['width'], this[_0x296356(0xd5)]['height']);
     }
   };
-
-  // Keyboard input tracking
-  // -----------------------
-  var KeyController = function () {
-    this.KEYS = {
-      LEFT: 37,
-      RIGHT: 39,
-      Space: 32
+  var _0x4a4cec = function () {
+    var _0x5d02ee = _0x5e79f0;
+    this[_0x5d02ee(0xd9)] = {
+      'LEFT': 0x25,
+      'RIGHT': 0x27,
+      'Space': 0x20
     };
-    var keyCode = [37, 39, 32];
-    var keyState = {};
-
-    var counter;
-    window.addEventListener('keydown', function (e) {
-      for (counter = 0; counter < keyCode.length; counter++)
-        if (keyCode[counter] == e.keyCode) {
-          keyState[e.keyCode] = true;
-          e.preventDefault();
-        }
-
-    });
-
-    window.addEventListener('keyup', function (e) {
-      for (counter = 0; counter < keyCode.length; counter++)
-        if (keyCode[counter] == e.keyCode) {
-          keyState[e.keyCode] = false;
-          e.preventDefault();
-        }
-    });
-
-    this.isDown = function (keyCode) {
-      return keyState[keyCode] === true;
+    var _0x2978cc = [0x25, 0x27, 0x20],
+      _0x8a30df = {},
+      _0x1eeb61;
+    window[_0x5d02ee(0x102)]('keydown', function (_0x200aa5) {
+      var _0x40266f = _0x5d02ee;
+      for (_0x1eeb61 = 0x0; _0x1eeb61 < _0x2978cc['length']; _0x1eeb61++) _0x2978cc[_0x1eeb61] == _0x200aa5[_0x40266f(0xf9)] && (_0x8a30df[_0x200aa5[_0x40266f(0xf9)]] = !![], _0x200aa5['preventDefault']());
+    }), window[_0x5d02ee(0x102)]('keyup', function (_0x47b3ce) {
+      var _0x6778b8 = _0x5d02ee;
+      for (_0x1eeb61 = 0x0; _0x1eeb61 < _0x2978cc[_0x6778b8(0x122)]; _0x1eeb61++) _0x2978cc[_0x1eeb61] == _0x47b3ce['keyCode'] && (_0x8a30df[_0x47b3ce[_0x6778b8(0xf9)]] = ![], _0x47b3ce[_0x6778b8(0x127)]());
+    }), this[_0x5d02ee(0x12b)] = function (_0x264e38) {
+      return _0x8a30df[_0x264e38] === !![];
     };
-
   };
 
-  // Other functions
-  // ---------------
-  function collides(a, b) {
-    return a.coordinates.x < b.coordinates.x + b.size.width &&
-      a.coordinates.x + a.size.width > b.coordinates.x &&
-      a.coordinates.y < b.coordinates.y + b.size.height &&
-      a.coordinates.y + a.size.height > b.coordinates.y;
+  function _0x41ab46(_0x41d04e, _0x5a17e5) {
+    var _0x46757f = _0x5e79f0;
+    return _0x41d04e[_0x46757f(0xee)]['x'] < _0x5a17e5[_0x46757f(0xee)]['x'] + _0x5a17e5[_0x46757f(0xd5)][_0x46757f(0xe1)] && _0x41d04e['coordinates']['x'] + _0x41d04e[_0x46757f(0xd5)][_0x46757f(0xe1)] > _0x5a17e5[_0x46757f(0xee)]['x'] && _0x41d04e[_0x46757f(0xee)]['y'] < _0x5a17e5[_0x46757f(0xee)]['y'] + _0x5a17e5['size'][_0x46757f(0xe3)] && _0x41d04e[_0x46757f(0xee)]['y'] + _0x41d04e[_0x46757f(0xd5)][_0x46757f(0xe3)] > _0x5a17e5['coordinates']['y'];
   }
 
-  function getPixelRow(rowRaw) {
-    var textRow = [],
-      placer = 0,
-      row = Math.floor(rowRaw / invaderMultiplier);
-    if (row >= blocks.length) return [];
-    for (var i = 0; i < blocks[row].length; i++) {
-      var tmpContent = blocks[row][i] * invaderMultiplier;
-      for (var j = 0; j < invaderMultiplier; j++) textRow[placer + j] = tmpContent + j;
-      placer += invaderMultiplier;
+  function _0x9ab86b(_0x3d1e1c) {
+    var _0x110311 = _0x5e79f0,
+      _0x23999e = [],
+      _0x13d52c = 0x0,
+      _0x4876ae = Math[_0x110311(0x11b)](_0x3d1e1c / _0x5b6242);
+    if (_0x4876ae >= _0x15a0fb[_0x110311(0x122)]) return [];
+    for (var _0x87faf8 = 0x0; _0x87faf8 < _0x15a0fb[_0x4876ae][_0x110311(0x122)]; _0x87faf8++) {
+      var _0x1a042a = _0x15a0fb[_0x4876ae][_0x87faf8] * _0x5b6242;
+      for (var _0x5bab66 = 0x0; _0x5bab66 < _0x5b6242; _0x5bab66++) _0x23999e[_0x13d52c + _0x5bab66] = _0x1a042a + _0x5bab66;
+      _0x13d52c += _0x5b6242;
     }
-    return textRow;
+    return _0x23999e;
   }
 
-  // Write Text
-  // -----------
-  function createInvaders() {
-    var invaders = [];
-
-    var i = blocks.length * invaderMultiplier;
-    while (i--) {
-      var j = getPixelRow(i);
-      for (var k = 0; k < j.length; k++) {
-        invaders.push(new Invader({
-          x: j[k] * invaderSize,
-          y: i * invaderSize
+  function _0x4f6909() {
+    var _0x527e32 = _0x5e79f0,
+      _0x246971 = [],
+      _0x53fce2 = _0x15a0fb[_0x527e32(0x122)] * _0x5b6242;
+    while (_0x53fce2--) {
+      var _0xfad039 = _0x9ab86b(_0x53fce2);
+      for (var _0x1e921c = 0x0; _0x1e921c < _0xfad039[_0x527e32(0x122)]; _0x1e921c++) {
+        _0x246971[_0x527e32(0xd0)](new _0x37a56f({
+          'x': _0xfad039[_0x1e921c] * _0x4f834f,
+          'y': _0x53fce2 * _0x4f834f
         }));
       }
     }
-    return invaders;
+    return _0x246971;
   }
-
-  // Start game
-  // ----------
-  window.addEventListener('load', function () {
-
-    var invaderAsset = new Image;
-    invaderAsset.onload = function () {
-
-      invaderCanvas = document.createElement('canvas');
-      invaderCanvas.width = invaderSize;
-      invaderCanvas.height = invaderSize;
-      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
-
-      // Game Creation
-      canvas = document.getElementById("space-invaders");
-      screen = canvas.getContext('2d');
-
-      initGameStart();
-      loop();
-
-    };
-    invaderAsset.src = "/images/invader.gif";
-
+  window[_0x5e79f0(0x102)]('load', function () {
+    var _0xa55b49 = new Image();
+    _0xa55b49['onload'] = function () {
+      var _0x2d865b = _0x543e;
+      _0x5e86e0 = document[_0x2d865b(0xc9)]('canvas'), _0x5e86e0[_0x2d865b(0xe1)] = _0x4f834f, _0x5e86e0[_0x2d865b(0xe3)] = _0x4f834f, _0x5e86e0[_0x2d865b(0xbe)]('2d')[_0x2d865b(0xd7)](_0xa55b49, 0x0, 0x0), _0x376063 = document['getElementById'](_0x2d865b(0xf8)), _0x38925b = _0x376063[_0x2d865b(0xbe)]('2d'), _0x3f7ea4(), _0x918a7e();
+    }, _0xa55b49['src'] = '/images/invader.gif';
+  }), $(_0x5e79f0(0x118))['on'](_0x5e79f0(0xf1), function () {
+    var _0x83118b = _0x5e79f0;
+    location[_0x83118b(0xc3)]();
+  }), document['getElementById'](_0x5e79f0(0xe4))['addEventListener'](_0x5e79f0(0xf1), function () {
+    var _0x26fd9a = _0x5e79f0,
+      _0x4b66f1 = new Image();
+    _0x4b66f1[_0x26fd9a(0xb9)] = function () {
+      var _0x5c3615 = _0x26fd9a;
+      _0x5e86e0 = document[_0x5c3615(0xc9)](_0x5c3615(0x113)), _0x5e86e0[_0x5c3615(0xe1)] = _0x4f834f, _0x5e86e0[_0x5c3615(0xe3)] = _0x4f834f, _0x5e86e0[_0x5c3615(0xbe)]('2d')[_0x5c3615(0xd7)](_0x4b66f1, 0x0, 0x0), _0x376063 = document['getElementById'](_0x5c3615(0xf8)), _0x38925b = _0x376063['getContext']('2d'), _0x3f7ea4(), _0x918a7e();
+    }, _0x4b66f1[_0x26fd9a(0xed)] = _0x26fd9a(0xd2);
+  }), document[_0x5e79f0(0xc5)](_0x5e79f0(0x11e))[_0x5e79f0(0x102)](_0x5e79f0(0xf1), function () {
+    var _0x1ef7bd = _0x5e79f0,
+      _0x1dc578 = new Image();
+    _0x1dc578[_0x1ef7bd(0xb9)] = function () {
+      var _0x167ea4 = _0x1ef7bd;
+      _0x5e86e0 = document[_0x167ea4(0xc9)](_0x167ea4(0x113)), _0x5e86e0[_0x167ea4(0xe1)] = _0x4f834f, _0x5e86e0[_0x167ea4(0xe3)] = _0x4f834f, _0x5e86e0[_0x167ea4(0xbe)]('2d')['drawImage'](_0x1dc578, 0x0, 0x0), _0x376063 = document[_0x167ea4(0xc5)]('space-invaders'), _0x38925b = _0x376063[_0x167ea4(0xbe)]('2d'), _0x3f7ea4(), _0x918a7e();
+    }, _0x1dc578[_0x1ef7bd(0xed)] = _0x1ef7bd(0xd2);
+  }), document[_0x5e79f0(0xc5)](_0x5e79f0(0x10f))[_0x5e79f0(0x102)](_0x5e79f0(0xf1), function () {
+    var _0x127db4 = _0x5e79f0,
+      _0x427aeb = new Image();
+    _0x427aeb[_0x127db4(0xb9)] = function () {
+      var _0x3e5d3b = _0x127db4;
+      _0x5e86e0 = document[_0x3e5d3b(0xc9)](_0x3e5d3b(0x113)), _0x5e86e0[_0x3e5d3b(0xe1)] = _0x4f834f, _0x5e86e0[_0x3e5d3b(0xe3)] = _0x4f834f, _0x5e86e0['getContext']('2d')[_0x3e5d3b(0xd7)](_0x427aeb, 0x0, 0x0), _0x376063 = document[_0x3e5d3b(0xc5)]('space-invaders'), _0x38925b = _0x376063[_0x3e5d3b(0xbe)]('2d'), _0x3f7ea4(), _0x918a7e();
+    }, _0x427aeb['src'] = _0x127db4(0xd2);
   });
 
-
-
-
-  // jQuery => au click du boutton "recommencer", on recharge la page
-  $('#restart').on('click', function () {
-    location.reload();
-  });
-
-
-  document.getElementById('modalrestart').addEventListener('click', function () {
-    //initGameStart();
-    var invaderAsset = new Image;
-    invaderAsset.onload = function () {
-
-      invaderCanvas = document.createElement('canvas');
-      invaderCanvas.width = invaderSize;
-      invaderCanvas.height = invaderSize;
-      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
-
-      // Game Creation
-      canvas = document.getElementById("space-invaders");
-      screen = canvas.getContext('2d');
-
-      initGameStart();
-      loop();
-
-    };
-    invaderAsset.src = "/images/invader.gif";
-  });
-
-  /* function prettyDate() {
-    var date = new Date();
-    return date.toLocaleTimeString(navigator.language, {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  }; */
-
-
-  document.getElementById('validateWinner').addEventListener('click', function () {
-    //initGameStart();
-    var invaderAsset = new Image;
-    invaderAsset.onload = function () {
-
-      invaderCanvas = document.createElement('canvas');
-      invaderCanvas.width = invaderSize;
-      invaderCanvas.height = invaderSize;
-      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
-
-      // Game Creation
-      canvas = document.getElementById("space-invaders");
-      screen = canvas.getContext('2d');
-
-      initGameStart();
-      loop();
-
-    };
-
-    invaderAsset.src = "/images/invader.gif";
-
-    // et valider l'envoi d'un toast !
-    /* $("#validateWinnerToast").toast("show");
-    $("#date").html(prettyDate()); */
-
-  });
-
-
-  document.getElementById('modalrestart2').addEventListener('click', function () {
-    //initGameStart();
-    var invaderAsset = new Image;
-    invaderAsset.onload = function () {
-
-      invaderCanvas = document.createElement('canvas');
-      invaderCanvas.width = invaderSize;
-      invaderCanvas.height = invaderSize;
-      invaderCanvas.getContext("2d").drawImage(invaderAsset, 0, 0);
-
-      // Game Creation
-      canvas = document.getElementById("space-invaders");
-      screen = canvas.getContext('2d');
-
-      initGameStart();
-      loop();
-
-    };
-    invaderAsset.src = "/images/invader.gif";
-  });
-
-  /* document.getElementById('gameFinished').addEventListener('click', function () {
-
-    console.log("on es dans addEventListener du game finish !")
-    initGameStart();
-  }); */
-
-  function initGameStart() {
-
-    if (window.innerWidth > 1100) {
-      screen.canvas.width = 1200;
-      screen.canvas.height = 480;
-      gameSize = {
-        width: 1200,
-        height: 480
-      };
-      invaderMultiplier = 2;
-      initialOffsetInvader = 500;
-    } else if (window.innerWidth > 800) {
-      screen.canvas.width = 900;
-      screen.canvas.height = 600;
-      gameSize = {
-        width: 900,
-        height: 600
-      };
-      invaderMultiplier = 1;
-      initialOffsetInvader = 280;
-    } else {
-      screen.canvas.width = 600;
-      screen.canvas.height = 300;
-      gameSize = {
-        width: 600,
-        height: 300
-      };
-      invaderMultiplier = 1;
-      initialOffsetInvader = 140;
-    }
-
-    kills = 0;
-    lives = 3;
-    invaderAttackRate = 0.999;
-    invaderSpeed = 2;
-    spawnDelayCounter = invaderSpawnDelay;
-
-    game = new Game();
-
-
+  function _0x3f7ea4() {
+    var _0xceb86d = _0x5e79f0;
+    if (window[_0xceb86d(0xd6)] > 0x44c) _0x38925b[_0xceb86d(0x113)][_0xceb86d(0xe1)] = 0x4b0, _0x38925b[_0xceb86d(0x113)][_0xceb86d(0xe3)] = 0x1e0, _0x3d6688 = {
+      'width': 0x4b0,
+      'height': 0x1e0
+    }, _0x5b6242 = 0x2, _0x11d0e7 = 0x1f4;
+    else window[_0xceb86d(0xd6)] > 0x320 ? (_0x38925b[_0xceb86d(0x113)]['width'] = 0x384, _0x38925b[_0xceb86d(0x113)][_0xceb86d(0xe3)] = 0x258, _0x3d6688 = {
+      'width': 0x384,
+      'height': 0x258
+    }, _0x5b6242 = 0x1, _0x11d0e7 = 0x118) : (_0x38925b['canvas'][_0xceb86d(0xe1)] = 0x258, _0x38925b[_0xceb86d(0x113)]['height'] = 0x12c, _0x3d6688 = {
+      'width': 0x258,
+      'height': 0x12c
+    }, _0x5b6242 = 0x1, _0x11d0e7 = 0x8c);
+    _0x566ddc = 0x0, _0x2a5fb3 = 0x3, _0x26839f = 0.999, _0x138f5a = 0x2, _0x5d7cd8 = _0x486e46, _0x48e99b = new _0x2d28af();
   }
+  var _0x52a23d;
 
-
-
-
-  var globalID;
-
-  function loop() {
-
-    game.update();
-    game.draw();
-
-    globalID = requestAnimationFrame(loop);
-
-    if (isGameLost) {
-      cancelAnimationFrame(globalID)
-      console.log("GAME STOPPED !");
-    }
-
-   
+  function _0x918a7e() {
+    var _0x51c65d = _0x5e79f0;
+    _0x48e99b[_0x51c65d(0xf4)](), _0x48e99b[_0x51c65d(0xce)](), _0x52a23d = requestAnimationFrame(_0x918a7e), _0x5d49c6 && (cancelAnimationFrame(_0x52a23d), console[_0x51c65d(0xd8)](_0x51c65d(0xe6)));
   }
+  cancelAnimationFrame(_0x52a23d), document[_0x5e79f0(0xc5)](_0x5e79f0(0xcb))[_0x5e79f0(0x102)](_0x5e79f0(0xf1), _0x302265);
 
-  cancelAnimationFrame(globalID)
-
-  document.getElementById("pause").addEventListener("click", pauseFunction);
-  function pauseFunction() {
-    cancelAnimationFrame(globalID)
-    console.log("GAME PAUSE !");
+  function _0x302265() {
+    var _0x1f132f = _0x5e79f0;
+    cancelAnimationFrame(_0x52a23d), console[_0x1f132f(0xd8)](_0x1f132f(0x10a));
   };
+  console[_0x5e79f0(0xd8)](_0x5e79f0(0xec), _0x52a23d), document[_0x5e79f0(0xc5)](_0x5e79f0(0x11d))[_0x5e79f0(0x102)]('click', _0x2f6444);
 
-  console.log("globalID 668 ==> ", globalID);
-
-  document.getElementById("play").addEventListener("click", playFunction);
-  function playFunction() {
-    requestAnimationFrame(loop)
-    console.log("GAME RESTART !");
+  function _0x2f6444() {
+    var _0x90c854 = _0x5e79f0;
+    requestAnimationFrame(_0x918a7e), console[_0x90c854(0xd8)](_0x90c854(0xf5));
   };
+}
 
+function _0x543e(_0x119d58, _0x5b5620) {
+  var _0x1b9ba5 = _0x1b9b();
+  return _0x543e = function (_0x543e4d, _0xf077a7) {
+    _0x543e4d = _0x543e4d - 0xb9;
+    var _0x39948b = _0x1b9ba5[_0x543e4d];
+    return _0x39948b;
+  }, _0x543e(_0x119d58, _0x5b5620);
+}
 
-
+function _0x1b9b() {
+  var _0x8ffd7a = ['html', 'click', 'forEach', 'val', 'update', 'GAME\x20RESTART\x20!', 'patrolX', 'Space', 'space-invaders', 'keyCode', 'classList', '96688okLQIw', '#message', 'level', '#totalpoints', 'move', 'querySelector', '#nom', 'addEventListener', '\x20Invaders\x20détruits\x20!', 'Impressionant\x20!\x20Si\x20vous\x20le\x20souhaitez,\x20vous\x20pouvez\x20laisser\x20votre\x20nom\x20dans\x20le\x20tableau\x20des\x20score\x20de\x20cette\x20page\x20!\x20', '\x20🎉\x20Victoire\x20!\x20', '437160FfIeVD', 'invadersBelow', 'abs', 'shooterHeat', 'GAME\x20PAUSE\x20!', 'filter', 'right', 'fadeIn', 'beginPath', 'modalrestart2', '#modalrestart', 'Vies:\x20', 'random', 'canvas', '44987FsYQdv', 'rect', 'speedX', 'fillStyle', '#restart', 'Niveau:\x20', 'submit', 'floor', 'remove', 'play', 'validateWinner', 'velocity', '.containercolor', 'Vous\x20avez\x20perdu\x20!', 'length', '#winnerinput', '2zKkPqe', '12LwAuVt', '#inputcolor', 'preventDefault', 'clearRect', '#f2f5f3', '235005oINjzp', 'isDown', 'show', 'onload', 'lost', 'invaderShots', 'modal', '#titrewinner', 'getContext', '3125961GKXcOt', '#levelup', 'prototype', 'font', 'reload', 'fadeOut', 'getElementById', '10oNnEvJ', 'invisible', '20px\x20Arial', 'createElement', '#gameFinished', 'pause', 'invaders', '#messagewinner', 'draw', 'keyboarder', 'push', 'player', '/images/invader.gif', 'destroy', 'shown.bs.modal', 'size', 'innerWidth', 'drawImage', 'log', 'KEYS', 'toremove', 'formcolor', 'fill', 'RIGHT', 'active', 'fillText', 'Points:\x20', 'width', '192960jNDAwb', 'height', 'modalrestart', '#titre', 'GAME\x20STOPPED\x20!', 'focus', 'projectile', 'LEFT', 'Vous\x20n\x27êtes\x20pas\x20encore\x20assez\x20bon\x20pour\x20intégrer\x20le\x20tableau\x20des\x20scores...\x20Faites\x20plus\x20de\x20800\x20points\x20pour\x20rentrer\x20dans\x20l\x27histoire\x20!\x20', '#score', 'globalID\x20668\x20==>\x20', 'src', 'coordinates', '2403807cwwRwc'];
+  _0x1b9b = function () {
+    return _0x8ffd7a;
+  };
+  return _0x1b9b();
 };
-
-spaceInvader();
-
-document.getElementById("color").addEventListener("click", openModalColor);
+spaceInvader(), document[_0x578104(0xc5)]('color')[_0x578104(0x102)](_0x578104(0xf1), openModalColor);
 
 function openModalColor() {
-
-  let div1 = document.getElementById("toremove");
-  let parentNode = document.querySelector(".containercolor");
-
-  parentNode.removeChild(div1);
-
-  document.getElementById("formcolor").classList.remove('invisible');
+  var _0x31b846 = _0x578104;
+  let _0x34e928 = document[_0x31b846(0xc5)](_0x31b846(0xda)),
+    _0x948731 = document['querySelector'](_0x31b846(0x120));
+  _0x948731['removeChild'](_0x34e928), document['getElementById'](_0x31b846(0xdb))[_0x31b846(0xfa)][_0x31b846(0x11c)](_0x31b846(0xc7));
 };
-
-document.querySelector('#formcolor').addEventListener('submit', handleChangeColor);
+document[_0x578104(0x100)]('#formcolor')['addEventListener'](_0x578104(0x11a), handleChangeColor);
 let colorValue;
 
-function handleChangeColor(event) {
-  event.preventDefault();
-  colorValue = document.querySelector('#inputcolor').value;
-
+function handleChangeColor(_0x352654) {
+  var _0x1a5af8 = _0x578104;
+  _0x352654[_0x1a5af8(0x127)](), colorValue = document[_0x1a5af8(0x100)](_0x1a5af8(0x126))['value'];
 };
-
-
-//https://obfuscator.io/
