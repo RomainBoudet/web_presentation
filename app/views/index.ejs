@@ -6,20 +6,18 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="keywords"
     content="romain boudet, développeur web, développeur, développeur montpellier, développeur javascript, montpellier ">
   <meta name="description"
     content="Portfolio Romain Boudet, Développeur Web, Développeur à Montpellier, a la recherche d'un emploi">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     nonce="<%=locals.nonce%>" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" nonce="<%=locals.nonce%>" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/flexslider.min.css"
-    nonce="<%=locals.nonce%>" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css" nonce="<%=locals.nonce%>" crossorigin="anonymous">
-  <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="<%=locals.nonce%>" crossorigin="anonymous"> -->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" integrity="<%=locals.nonce%>" crossorigin="anonymous"> -->
+
+  <link rel="stylesheet" href="/css/style.css" nonce="<%=locals.nonce%>" crossorigin="anonymous">
+  <link href="/css/floating-labels.css" rel="stylesheet" nonce="<%=locals.nonce%>" crossorigin="anonymous">
+
   <link rel="shortcut icon" type="images/ico" href="/images/RB.png" />
 
   <title>Romain BOUDET - Développeur Backend </title>
@@ -52,7 +50,13 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+
+
+
+
   </header>
+
+  <!-- on fait apparaitre une information dans le cas de l'envoi d'un email ! -->
 
   <!-- SECTION 1 -->
 
@@ -63,10 +67,27 @@
           <h2>Romain BOUDET</h2>
           <h1>Développeur Web Backend</h1>
         </a>
-
       </div>
     </div>
   </section>
+
+
+  <% if (locals.errorMail) {%>
+  <div class="bandeau bandeauerror"><%= errorMail %></div>
+  <% } %>
+
+  <% if (locals.info) {%>
+  <div class="bandeau bandeaudivinfo"><%= info %></div>
+  <% } %>
+
+  <% if (locals.errorGeneral) {%>
+  <div class="bandeau bandeauerror"><%= errorGeneral %></div>
+  <% } %>
+
+  <% if (locals.errorTextArea) {%>
+  <div class="bandeau bandeauerror"><%= errorTextArea %></div>
+  <% } %>
+
 
   <!-- SECTION QUI SUIS JE? -->
   <section id="presentation" class="culture-section2 container">
@@ -74,9 +95,6 @@
     <div id="projet">
       <div class="titreProjets col-md-offset-2 col-md-8 col-md-offset-2  ">
         <h2 class="text-capitalize">QUI SUIS-JE ?</h2>
-        <!-- <div class="col-xs-offset-4 col-xs-4">
-                      <img class="photoCV" src="images/photoProfil.png" alt="photo RB" />
-                    </div> -->
       </div>
 
       <!-- Presentation -->
@@ -87,11 +105,10 @@
             developpement d'API.
             Curieux des nouvelles technologies depuis longtemps, j'ai obtenu en juillet 2021 mon diplôme de
             <strong><em>Développeur Web et Web Mobile</em></strong> au sein de l'<a href="https://oclock.io/"
-              target="_blank" rel="nofollow noreferrer noopener">école O'Clock</a> labellisé Grande Ecole du Numérique
+              target="_blank" rel="nofollow noreferrer noopener">école O'Clock</a> labellisée Grande Ecole du Numérique
             via une
             formation fullstack JS.
-            Je suis à la recherche d'<strong>opportunités professionnelles dans les environs de
-              Montpellier</strong> dès Janvier 2021.<br />
+            Je suis à la recherche d'<strong>opportunités professionnelles </strong> dès Janvier 2022.<br />
             Motivé et désireux d’apprendre, je suis ouvert à de multiples technologies.
             Vous trouverez sur ce site des informations sur les compétences que je peux mettre à votre service, sur mes
             outils de travail ainsi que des exemples de réalisations.
@@ -109,187 +126,221 @@
   </section>
 
   <!-- SECTION 2 Projets -->
-  <section id="projets" class="culture-section2 container">
-    <div id="projet" class=" ">
-      <div class="">
-        <div class="titreProjets col-md-offset-2 col-md-8 col-md-offset-2  ">
-          <h2 class="text-capitalize">PORTFOLIO</h2>
-        </div>
-      </div>
-      <div class="col-sm-12 col-sm-offset-0 col-xs-offset-1 col-xs-10">
-        <!-- projet 1 -->
-        <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <div id="projetsBox"
-            class="projet1 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
-            <h3>API Club de jeux</h3>
-            <img class="imgProjet" src="images/clubjeux.png" alt="image API club de jeux">
-            <div class="boutton-details">
-              <span class="btn btn-slider2">Détails</span>
-            </div>
-          </div>
-        </div>
-        <!-- projet 2 -->
-        <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <div id="projetsBox"
-            class="projet3 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
-            <h3>Kanban</h3>
-            <img class="imgProjet" src="images/kanban.png" alt="image kanban">
-            <div class="boutton-details">
-              <span class="btn btn-slider2">Détails</span>
-            </div>
-          </div>
-        </div>
-        <!-- projet 3 -->
-        <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <div id="projetsBox"
-            class="projet2 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
-            <h3>API Cadex</h3>
-            <img class="imgProjet" src="images/cadex.png" alt="image Cadex">
-            <div class="boutton-details">
-              <span class="btn btn-slider2">Détails</span>
-            </div>
-          </div>
-        </div>
-        <!-- projet 4 Maffrais Services -->
-        <div id="projetsBoxParent" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-          <div id="projetsBox"
-            class="projet4 col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12 ">
-            <h3>API E-commerce</h3>
-            <img class="imgProjet" src="images/ecommerce.png" alt="image online shopping Madagascar">
-            <div class="boutton-details">
-              <span class="btn btn-slider2">Détails</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section id="projets" class="culture-section container">
+    <div class="titreProjets col-md-offset-2 col-md-8 col-md-offset-2  ">
+      <h2 class="text-capitalize">PORTFOLIO</h2>
     </div>
-  </section>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 
-  <!-- POP UP 1 Club de jeux-->
-  <div id="popup" class="sliderPop1" style="display:none;">
-    <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
-    </a>
 
-    <div class="ct-sliderPop-container">
-      <div class="ct-sliderPop ct-sliderPop-slide1 open">
-        <div id="popup" class="inner">
-          <h2 class="h2popup">Club de jeux</h2>
-          <a class="github" href="https://github.com/RomainBoudet/MJC" target="_blank"><img class="logo-contact"
-              alt="logo github" src="images/githubV2.png" /></a>
-          <div class="map-white-border"></div>
-          <h2>Développement d'une API <br /> sous node.js pour un club de jeux d'une MJC. </h2>
-          <div class="popupProjets col-xs-offset-1 col-xs-20 col-xs-offset-1">
+      <!-- projet MJC -->
+      <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="projetsBox" class="boxmjc col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3>API Club de jeux</h3>
+          <h4 class="description">Développement d'une API pour un club de jeux d'une MJC. </h4>
+          <div id="list">
             <ul>
               <li>Base de données : PostgreSQL</li>
-              <li>Serveur d’application : Rails</li>
-              <li>Langages utilisés : SQL, JS, Html, CSS</li>
+              <li>Création du MCD / MLD: Mocodo</li>
+              <li>Création des wireFrames: Whimsical</li>
+              <li>Langages utilisés : SQL, JS</li>
               <li>Framework utilisé : Express</li>
-              <li>Hébergement : Heroku</li>
+              <li>Architecture : Active Record</li>
+
+
             </ul>
           </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
-          </a>
+          <div class="boutton-details">
+            <a class="police" href="https://github.com/RomainBoudet/MJC" style="text-decoration: none;" target="_blank"
+              nonce="<%=locals.nonce%>" crossorigin="anonymous">
+              <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;" nonce="<%=locals.nonce%>"
+                crossorigin="anonymous">Consulter le code sur GitHub
+              </button>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- POP UP 3 Cadex-->
-  <div id="popup" class="sliderPop2" style="display:none;">
-    <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
-    </a>
-    <div class="ct-sliderPop-container">
-      <div class="ct-sliderPop ct-sliderPop-slide1 open">
-        <div id="popup" class="inner">
-          <h2 class="h2popup">Cadex</h2>
-          <div class="popup_git">
-            <a class="github" href="https://github.com/RomainBoudet/cadex_front" target="_blank"><img
-                class="logo-contact" alt="logo github" src="images/githubV2.png" /></a>
-            <a class="github" href="https://github.com/RomainBoudet/cadex" target="_blank"><img class="logo-contact"
-                alt="logo github" src="images/githubV2.png" /></a>
-          </div>
-          <div class="container">
-            <p>Front</p>
-            <p>API</p>
-          </div>
-          <div class="map-white-border"></div>
-          <h2>Développement d'une API web pour la construction d'un cadavre Exqui aléatoire</h2>
-          <div class="popupProjets col-xs-offset-1 col-xs-10 col-xs-offset-1">
+
+      <!-- projet Cadex -->
+      <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="projetsBox" class="boxcadex col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3>Cadex</h3>
+          <h4 class="description">Développement d'une API web <br /> pour la construction d'un cadavre <br /> Exquis
+            aléatoire</h4>
+          <div id="list">
             <ul>
               <li>Base de données : PostgreSQL</li>
-              <li>Serveur web : Nginx</li>
-              <li>Hébergement : AWS</li>
               <li>Environnement de travail : Node.js</li>
               <li>Langages utilisés : SQL, JavaScript, Html, CSS</li>
               <li>Framework utilisé : Express</li>
+              <li>Architecture : Active Record</li>
+              <li>Serveur web : Nginx</li>
+              <li>Hébergement : AWS</li>
             </ul>
           </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
-          </a>
+          <div class="containerButtons">
+            <div class="boutton-details">
+              <a href="https://github.com/RomainBoudet/cadex" style="text-decoration: none; font-size: 0.3rem;"
+                target="_blank">
+                <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem; ">Consulter le code de <br>
+                  l'API sur GitHub
+                </button>
+              </a>
+            </div>
+            <div class="boutton-details">
+              <a href="https://github.com/RomainBoudet/cadex_front" style="text-decoration: none;" target="_blank">
+                <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem; ">Consulter le code du <br>
+                  Front sur GitHub
+                </button>
+              </a>
+            </div>
+
+            <div class="boutton-details">
+              <a href="https://cadex-front.romainboudet.fr/v1/cadex/particles" style="text-decoration: none;"
+                target="_blank">
+                <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem; ">Consulter le <br>projet en
+                  ligne
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- POP UP 3 Kanban-->
-  <div id="popup" class="sliderPop3" style="display:none;">
-    <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
-    </a>
-    <div class="ct-sliderPop-container">
-      <div class="ct-sliderPop ct-sliderPop-slide1 open">
-        <div id="popup" class="inner">
-          <h2 class="h2popup">Portfolio</h2>
-          <a class="github" href="https://github.com/RomainBoudet/Kanban" target="_blank"><img class="logo-contact"
-              alt="logo github" src="images/githubV2.png" /></a>
-          <div class="map-white-border"></div>
-          <h2>Réalisation d'un front en JS vanilla pour la réalisation d'un Kanabn pour la rédaction de ToDo list</h2>
-          <div class="popupProjets col-xs-offset-2 col-xs-8 col-xs-offset-2">
+      <!-- projet Kanban -->
+      <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="projetsBox" class="boxkanban col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3>Kanban</h3>
+          <h4 id="description">Réalisation d'un front en JS vanilla<br /> pour la réalisation d'un Kanban
+            (rédaction de ToDo list)</h4>
+          <div id="list">
             <ul>
               <li>Base de données : PostgreSQL</li>
-              <li>Serveur web : Nginx</li>
-              <li>Hébergement : OVH</li>
+              <li>Création du MCD / MLD: Mocodo</li>
               <li>Environnement de travail : Node.js</li>
               <li>Langages utilisés : Html, CSS, JavaScript</li>
               <li>Framework utilisé : Express</li>
+              <li>Serveur web : Nginx</li>
+              <li>Hébergement : OVH</li>
             </ul>
           </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
-          </a>
+          <div class="containerButtons">
+            <div class="boutton-details">
+              <a href="https://github.com/RomainBoudet/Kanban" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le code sur GitHub
+                  </button>
+
+                </div>
+              </a>
+            </div>
+
+            <div class="boutton-details">
+              <a href="https://apikanban.romainboudet.fr/" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le projet en ligne
+                  </button>
+                </div>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- POP UP 4 MADAGASCAR-->
-  <div id="popup" class="sliderPop4" style="display:none;">
-    <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">
-      <img id="imageBlanche" class="imageBlanche " src="" alt="image blanche">
-    </a>
-    <div class="ct-sliderPop-container">
-      <div class="ct-sliderPop ct-sliderPop-slide1 open">
-        <div id="popup" class="inner">
-          <h2 class="h2popup">E-commerce</h2>
-          <a class="github" href="https://github.com/RomainBoudet/Madagascar/tree/main" target="_blank"><img class="logo-contact"
-              alt="logo github" src="images/githubV2.png" /></a>
-          <div class="map-white-border"></div>
-          <h2>Développement d'une API pour une site de e-commerce</h2>
-          <div class="popupProjets col-xs-offset-2 col-xs-8 col-xs-offset-2">
+
+
+
+      <!-- projet E-Commerce -->
+      <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="projetsBox" class="boxcommerce col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3>API E-commerce</h3>
+          <h4 class="description">Développement d'une API pour un site de e-commerce <br> avec intégration de STRIPE
+            (paiement carte, SEPA, remboursement)
+            et TWILLIO, gestion des statuts de commandes, des stocks, édition des factures... </h4>
+          <div id="list">
             <ul>
               <li>Base de données : PostgreSQL, REDIS</li>
+              <li>Création du MCD / MLD: JMerise</li>
               <li>Environnement de travail : Node.js</li>
               <li>Langages utilisés : JavaScript</li>
               <li>Framework utilisé : Express</li>
+              <li>Architecture : Active Record</li>
+              <li>Serveur web : Nginx</li>
+
             </ul>
           </div>
-          <a id="popup" class="ct-newsletter-close ct-sliderPop-close" href="#projets">Close
-          </a>
+          <div class="containerButtons">
+            <div class="boutton-details">
+              <a href="https://github.com/RomainBoudet/Madagascar/" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le code sur GitHub
+                  </button>
+
+                </div>
+              </a>
+            </div>
+
+            <div class="boutton-details">
+              <a href="https://artisanat-madagascar.art/api-docs" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le projet en ligne
+                  </button>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- The Quizz -->
+      <div id="projetsBoxParent" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="projetsBox"
+          class="boxquizz col-xl-offset-0 col-xl-10 col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-1 col-sm-10 col-xs-12"
+          data-bs-target="">
+          <h3>The Quiz</h3>
+          <h4 class="description">Développement d'un site de quiz (reset du mot de passe, double authentification...)
+          </h4>
+          <div id="list">
+            <ul>
+              <li>Base de données : PostgreSQL, via sequelize (ORM)</li>
+              <li>Création du MCD / MLD: Mocodo</li>
+              <li>Environnement de travail : Node.js</li>
+              <li>Langages utilisés : JavaScript</li>
+              <li>Framework utilisé : Express</li>
+              <li>Architecture : Active Record</li>
+              <li>Serveur web : Nginx</li>
+            </ul>
+          </div>
+          <div class="containerButtons">
+            <div class="boutton-details">
+              <a href="https://github.com/RomainBoudet/Kanban" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le code sur GitHub
+                  </button>
+
+                </div>
+              </a>
+            </div>
+
+            <div class="boutton-details">
+              <a href="https://quiz.romainboudet.fr/" style="text-decoration: none;" target="_blank">
+                <div style="display: flex; flex-direction: row; justify-content:center; align-items:center;  ">
+                  <button class="btn btn-slider2 btn-primary" style="margin-bottom: 0rem;">Consulter le projet en ligne
+                  </button>
+                </div>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
+
+  </section>
+
 
   <!--SECTION 5 CV en HTML CSS -->
   <section id="resume" class="culture-section2 container">
@@ -300,6 +351,26 @@
           <div class="col-sm-7">
             <h3>Diplômes et Formations</h3>
             <hr class="hr_type3">
+            <ul>
+              <li>
+                <div class="row cadre">
+                  <div class="col-sm-4 col-xs-12">
+                    <p class="titreStyle titre text-sm-center">Développeur</p>
+                    <p class="annee sm-text-xs-center">07/2021</p>
+                  </div>
+                  <div class="col-sm-8 col-xs-12">
+                    <a class="logo navbar-brand" href="https://oclock.io/"><img src="/images/ministere_travail.png"
+                        alt="logo Ecole O'Clock" target="_blank" /></a>
+                    <p class="titreStyle">Validation du Titre Profesionnel Developpeur Web et Web mobile</p>
+                    <p><a href="https://oclock.io/formations/developpeur-web-fullstack-javascript" target="_blank"
+                        rel="nofollow noreferrer noopener">Ecole O'Clock</a> / <a
+                        href="https://romainboudet.fr/dossier_de_projet" target="_blank">Dossier de projet</a> pour le
+                      passage du titre.
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
             <ul>
               <li>
                 <div class="row cadre">
@@ -355,7 +426,7 @@
                         target="_blank" rel="nofollow noreferrer noopener">SecNumAcademie</a> (ANSSI)</p>
                     <p>Panorama de la SSI, sécurité de l'authentification, sécurité sur internet, sécurité du poste de
                       travail et
-                      nomadisme <small><em> <a href="http://localhost:5000/secnumacademie" target="_blank"
+                      nomadisme <small><em> <a href="http://romainboudet.fr/secnumacademie" target="_blank"
                             rel="nofollow noreferrer noopener">(certificat)
                           </a></em></small>.</p>
                   </div>
@@ -398,7 +469,7 @@
                 <div class="row cadre">
                   <div class="col-sm-4 col-xs-12">
                     <p class="titreStyle titre">Informatique / Développement</p>
-                    <p class="annee">2020</p>
+                    <p class="annee">2021</p>
                   </div>
                   <div class="col-sm-8 col-xs-12">
                     <p class="titreStyle">Réalisation d'une API de e-commerce</p>
@@ -421,7 +492,7 @@
                 <div class="row cadre">
                   <div class="col-sm-4 col-xs-12">
                     <p class="titreStyle titre">Informatique / Développement</p>
-                    <p class="annee">2020</p>
+                    <p class="annee">2021</p>
                   </div>
                   <div class="col-sm-8 col-xs-12">
                     <p class="titreStyle">projet de developpement perso</p>
@@ -443,7 +514,7 @@
                   </div>
                   <div class="col-sm-8 col-xs-12">
                     <p class="titreStyle">long Voyage</p>
-                    <p> USA (Californie), Polynesie Francaise, Nouvelle Zélande, Australie
+                    <p> USA (Californie), Polynésie Francaise, Nouvelle Zélande, Australie
                       <div class="col-md-12 col-sm-12 col-xs-12">
                         <ul>
                           <li> - Perfectionnement de la langue anglaise</li>
@@ -467,13 +538,13 @@
                     <p>Conservatoire du Littoral / Communauté de Communes de Belle île en Mer</p>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                       <ul>
-                        <li> - Carthographie des milieux</li>
-                        <li> - travaux d"aménagements</li>
-                        <li> - Recensement d'espéces</li>
+                        <li> - Cartographie des milieux</li>
+                        <li> - Traitement de données statistiques</li>
+                        <li> - Travaux d"aménagements</li>
+                        <li> - Recensement d'espèces</li>
                         <li> - Sensibilisation</li>
                       </ul>
                     </div>
-                    </p>
                   </div>
                 </div>
               </li>
@@ -491,6 +562,7 @@
                 <li>SQL / PostgreSQL / MongoDB</li>
                 <li>HTML5 / CSS3</li>
                 <li>AWS / NGINX / PM2</li>
+                <li>Postman / PgAdmin 4</li>
               </ul>
             </div>
             <div class="atouts col-sm-12 col-xs-6">
@@ -527,8 +599,8 @@
     <div class="sm-text-center">
       <div class="button_cont" align="center" class="cv">
         <button class="boutton_cv" target="_blank" rel="nofollow noreferrer noopener"><a
-            href="http://localhost:5000/cv" rel="nofollow noreferrer noopener" target="_blank" nonce="<%=locals.nonce%>"
-            crossorigin="anonymous">
+            href="http://romainboudet.fr/cv" rel="nofollow noreferrer noopener" target="_blank"
+            nonce="<%=locals.nonce%>" crossorigin="anonymous" style="text-decoration: none; color: white;">
             Visualiser mon CV en
             PDF </a></button>
 
@@ -540,40 +612,79 @@
   <section id="contact" class="culture-section3">
     <div class="container">
       <div class="col-md-8 col-md-offset-2">
-        <h2>CONTACTEZ MOI</h2>
+        <h2 style="padding: 2rem;">CONTACTEZ MOI</h2>
       </div>
-      <div class="">
-        <div class="col-xs-12">
-          <div id="contactBox" class="col-md-8 col-md-offset-2 ">
-            <div id="adress" class="col-xs-6">
-              <dl class="contact">
-                <dt>
-                  <h4>Contact</h4>
-                </dt>
-                <hr class="hr">
-                <dd>Nom : Romain Boudet</dd>
-                <dd>
-                  Email :
-                  <a href="mailto:romain&#64;boudet.me">romain@boudet.me</a>
-                </dd>
-                <dd>Téléphone : 06-03-72-06-12</dd>
-                <a href="https://www.linkedin.com/in/romain-boudet/" target="_blank"><img class="logo-contact"
-                    alt="logo linkedin" src="images/icons-linkedin.png" /></a>
-                <a class="github" href="https://github.com/RomainBoudet" target="_blank"><img class="logo-contact"
-                    alt="logo github" src="images/github.png" /></a>
-              </dl>
-            </div>
-            <div id="adress" class="col-xs-6">
-              <dl class="contact">
-                <dt>
-                  <h4>Adresse</h4>
-                </dt>
-                <hr class="hr">
-                <dd>34000 MONTPELLIER</dd><br>
-                <dd>FRANCE</dd>
-              </dl>
-            </div>
+
+
+      <form action="/" method="POST">
+        <div class="mb-3">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Votre email">
+        </div>
+        <!-- si erreur d'email !-->
+        <% if (locals.errorMail) {%>
+        <div class="bandeau error"><%= errorMail %></div>
+        <% } %>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"></label>
+          <textarea class="form-control" id="textArea" name="textArea" rows="5" placeholder="Votre message"></textarea>
+        </div>
+        <!-- si erreur du contenu du message  !-->
+        <% if (locals.errorTextArea) {%>
+        <div class="bandeau error"><%= errorTextArea %></div>
+        <% } %>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="copy" name="copy" value="true">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Je souhaite recevoir une copie de ce message sur
+            mon email.</label>
+        </div>
+        <button class="btn btn-sm sendmail" data-bs-toggle="tooltip"
+          title="Vous pouvez envoyer un maximum de 5 emails par jours." type="submit" style=" color: white;  background-color: rgb(73, 43, 43);
+        ">Envoyer</button>
+
+        <!-- Si tout va bien ou si une érreur survient lors de l'envoi-->
+
+        <% if (locals.errorGeneral) {%>
+        <div class="bandeau error"><%= errorGeneral %></div>
+        <% } %>
+
+        <% if (locals.info) {%>
+        <div class="bandeau info"><%= info %></div>
+        <% } %>
+      </form>
+
+
+      <div class="col-xs-12">
+
+        <div id="contactBox" class="col-md-8 col-md-offset-2 ">
+
+          <div id="adress" class="col-xs-6">
+            <dl class="contact">
+              <dt>
+                <h4>Contact</h4>
+              </dt>
+              <hr class="hr">
+              <dd>Nom : Romain Boudet</dd>
+              <dd>Téléphone : 06-03-72-06-12</dd>
+              <a href="https://www.linkedin.com/in/romain-boudet/" target="_blank"><img class="logo-contact"
+                  alt="logo linkedin" src="images/icons-linkedin.png" /></a>
+              <a class="github" href="https://github.com/RomainBoudet" target="_blank"><img class="logo-contact"
+                  alt="logo github" src="images/github.png" /></a>
+            </dl>
           </div>
+
+          <div id="adress" class="col-xs-6">
+            <dl class="contact">
+              <dt>
+                <h4>Adresse</h4>
+              </dt>
+              <hr class="hr">
+              <dd>34000 MONTPELLIER</dd><br>
+              <dd>FRANCE</dd>
+            </dl>
+          </div>
+
         </div>
       </div>
     </div>
@@ -585,8 +696,9 @@
   <!-- FOOTER -->
   <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
     <div class="text-center">
-      <a class="" href="#">Copyright 2021</a>
+      <a class="" href="#">Copyright 2022</a>
     </div>
+    <div class="text-center"><a href="https://romainboudet.fr/404"> <img src="/images/invader2.gif" alt="invader igf"> </a></div>
   </nav>
 
 
@@ -595,9 +707,8 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" nonce="<%=locals.nonce%>"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.5.0/jquery.flexslider-min.js"
-    nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
-  <script src="script.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
+  <script src="/js/bundle.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
