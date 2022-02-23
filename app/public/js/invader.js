@@ -152,7 +152,7 @@ function spaceInvader() {
 
         if (!$('#gameFinished').hasClass('in')) {
 
-          if (kills < 799) {
+          if (kills < 9) {
 
             $("#gameFinished").modal('show');
 
@@ -165,7 +165,7 @@ function spaceInvader() {
             $("#totalpoints").html(kills + " Invaders détruits !");
           }
 
-          if (kills > 799) {
+          if (kills > 9) {
 
             $('#score').val(kills);
             // on ouvre une modale ou on demande le nom et le prénom. 

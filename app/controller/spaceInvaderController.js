@@ -6,6 +6,7 @@ const {
 const {
     formatToast
 } = require('../service/date');
+const {sendEmailWithIp} = require("../service/sendMail");
 
 
 
@@ -36,7 +37,7 @@ const spaceInvaderController = {
 
             //nom et prenom ne doivent pas dépasser 30 caractéres et score doit être un entier entre 999 et 9999.
             if (!validator.isInt(req.body.score, {
-                    min: 799,
+                    min: 9,
                     max: 9999
                 })) {
                 console.log("Erreur dans les score !");
@@ -80,6 +81,24 @@ const spaceInvaderController = {
                 score,
                 createdDate: formatLongBDD(),
             };
+
+            // J'envoie un petit email a l'admin pour lui faire part de la bonne nouvelle !
+            const contexte = {
+                nom,
+                prenom,
+                score,
+                createdDate: formatLongBDD(),
+            };
+            const emailSend = process.env.MYEMAIL;
+            const template = 'winner';
+            const text = `Un nouveau gagnant au space invader avec ${score} points ! Donnée => nom:${nom}, prénom:${prenom}, date:${formatLongBDD()}`;
+            const subject = `Un nouveau gagnant au space invader avec ${score} points !`;
+            const infoEmail = await sendEmailWithIp(emailSend, subject, contexte, text, template, clientIp);
+            if (typeof infoEmail === undefined) {
+            console.log("Une érreur est survenue lors de l'envoie, merci de réessayer.");
+            } else {
+                console.log("Votre message a bien été envoyé !");
+            }
 
 
             //si on a aucun score déja presént, on peut pas 'find' sur du null..
