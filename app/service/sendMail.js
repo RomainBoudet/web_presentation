@@ -77,10 +77,10 @@ const sendEmailWithIp = async (email, subject, context, text, template, ip) => {
         
             
         } else {
-            contexte.ville = geo.city;
-            contexte.pays = geo.country;
-            contexte.coord = geo.ll;
-            contexte.precision = geo.area;
+            context.ville = geo.city;
+            context.pays = geo.country;
+            context.coord = geo.ll;
+            context.precision = geo.area;
         }
 
         // l'envoie d'email définit par l'object "transporter"
