@@ -1,10 +1,4 @@
 
-
-
-
-
-let globalID;
-
 function spaceInvader() {
   "use strict";
 
@@ -82,6 +76,7 @@ function spaceInvader() {
   Game.prototype = {
     update: function () {
 
+
       // Next level
       if (game.invaders.length === 0) {
 
@@ -150,6 +145,7 @@ function spaceInvader() {
 
     draw: function () {
 
+
       isGameLost = this.lost;
 
       if (this.lost) {
@@ -161,7 +157,7 @@ function spaceInvader() {
             $("#gameFinished").modal('show');
 
             $('#gameFinished').on('shown.bs.modal', function () {
-              $('#modalback').focus();
+              $('#modalrestart').focus();
             })
 
             $("#titre").html("Vous avez perdu !");
@@ -213,8 +209,8 @@ function spaceInvader() {
       this.player.draw();
       if (!this.lost)
 
-      console.log("Couleur choisie ==>> ", colorValue);
-        screen.fillStyle = colorValue || "#f2f5f3";
+        console.log("Couleur choisie ==>> ", colorValue);
+      screen.fillStyle = colorValue || "#f2f5f3";
       //screen.fillStyle = "white"; //couleur des projectiles et du player
 
       for (i = 0; i < this.invaders.length; i++) this.invaders[i].draw();
@@ -640,6 +636,11 @@ function spaceInvader() {
 
   }
 
+
+
+
+  var globalID;
+
   function loop() {
 
     game.update();
@@ -648,14 +649,28 @@ function spaceInvader() {
     globalID = requestAnimationFrame(loop);
 
     if (isGameLost) {
-
       cancelAnimationFrame(globalID)
       console.log("GAME STOPPED !");
-
     }
 
-
+   
   }
+
+  cancelAnimationFrame(globalID)
+
+  document.getElementById("pause").addEventListener("click", pauseFunction);
+  function pauseFunction() {
+    cancelAnimationFrame(globalID)
+    console.log("GAME PAUSE !");
+  };
+
+  console.log("globalID 668 ==> ", globalID);
+
+  document.getElementById("play").addEventListener("click", playFunction);
+  function playFunction() {
+    requestAnimationFrame(loop)
+    console.log("GAME RESTART !");
+  };
 
 
 
@@ -663,36 +678,26 @@ function spaceInvader() {
 
 spaceInvader();
 
-
-
 document.getElementById("color").addEventListener("click", openModalColor);
 
 function openModalColor() {
 
-  //let colorButton = document.getElementById("color");
-  //let colorForm = document.getElementById("formcolor");
-  //const cloneColorButton = colorButton.cloneNode(true).classList.add('invisible');
-  //colorButton.replaceWith(colorForm); // pour le remplacement d'une div par une autre.
+  let div1 = document.getElementById("toremove");
+  let parentNode = document.querySelector(".containercolor");
 
-  document.getElementById("color").classList.add('invisible');
+  parentNode.removeChild(div1);
+
   document.getElementById("formcolor").classList.remove('invisible');
-}
+};
 
 document.querySelector('#formcolor').addEventListener('submit', handleChangeColor);
-
 let colorValue;
 
 function handleChangeColor(event) {
-
   event.preventDefault();
-
   colorValue = document.querySelector('#inputcolor').value;
-  
-}
 
-
-
-
+};
 
 
 //https://obfuscator.io/
