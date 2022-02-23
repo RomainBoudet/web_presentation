@@ -1,4 +1,8 @@
-let isGameLost;
+
+
+
+
+
 let globalID;
 
 function spaceInvader() {
@@ -204,11 +208,14 @@ function spaceInvader() {
 
       screen.beginPath();
 
+
       var i;
       this.player.draw();
       if (!this.lost)
-        screen.fillStyle = "#90C9F4";
-      screen.fillStyle = "white"; //couleur des projectule et du player
+
+      console.log("Couleur choisie ==>> ", colorValue);
+        screen.fillStyle = colorValue || "#f2f5f3";
+      //screen.fillStyle = "white"; //couleur des projectiles et du player
 
       for (i = 0; i < this.invaders.length; i++) this.invaders[i].draw();
 
@@ -298,7 +305,7 @@ function spaceInvader() {
       height: 8
     };
     this.shooterHeat = -3;
-    screen.fillStyle = "#90C9F4";
+    screen.fillStyle = "#f2f5f3";
 
     this.coordinates = {
       x: gameSize.width / 2 - (this.size.width / 2) | 0,
@@ -499,11 +506,11 @@ function spaceInvader() {
 
 
 
- 
+
   // jQuery => au click du boutton "recommencer", on recharge la page
-    $('#restart').on('click', function () {
-     location.reload();
-   }); 
+  $('#restart').on('click', function () {
+    location.reload();
+  });
 
 
   document.getElementById('modalrestart').addEventListener('click', function () {
@@ -655,5 +662,37 @@ function spaceInvader() {
 };
 
 spaceInvader();
+
+
+
+document.getElementById("color").addEventListener("click", openModalColor);
+
+function openModalColor() {
+
+  //let colorButton = document.getElementById("color");
+  //let colorForm = document.getElementById("formcolor");
+  //const cloneColorButton = colorButton.cloneNode(true).classList.add('invisible');
+  //colorButton.replaceWith(colorForm); // pour le remplacement d'une div par une autre.
+
+  document.getElementById("color").classList.add('invisible');
+  document.getElementById("formcolor").classList.remove('invisible');
+}
+
+document.querySelector('#formcolor').addEventListener('submit', handleChangeColor);
+
+let colorValue;
+
+function handleChangeColor(event) {
+
+  event.preventDefault();
+
+  colorValue = document.querySelector('#inputcolor').value;
+  
+}
+
+
+
+
+
 
 //https://obfuscator.io/
