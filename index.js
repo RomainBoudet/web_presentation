@@ -37,11 +37,10 @@ app.use(helmet());
             "img-src": [`'self'`, "https://filedn.eu/lD5jpSv048KLfgLMlwC2cLz/RB.png"],
             "font-src": ["http://localhost:5000/fonts/glyphicons-halflings-regular.woff", "http://localhost:5000/fonts/glyphicons-halflings-regular.ttf", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf"],
 
-            "style-src": ["'unsafe-inline'",`'self'`,"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", (_, res) => `'nonce-${res.locals.nonce}'`], //
             "style-src": ["'unsafe-inline'", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", `'self'`],
             "base-uri": ["'none'"],
             "object-src": ["'none'"],
-            "connect-src":["https://www.google-analytics.com/", "https://api.ipify.org"], //https://w3c.github.io/webappsec-csp/#directive-connect-src
+            "connect-src":["https://www.google-analytics.com/"], //https://w3c.github.io/webappsec-csp/#directive-connect-src // api find ip => "https://api.ipify.org"
             //reportUri: `/csp/report`,
 
             upgradeInsecureRequests: []

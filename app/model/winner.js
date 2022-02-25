@@ -129,6 +129,16 @@ class Winner {
             // alors j'override rang avec des valeur que je veux ...
             {
                 $addFields: { rang:
+                    {$cond: { if: { $eq: [ "$ip", `${process.env.IPTAVERN}` ] }, then: {$concat:["✨ ",{$toString:"$rang"}, " ✨", " VIP"]}, else: "$rang" }}
+                }
+              },
+              {
+                $addFields: { rang:
+                    {$cond: { if: { $eq: [ "$rang", "✨ 1 ✨ VIP" ] }, then: "🎊 1 🎊 VIP" , else: "$rang" }}
+                }
+              },
+              {
+                $addFields: { rang:
                     {$cond: { if: { $eq: [ "$rang", 1 ] }, then: "🎊 1 🎊" , else: "$rang" }}
                 }
               },
