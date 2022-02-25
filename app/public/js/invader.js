@@ -699,5 +699,12 @@ function handleChangeColor(event) {
 
 };
 
+document.getElementById("back").addEventListener("click", backFunction);
+function backFunction(){
+    onclick=window.history.back();
+}
+
+
+
 
 //https://obfuscator.io/

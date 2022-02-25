@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "build": "browserify app/public/js/script.js -o app/public/js/bundle.js && nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "browserify app/public/js/script.js -o app/public/js/bundle.js && uglify app/public/js/invader.js -o app/public/js/invader.js && javascript-obfuscator app/public/js/invader.js --output app/public/js/invader.js && pm2 start index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/RomainBoudet/web_presentation#readme",
   "dependencies": {
+    "bootstrap-icons": "^1.8.1",
     "browserify": "^17.0.0",
     "chalk": "^4.1.2",
     "cors": "^2.8.5",
@@ -35,6 +37,7 @@
     "mongodb": "^4.4.0",
     "nodemailer": "^6.7.2",
     "nodemailer-express-handlebars": "^4.0.0",
+    "nodemailer-openpgp": "^2.0.0",
     "qrcode": "^1.5.0",
     "rate-limit-redis": "^3.0.0",
     "redis": "^4.0.2",

@@ -1,12 +1,17 @@
 const path = require('path');
 const {
-    sendEmail
+    sendEmail,
+    sendEmailWithIp,
+    sendEmailWithIpAndCrypt,
 } = require('../service/sendMail');
 const validator = require('validator');
 const {
     formatLong
 } = require('../service/date');
 const geoip = require('geoip-lite');
+const {
+    kill
+} = require('process');
 
 
 
@@ -52,11 +57,10 @@ const mainController = {
 
     mail: async (req, res) => {
         try {
-            
+
             // on utilise cette valeur puisqu'on est derriere un proxy...
             const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
             // avec l'ip je récupére quelques détail sur la localisation possible...
-            const geo = geoip.lookup(clientIp);
 
             // Je vérifie que mon body contient bien un email, que celui ci est bien un email,  
 
@@ -98,48 +102,28 @@ const mainController = {
                 });
             }
 
-            //Je définit les variables pour mes mails :
-            let contexte = {};
 
-            if (geo === null) {
-                contexte = {
-                    email,
-                    textArea,
-                    dateEnvoi: formatLong(new Date()),
-                    ip: clientIp,
+            const context = { // le reste est géré dans le service sendEmail...
+                email,
+                textArea,
+                dateEnvoi: formatLong(new Date()),
+            };
 
-                };
-
-            } else {
-                contexte = {
-                    email,
-                    textArea,
-                    dateEnvoi: formatLong(new Date()),
-                    ip: clientIp,
-                    ville: geo.city,
-                    pays: geo.country,
-                    coord: geo.ll,
-                    precision: geo.area,
-
-                };
-            }
-
-
+    
             if (req.body.copy === 'true') {
-                // j'envoie le mail et une copie a son expéditeur. Pour des raison de sécurités, je renseigne l'adresse ip dans chaque copie de mail. 
 
-                // Le message que reçois l'expéditeur du message, sur la boite mail qu'il a rentrée.
+                // template envoyée pour la copie
                 const emailSend = email;
                 const text = `Envoyé par l'email ${email} : ${textArea}`;
                 const template = 'email';
                 const subject = "La copie de votre message envoyé via le site romainboudet.fr";
-                const infoEmail = await sendEmail(emailSend, subject, contexte, text, template);
+                const infoEmail = await sendEmailWithIpAndCrypt(emailSend, subject, context, text, template, clientIp);
 
                 // Le message que je reçois sur ma boite perso :
                 const emailSend2 = process.env.MYEMAIL;
                 const template2 = 'emailPerso';
                 const subject2 = "Un nouveau message via romainboudet.fr avec copie à l'expéditeur";
-                const infoEmail2 = await sendEmail(emailSend2, subject2, contexte, text, template2);
+                const infoEmail2 = await sendEmailWithIpAndCrypt(emailSend2, subject2, context, text, template2, clientIp);
 
 
                 // Prise en compte des différentes configurations d'érreurs
@@ -162,14 +146,16 @@ const mainController = {
                 }
 
 
-            } else {
-                // j'envoie le mail, sans copie !
+            } 
+            
+            else {
 
+                // j'envoie le mail, sans copie !
                 const emailSend = process.env.MYEMAIL;
-                const text = `${textArea}`;
+                const text = `Envoyé par l'email ${email} : ${textArea}`;
                 const template = 'emailPerso';
                 const subject = "Un nouveau message via romainboudet.fr sans copie à l'expéditeur";
-                const infoEmail = await sendEmail(emailSend, subject, contexte, text, template);
+                const infoEmail = await sendEmailWithIpAndCrypt(emailSend, subject, context, text, template, clientIp);
 
 
                 if (typeof infoEmail === undefined) {

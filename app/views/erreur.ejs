@@ -9,8 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="keywords"
     content="romain boudet, développeur web, développeur, développeur montpellier, développeur javascript, montpellier ">
-  <meta name="description"
-    content="Portfolio Romain Boudet, Développeur Web, Développeur à Montpellier, a la recherche d'un emploi">
+  <meta name="description" content="Portfolio Romain Boudet, Développeur Web, a la recherche d'un emploi">
 
   <link rel="shortcut icon" type="images/ico" href="/images/RB.png" />
 
@@ -139,7 +138,7 @@
 
 
     .containercolor {
-      margin-top: 5rem;
+      margin-top: 3rem;
       margin-left: 1rem;
       flex-direction: column;
       display: flex;
@@ -151,6 +150,37 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .icon {
+      width: 1em;
+      height: 1em;
+      margin-left: 1rem;
+      margin-top: 0rem;
+    }
+
+    .iconpath {
+
+      fill: white;
+    }
+
+    .iconpath:hover {
+
+      fill: rgb(28, 241, 0);
+    }
+
+    .game {
+      height: 1.2em;
+      width: 1.2em;
+    }
+
+    .iconinfo {
+      width: 2em;
+      height: 2em;
+    }
+
+    .iconinfopath {
+      fill: white;
     }
   </style>
 </head>
@@ -167,9 +197,24 @@
       <div class="col-sm-10">
         <h1 class="p-4" style="color: #9d7d07; margin-right: 20rem; font-size: 3rem;">404 - Page Not Found</h1>
         <p class="text-white fw-bold fs-5" style="margin-right: 20rem;">Utilisez <span
-            class="badge bg-danger text-white">Espace</span> pour tirer et <span class="badge bg-danger"> ⬅️ </span>
-          <span class="badge bg-danger"> ➡️ </span> pour
-          vous déplacer !&#160;&#160;&#160;<button class="btn btn-success btn-sm" id="restart">Recommencez</button></p>
+            class="badge bg-primary text-white">Espace</span> pour tirer et <svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="bi bi-caret-left-square-fill" viewBox="0 0 16 16">
+            <path class="iconpath"
+              d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.5 10V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4A.5.5 0 0 0 10.5 12z" />
+          </svg> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+            <path class="iconpath"
+              d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z" />
+          </svg>
+          pour
+          vous déplacer !&#160;&#160;&#160;<button class="btn btn-success btn-sm" id="restart">Recommencez <svg
+              xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+              <path fill-rule="evenodd"
+                d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+            </svg></button></p>
       </div>
     </div>
   </div>
@@ -183,7 +228,6 @@
         <h3 class="mb-5" style="color: #c2ff66; text-decoration: none; border-bottom: 1px dotted #fff">(Ou fuyez comme
           un lâche...)</h3>
       </button>
-      <script src="/js/back.js" nonce="<%=locals.nonce%>" crossorigin="anonymous"></script>
     </div>
   </div>
 
@@ -326,7 +370,8 @@
 
   <div class="containertableaucolor">
 
-    <div class="containertableau" data-toggle="tooltip" data-placement="left" title="Faites plus de 800 points pour intégrer le tableau des scores 😉 ">
+    <div class="containertableau" data-toggle="tooltip" data-placement="left"
+      title="Faites plus de 800 points pour intégrer le tableau des scores 😉 ">
 
       <table class="table table-striped table-dark">
         <thead>
@@ -342,7 +387,7 @@
 
           <% for (const winner of allWinners) { %>
           <tr>
-            <th scope="row"><%= winner.rang %></th>
+            <th scope="row mx-auto"><%= winner.rang %></th>
             <td><%= winner.nom %></td>
             <td><%= winner.prenom %></td>
             <td><%= winner.score %></td>
@@ -361,25 +406,56 @@
 
     <div class="containercolor">
 
-      <div >
-        <button id="pause" type="submit" class="btn btn-success btn-sm m-2" data-toggle="tooltip" data-placement="left" title="Méfiez vous, les space-invaders continuent de descendre... ">Pause // Vitesse -- </button>
+      <div data-bs-toggle="tooltip" data-bs-placement="top" title="La combinaison 'nom + prénom' doit être unique pour l'insertion d'un score dans la base de donnée. Aucun doublon ne sera accépté. Si vous souhaitez mettre à jour un score en gardant le même nom et prénom, vous devez le faire depuis la même adresse ip, et faire un score supérieur au score précédent.">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="iconinfo bi bi-info-circle-fill" viewBox="0 0 16 16" >
+          <path class="iconinfopath"
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </svg>
       </div>
 
-      <div >
-        <button id="play" type="submit" class="btn btn-success btn-sm m-2" data-toggle="tooltip" data-placement="right" title="Good luck !">Play // Vitesse ++ </button>
+      <div>
+        <button id="pause" type="submit" class="btn btn-success btn-lg m-2" data-toggle="tooltip" data-placement="left"
+          title="Méfiez vous, les space-invaders continuent de descendre... "><svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="game bi bi-pause-circle-fill" viewBox="0 0 16 16">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
+          </svg> | <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="game bi bi-skip-backward-fill" viewBox="0 0 16 16">
+            <path
+              d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5z" />
+          </svg> </button>
       </div>
 
-      <div id="toremove" >
-        <button id="color" class="btn btn-success btn-sm m-2" data-toggle="tooltip" data-placement="right" title="Le blanc c'est démodé...">Changer de couleur <br> les projectiles et le joueur</button>
+      <div>
+        <button id="play" type="submit" class="btn btn-success btn-lg m-2" data-toggle="tooltip" data-placement="right"
+          title="Good luck !"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="game bi bi-play-circle-fill" viewBox="0 0 16 16">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z" />
+          </svg> | <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="game bi bi-skip-forward-fill" viewBox="0 0 16 16">
+            <path
+              d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5z" />
+          </svg> </button>
+      </div>
+
+      <div id="toremove">
+        <button id="color" class="btn btn-success btn-sm m-2" data-toggle="tooltip" data-placement="right"
+          title="Le blanc c'est démodé...">Changer de couleur <br> les projectiles et le joueur</button>
       </div>
 
       <form id="formcolor" action="" method="POST" class="invisible">
         <div class="control">
-          <input type="color" style="min-width:3rem" class="form-control form-control-color" value="#4cfc7b" id="inputcolor" name="color"
-            title="Choississez votre couleur">
+          <input type="color" style="min-width:3rem" class="form-control form-control-color" value="#e100ff"
+            id="inputcolor" name="color" title="Choississez votre couleur">
         </div>
         <div class="control">
-          <button type="submit" class="btn btn-success btn-sm m-2">valider</button>
+          <button type="submit" class="btn btn-success btn-sm m-2">valider <svg xmlns="http://www.w3.org/2000/svg"
+              width="20" height="20" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+              <path
+                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+            </svg></button>
         </div>
       </form>
 

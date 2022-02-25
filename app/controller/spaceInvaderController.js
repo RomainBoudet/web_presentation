@@ -6,18 +6,21 @@ const {
 const {
     formatToast
 } = require('../service/date');
-const {sendEmailWithIp} = require("../service/sendMail");
+const {
+    sendEmailWithIp
+} = require("../service/sendMail");
 
 
 
 
 const spaceInvaderController = {
 
+    // Pour test.
     findWinners: async (req, res) => {
         try {
 
             const allWinners = await Winner.findAllWithoutIpAndDate();
-            console.log("allWinners in spaceInvaderController ===> ", allWinners);
+            //console.log("allWinners in spaceInvaderController ===> ", allWinners);
 
             return res.status(404).render(`erreur`, {
                 allWinners
@@ -95,7 +98,7 @@ const spaceInvaderController = {
             const subject = `Un nouveau gagnant au space invader avec ${score} points !`;
             const infoEmail = await sendEmailWithIp(emailSend, subject, contexte, text, template, clientIp);
             if (typeof infoEmail === undefined) {
-            console.log("Une érreur est survenue lors de l'envoie, merci de réessayer.");
+                console.log("Une érreur est survenue lors de l'envoie, merci de réessayer.");
             } else {
                 console.log("Votre message a bien été envoyé !");
             }
@@ -131,7 +134,7 @@ const spaceInvaderController = {
 
 
                             //Personalisation du message selon l'ip, dans deux cas !
-                            if (clientIp === '88.163.249.23') {
+                            if (clientIp === process.env.IPTAVERN) {
 
                                 const updateWinner = new Winner(dataToSend);
                                 const updateWinnerDone = await updateWinner.update();
@@ -154,7 +157,7 @@ const spaceInvaderController = {
 
                             };
 
-                            if (clientIp === '86.227.129.119') {
+                            if (clientIp === process.env.IPBIS) {
 
                                 const updateWinner = new Winner(dataToSend);
                                 const updateWinnerDone = await updateWinner.update();
@@ -228,8 +231,7 @@ const spaceInvaderController = {
                 };
 
 
-
-                if (clientIp === '88.163.249.23') {
+                if (clientIp === process.env.IPTAVERN) {
 
                     const newWinner = new Winner(doc);
                     const newWinnerInsert = await newWinner.insert();
@@ -251,7 +253,7 @@ const spaceInvaderController = {
 
                 }
 
-                if (clientIp === '86.227.129.119') {
+                if (clientIp === process.env.IPBIS) {
 
                     const newWinner = new Winner(doc);
                     const newWinnerInsert = await newWinner.insert();
@@ -295,7 +297,6 @@ const spaceInvaderController = {
 
             };
 
-
             // on insert des donnée en BDD => méthode d'instance
             const newWinner = new Winner(doc);
             const newWinnerInsert = await newWinner.insert();
@@ -314,16 +315,11 @@ const spaceInvaderController = {
                 toastMessage
             });
 
-
         } catch (error) {
             console.log("Erreur dans la méthode insert du spaceInvaderController : ", error);
             return res.status(500).end();
         }
     },
-
-
-
-
 
 }
 
