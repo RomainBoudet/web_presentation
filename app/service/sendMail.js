@@ -102,7 +102,7 @@ const sendEmailWithIp = async (email, subject, context, text, template, ip) => {
         console.log(`Un email à bien été envoyé a ${email} : ${info.response}`);
         return info.response;
     } catch (error) {
-        console.trace("erreur dans la méthode sendMailWithIp du service sendEmail", error);
+        console.trace("erreur dans la méthode sendMailWithIp du service sendMail", error);
     }
 
 };
@@ -135,6 +135,8 @@ const sendEmailWithIpAndCrypt = async (email, subject, context, text, template, 
         }
         //const pubkey = fs.readFileSync(process.env.PGPPUBLIKEY, 'utf8') // => si fichier .txt
         const pubkey =  await fs.readFile(process.env.PGPPUBLIKEY,'ascii');
+
+        console.log("pubkey ==> ", pubkey);
 
     
         // Pas moyen de signer cet email !! grrr....
@@ -171,7 +173,7 @@ const sendEmailWithIpAndCrypt = async (email, subject, context, text, template, 
 
         return info.response;
     } catch (error) {
-        console.trace("erreur dans la méthode sendEmailWithIpAndCrypt du service sendEmail", error);
+        console.trace("erreur dans la méthode sendEmailWithIpAndCrypt du service sendMail", error);
     }
 };
 
