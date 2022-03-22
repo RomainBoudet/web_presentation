@@ -56,25 +56,25 @@ app.use(helmet());
     helmet.dnsPrefetchControl({
         allow: true, //j'autorise la prélecture DNS pour gagner du temps sur mobile.. => https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control
     }),
-    helmet.expectCt({
+    /* helmet.expectCt({
         maxAge: 0,
         enforce: true, //demander qu'un navigateur applique toujours l'exigence de transparence du certificat SSL ! //TODO  repasser a true
         //reportUri: "https://example.com/report", Pourrait être intérresant de se prévoir une url pour l'admin avec aussi 
-    }),
-    helmet.hsts({
+    }), */
+    /* helmet.hsts({
         maxAge: 31536000,
         preload: true,
         includeSubDomains: true,
 
-      }),
-      helmet.frameguard({
+      }), */
+      /* helmet.frameguard({
           action:"deny",
-      }),
-      helmet.expectCt({
+      }), */
+      /* helmet.expectCt({
         maxAge: 86400,
         enforce: true,
         //reportUri: "Et faudrait lui donner quelque chose d'autre là.. 😉 ",
-      })
+      }) */
 
     )
  
