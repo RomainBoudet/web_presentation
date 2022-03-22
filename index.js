@@ -28,7 +28,7 @@ app.use((_, res, next) => {
 app.set('trust proxy', true);
 
 // on redirige tout en HTTPS !
-app.use(enforceSSL());
+//app.use(enforceSSL());
 
 app.use(helmet());
 // https://ponyfoo.com/articles/content-security-policy-in-express-apps
