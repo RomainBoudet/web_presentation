@@ -49,7 +49,7 @@ async function listDatabases(client) {
 
   if (isDbFound === undefined) {
 
-    console.log(chalk.red.bold("La BDD spécifié n'a pas été trouvée !"))
+    console.log(chalk.red.bold("La BDD spécifié n'a pas été trouvée ! ⚠️ "))
 
   } else {
       console.log("BDD Mongo utilisée => ", isDbFound);

@@ -1,10 +1,8 @@
 const Winner = require('../model/winner');
 const validator = require('validator');
 const {
-    formatLongBDD
-} = require('../service/date');
-const {
-    formatToast
+    formatLongBDD,
+    formatToast,
 } = require('../service/date');
 const {
     sendEmailWithIp
