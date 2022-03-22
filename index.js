@@ -54,7 +54,14 @@ app.use(helmet());
         maxAge: 0,
         enforce: true, //demander qu'un navigateur applique toujours l'exigence de transparence du certificat SSL ! //TODO  repasser a true
         //reportUri: "https://example.com/report", Pourrait être intérresant de se prévoir une url pour l'admin avec aussi 
-    }))
+    }),
+    helmet.hsts({
+        maxAge: 31536000,
+        preload: true,
+        includeSubDomains: true,
+
+      })
+    )
  
 
 app.use((req, res, next) => {
