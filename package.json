@@ -7,7 +7,7 @@
     "start": "nodemon index.js",
     "build": "browserify app/public/js/script.js -o app/public/js/bundle.js && nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "browserify app/public/js/script.js -o app/public/js/bundle.js && uglify app/public/js/invader.js -o app/public/js/invader.js && javascript-obfuscator app/public/js/invader.js --output app/public/js/invader.js && pm2 start index.js"
+    "server": "browserify app/public/js/script.js -o app/public/js/bundle.js && uglifyjs -o app/public/js/bundle.js && startinvader.js -o app/public/js/invader.js && javascript-obfuscator app/public/js/invader.js --output app/public/js/invader.js && pm2 start index.js"
   },
   "repository": {
     "type": "git",
