@@ -1,23 +1,11 @@
 const path = require('path');
 const {
-    sendEmail,
-    sendEmailWithIp,
     sendEmailWithIpAndCrypt,
 } = require('../service/sendMail');
 const validator = require('validator');
 const {
     formatLong
 } = require('../service/date');
-const geoip = require('geoip-lite');
-const {
-    kill
-} = require('process');
-
-
-
-
-
-
 
 const mainController = {
 

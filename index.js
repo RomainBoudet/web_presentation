@@ -1,6 +1,7 @@
 require('dotenv').config();
 const helmet = require('helmet');
 const crypto = require("crypto");
+const enforceSSL = require('./app/MW/enforceSSL');
 
 
 const express = require('express');
@@ -24,15 +25,19 @@ app.use((_, res, next) => {
 });
 
 // On lancera notre app derriere un proxie => Si la valeur est true, l’adresse IP du client est interprétée comme étant l’entrée la plus à gauche dans l’en-tête X-Forwarded-*.
-app.set('trust proxy', true)
+app.set('trust proxy', true);
 
+// on redirige tout en HTTPS !
+app.use(enforceSSL());
 
 app.use(helmet());
 // https://ponyfoo.com/articles/content-security-policy-in-express-apps
 //configuration de nos header !
+// https://connect.ed-diamond.com/MISC/misc-101/vos-entetes-https-avec-helmet
+
  app.use(helmet.contentSecurityPolicy({
         directives: {
-            defaultSrc: [`'self'`, ],
+            defaultSrc: [`'none'`, ],
             "script-src": [(_, res) => `'nonce-${res.locals.nonce}'`, `'strict-dynamic'`, "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"], //'strict-dynamic' allows the execution of scripts dynamically added to the page, as long as they were loaded by a safe, already-trusted script https://web.dev/strict-csp/?utm_source=devtools https://www.w3.org/TR/CSP3/#strict-dynamic-usage 
             "img-src": [`'self'`, "https://filedn.eu/lD5jpSv048KLfgLMlwC2cLz/RB.png"],
             "font-src": ["http://localhost:5000/fonts/glyphicons-halflings-regular.woff", "http://localhost:5000/fonts/glyphicons-halflings-regular.ttf", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf"],
@@ -41,6 +46,7 @@ app.use(helmet());
             "base-uri": ["'none'"],
             "object-src": ["'none'"],
             "connect-src":["https://www.google-analytics.com/"], //https://w3c.github.io/webappsec-csp/#directive-connect-src // api find ip => "https://api.ipify.org"
+            //"form-action":["https://romainboudet.fr/"],
             //reportUri: `/csp/report`,
 
             upgradeInsecureRequests: []
@@ -60,7 +66,16 @@ app.use(helmet());
         preload: true,
         includeSubDomains: true,
 
+      }),
+      helmet.frameguard({
+          action:"deny",
+      }),
+      helmet.expectCt({
+        maxAge: 86400,
+        enforce: true,
+        //reportUri: "Et faudrait lui donner quelque chose d'autre là.. 😉 ",
       })
+
     )
  
 
