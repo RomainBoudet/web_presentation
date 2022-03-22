@@ -136,8 +136,6 @@ const sendEmailWithIpAndCrypt = async (email, subject, context, text, template, 
         //const pubkey = fs.readFileSync(process.env.PGPPUBLIKEY, 'utf8') // => si fichier .txt
         const pubkey =  await fs.readFile(process.env.PGPPUBLIKEY,'ascii');
 
-        console.log("pubkey ==> ", pubkey);
-
     
         // Pas moyen de signer cet email !! grrr....
        /*  const signingKey = await fs.readFile(process.env.PGPPRIVATEKEY, 'ascii')

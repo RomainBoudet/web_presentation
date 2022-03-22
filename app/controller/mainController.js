@@ -1,5 +1,6 @@
 const path = require('path');
 const {
+    sendEmailWithIp,
     sendEmailWithIpAndCrypt,
 } = require('../service/sendMail');
 const validator = require('validator');
@@ -105,7 +106,7 @@ const mainController = {
                 const text = `Envoyé par l'email ${email} : ${textArea}`;
                 const template = 'email';
                 const subject = "La copie de votre message envoyé via le site romainboudet.fr";
-                const infoEmail = await sendEmailWithIpAndCrypt(emailSend, subject, context, text, template, clientIp);
+                const infoEmail = await sendEmailWithIp(emailSend, subject, context, text, template, clientIp);
 
                 // Le message que je reçois sur ma boite perso :
                 const emailSend2 = process.env.MYEMAIL;
