@@ -1,7 +1,6 @@
 require('dotenv').config();
 const helmet = require('helmet');
 const crypto = require("crypto");
-const enforceSSL = require('./app/MW/enforceSSL');
 
 
 const express = require('express');
@@ -31,8 +30,9 @@ app.set('trust proxy', true);
 //app.use(enforceSSL());
 
 app.use(helmet());
+
+//configuration de nos header, principalement dans NGINX !
 // https://ponyfoo.com/articles/content-security-policy-in-express-apps
-//configuration de nos header !
 // https://connect.ed-diamond.com/MISC/misc-101/vos-entetes-https-avec-helmet
 
  app.use(helmet.contentSecurityPolicy({
@@ -61,12 +61,7 @@ app.use(helmet());
         enforce: true, //demander qu'un navigateur applique toujours l'exigence de transparence du certificat SSL ! //TODO  repasser a true
         //reportUri: "https://example.com/report", Pourrait être intérresant de se prévoir une url pour l'admin avec aussi 
     }), 
-    // Géré par NGINX
-     /* helmet.hsts({
-        maxAge: 31536000,
-        preload: true,
-        includeSubDomains: true,
-      }),  */
+    
        helmet.frameguard({
           action:"deny",
       }), 
@@ -78,25 +73,11 @@ app.use(helmet());
 
     )
  
-// Géré par NGINX
-/* app.use((req, res, next) => {
-    res.setHeader(
-        "Permissions-Policy",
-        "geolocation=(), fullscreen=(), autoplay=(), camera=(), display-capture=(), document-domain=(), fullscreen=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), sync-xhr=(), usb=(), screen-wake-lock=(), xr-spatial-tracking=()"
-      );
-    res.setHeader("X-XSS-Protection", "1; mode=block");
-    next();
-}); */
-// Géré par NGINX
-//app.set('x-powered-by', false);
 
 //pour géreer les donnée en post et réceptionné un req.body !
 app.use(express.urlencoded({extended: true}));
 
-
-
 //on ne va pas utiliser les fichiers html fournis mais des vues ejs
-
 app.use(express.static('./app/public'));
 
 
