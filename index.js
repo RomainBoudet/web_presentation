@@ -61,12 +61,12 @@ app.use(helmet());
         enforce: true, //demander qu'un navigateur applique toujours l'exigence de transparence du certificat SSL ! //TODO  repasser a true
         //reportUri: "https://example.com/report", Pourrait être intérresant de se prévoir une url pour l'admin avec aussi 
     }), 
-     helmet.hsts({
+    // Géré par NGINX
+     /* helmet.hsts({
         maxAge: 31536000,
         preload: true,
         includeSubDomains: true,
-
-      }), 
+      }),  */
        helmet.frameguard({
           action:"deny",
       }), 
@@ -78,13 +78,17 @@ app.use(helmet());
 
     )
  
-
-app.use((req, res, next) => {
+// Géré par NGINX
+/* app.use((req, res, next) => {
+    res.setHeader(
+        "Permissions-Policy",
+        "geolocation=(), fullscreen=(), autoplay=(), camera=(), display-capture=(), document-domain=(), fullscreen=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), sync-xhr=(), usb=(), screen-wake-lock=(), xr-spatial-tracking=()"
+      );
     res.setHeader("X-XSS-Protection", "1; mode=block");
     next();
-});
-
-app.set('x-powered-by', false);
+}); */
+// Géré par NGINX
+//app.set('x-powered-by', false);
 
 //pour géreer les donnée en post et réceptionné un req.body !
 app.use(express.urlencoded({extended: true}));

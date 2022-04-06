@@ -29,6 +29,8 @@ router.get('/dossier_de_projet', mainController.dossier_de_projet);
 
 router.post('/',apiLimiter, clean, mainController.mail);
 
+router.get('/.well-known/romainboudet-pubkey.asc', mainController.securityKey);
+
 //space Invader 
 
 router.post('/winner/insert', clean, spaceInvaderController.insertWinner)

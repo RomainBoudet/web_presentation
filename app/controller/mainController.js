@@ -28,6 +28,11 @@ const mainController = {
         res.setHeader('Content-type', 'application/pdf');
     },
 
+    securityKey: (req, res) => {
+        res.status(200).sendFile(path.resolve(__dirname + `./../public/publickey.asc`));
+        res.setHeader('Content-type', 'text/plain');
+    },
+
     dossier_de_projet: (req, res) => {
 
         res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/DProjet-Boudet_Romain.pdf`));
