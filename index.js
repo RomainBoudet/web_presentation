@@ -9,7 +9,9 @@ const router = require('./app/router');
 const app = express();
 
 // Pour récupérer les données du formulaire
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({
+    extended: true
+}));
 
 const port = process.env.PORT;
 
@@ -26,8 +28,6 @@ app.use((_, res, next) => {
 // On lancera notre app derriere un proxie => Si la valeur est true, l’adresse IP du client est interprétée comme étant l’entrée la plus à gauche dans l’en-tête X-Forwarded-*.
 app.set('trust proxy', true);
 
-// on redirige tout en HTTPS !
-//app.use(enforceSSL());
 
 app.use(helmet());
 
@@ -35,7 +35,7 @@ app.use(helmet());
 // https://ponyfoo.com/articles/content-security-policy-in-express-apps
 // https://connect.ed-diamond.com/MISC/misc-101/vos-entetes-https-avec-helmet
 
- app.use(helmet.contentSecurityPolicy({
+app.use(helmet.contentSecurityPolicy({
         directives: {
             defaultSrc: [`'none'`, ],
             "script-src": [(_, res) => `'nonce-${res.locals.nonce}'`, `'strict-dynamic'`, "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"], //'strict-dynamic' allows the execution of scripts dynamically added to the page, as long as they were loaded by a safe, already-trusted script https://web.dev/strict-csp/?utm_source=devtools https://www.w3.org/TR/CSP3/#strict-dynamic-usage 
@@ -45,37 +45,26 @@ app.use(helmet());
             "style-src": ["'unsafe-inline'", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", `'self'`],
             "base-uri": ["'none'"],
             "object-src": ["'none'"],
-            "connect-src":["https://www.google-analytics.com/"], //https://w3c.github.io/webappsec-csp/#directive-connect-src // api find ip => "https://api.ipify.org"
+            "connect-src": ["https://www.google-analytics.com/"], //https://w3c.github.io/webappsec-csp/#directive-connect-src // api find ip => "https://api.ipify.org"
             //"form-action":["https://romainboudet.fr/"],
             //reportUri: `/csp/report`,
 
             upgradeInsecureRequests: []
         },
-       // reportOnly: true
-    }),
-    helmet.dnsPrefetchControl({
-        allow: true, //j'autorise la prélecture DNS pour gagner du temps sur mobile.. => https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control
-    }),
-     helmet.expectCt({
-        maxAge: 0,
-        enforce: true, //demander qu'un navigateur applique toujours l'exigence de transparence du certificat SSL ! //TODO  repasser a true
-        //reportUri: "https://example.com/report", Pourrait être intérresant de se prévoir une url pour l'admin avec aussi 
+        // reportOnly: true
     }), 
-    
-       helmet.frameguard({
-          action:"deny",
-      }), 
-       helmet.expectCt({
-        maxAge: 86400,
-        enforce: true,
-        //reportUri: "Et faudrait lui donner quelque chose d'autre là.. 😉 ",
-      }) 
+)
 
-    )
- 
+res.setHeader(
+    "Permissions-Policy",
+    "geolocation=(), fullscreen=(), autoplay=(), camera=(), display-capture=(), document-domain=(), fullscreen=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), sync-xhr=(), usb=(), screen-wake-lock=(), xr-spatial-tracking=()"
+);
+
 
 //pour géreer les donnée en post et réceptionné un req.body !
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({
+    extended: true
+}));
 
 //on ne va pas utiliser les fichiers html fournis mais des vues ejs
 app.use(express.static('./app/public'));
