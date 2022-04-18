@@ -55,13 +55,6 @@ app.use(helmet.contentSecurityPolicy({
     }), 
 )
 
-app.use((req, res, next) => {
-    res.setHeader(
-        "Permissions-Policy",
-        "geolocation=(), fullscreen=(), autoplay=(), camera=(), display-capture=(), document-domain=(), fullscreen=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), sync-xhr=(), usb=(), screen-wake-lock=(), xr-spatial-tracking=()"
-      );
-    next();
-});
 
 //pour géreer les donnée en post et réceptionné un req.body !
 app.use(express.urlencoded({
