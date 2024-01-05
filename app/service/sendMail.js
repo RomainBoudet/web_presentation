@@ -134,18 +134,19 @@ const sendEmailWithIpAndCrypt = async (email, subject, context, text, template, 
             context.precision = geo.area;
         }
         //const pubkey = fs.readFileSync(process.env.PGPPUBLIKEY, 'utf8') // => si fichier .txt
-        const pubkey =  await fs.readFile(process.env.PGPPUBLIKEY,'ascii');
+        //const pubkey =  await fs.readFile(process.env.PGPPUBLIKEY,'ascii');
 
     
         // Pas moyen de signer cet email !! grrr....
-       /*  const signingKey = await fs.readFile(process.env.PGPPRIVATEKEY, 'ascii')
+        /* const signingKey = await fs.readFile(process.env.PGPPRIVATEKEY, 'ascii')
         const passphrase = process.env.PASSPHRASE;
         const options = {
             signingKey,
             passphrase,
         }; 
         console.log("signinKey ==> ", signingKey);
-        console.log("options == > ", options); */
+        console.log("options == > ", options); 
+        console.log("pubkey ==> ", pubkey); */
         //console.log("options.signingKey == > ", options.signingKey);
 
         //console.log("public key ==> ", pubkey);
@@ -155,8 +156,8 @@ const sendEmailWithIpAndCrypt = async (email, subject, context, text, template, 
         //https://github.com/nodemailer/nodemailer-openpgp
 
         // l'envoie d'email définit par l'object "transporter"
-       // transporter.use('stream', openpgpEncrypt(option));
-        await transporter.use('stream', openpgpEncrypt());
+        //transporter.use('stream', openpgpEncrypt(options));
+        //await transporter.use('stream', openpgpEncrypt());
         const info = await transporter.sendMail({
             from: process.env.EMAIL, //l'envoyeur
             to: email, // le receveur du mail.
@@ -164,7 +165,8 @@ const sendEmailWithIpAndCrypt = async (email, subject, context, text, template, 
             text, // une variante en texte si pas de html
             template, // une vue hbs
             context,
-            encryptionKeys: [pubkey], //
+            //encryptionKeys: [pubkey], //
+            //shouldSign: true,
         });
 
         console.log(`Un email chiffré à bien été envoyé a ${email} : ${info.response}`);
