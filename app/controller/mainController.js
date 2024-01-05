@@ -24,13 +24,13 @@ const mainController = {
 
     cv: (req, res) => {
 
-        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/romain_CV.pdf`));
+        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/CV_Boudet_Romain.pdf`));
         res.setHeader('Content-type', 'application/pdf');
     },
 
     dossier_de_projet: (req, res) => {
 
-        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/DProjet-Boudet_Romain.pdf`));
+        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/Dossier_de_projet_2023.pdf`));
         res.setHeader('Content-type', 'application/pdf');
     },
 
