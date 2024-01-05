@@ -62,9 +62,5 @@ $(document).ready(function () {
 
   const temporaryDisplay = require('./temporaryDisplay');
 
-  const analytic = require('./analytic');
-
-  const analyticLaunch = require('./analyticLaunch');
-
   
   

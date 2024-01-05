@@ -96,6 +96,7 @@ const mainController = {
                 email,
                 textArea,
                 dateEnvoi: formatLong(new Date()),
+                year: new Date().getFullYear(),
             };
 
     
