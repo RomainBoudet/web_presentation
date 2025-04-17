@@ -23,7 +23,7 @@ router.get('/', mainController.main);
 
 router.get('/secnumacademie', mainController.anssi);
 
-router.get('/cv', mainController.cv);
+router.get('/KSBhDzmJbFmbIvUxu7mah8CQPCRTcFBRtzUAG8x5g3mJNVdjqlSNwqQlbLDwdRoAeGeBm9Lv2vgcMN5hM0mtbAW94AKoc2Sq9h5cUqFcEq4QpwrR05NxQlcKqGKmI0TW', mainController.cv);
 
 router.get('/dossier_de_projet', mainController.dossier_de_projet);
 
