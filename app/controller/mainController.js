@@ -18,20 +18,23 @@ const mainController = {
 
     anssi: (req, res) => {
 
-        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/attestation_secnumacademie.pdf`));
-        res.setHeader('Content-type', 'application/pdf');
+        const filePath = path.resolve(__dirname, './../public/pdf/attestation_secnumacademie.pdf');
+        res.setHeader('Content-Type', 'application/pdf');
+        res.status(200).sendFile(filePath);
     },
 
     cv: (req, res) => {
 
-        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/CV_Boudet_Romain.pdf`));
-        res.setHeader('Content-type', 'application/pdf');
+        const filePath = path.resolve(__dirname, './../public/pdf/CV_Boudet_Romain.pdf');
+        res.setHeader('Content-Type', 'application/pdf');
+        res.status(200).sendFile(filePath);
     },
 
     dossier_de_projet: (req, res) => {
 
-        res.status(200).sendFile(path.resolve(__dirname + `./../public/pdf/Dossier_de_projet_2023.pdf`));
-        res.setHeader('Content-type', 'application/pdf');
+        const filePath = path.resolve(__dirname, './../public/pdf/Dossier_de_projet_2023.pdf');
+        res.setHeader('Content-Type', 'application/pdf');
+        res.status(200).sendFile(filePath);
     },
 
 
